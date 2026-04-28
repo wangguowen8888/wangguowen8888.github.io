@@ -43,85 +43,47 @@
 
         <section class="prose">
           <div class="search" role="search" aria-label="工具搜索" style="margin-bottom:12px">
-            <input id="site-search" type="search" placeholder="搜索：聊天 / 写作 / PDF / 去水印 / 自动化…" autocomplete="off" />
+            <input id="site-search" type="search" placeholder="搜索：Kimi / DeepSeek / 绘画 / 视频 / 写作…" autocomplete="off" />
             <small>即搜即筛</small>
           </div>
           <p id="search-empty" style="display:none;color:var(--muted);margin:0">没有匹配结果，换个关键词试试。</p>
 
-          <div class="ad" aria-label="广告位：工具页顶部" style="margin:12px 0">
-            <strong>广告位（工具页顶部）</strong>
-            <div class="adbox">工具页通常 PV 高，放一块即可，别太密。</div>
-          </div>
+          <h2>热门工具导航</h2>
+          <div class="tool-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 20px 0;">
+            <div class="tool-card" data-search-item data-search-text="kimi 智能助手 长文本 文案 国产 ai" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 15px;">
+              <h3 style="color: #3b82f6; font-size: 18px;">Kimi 智能助手</h3>
+              <p style="color: #94a3b8; font-size: 14px;">支持 200 万字长文本分析，国产 AI 之光，文案处理极强。</p>
+              <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer nofollow sponsored" style="color: #60a5fa; text-decoration: none; font-size: 13px;">立即访问 →</a>
+            </div>
 
-          <h2>AI 聊天</h2>
-          <div class="tools">
-            <div class="tool" data-search-item data-search-text="ai 聊天 免费 不用注册">
-              <div class="row">
-                <h3>工具 A（示例）</h3>
-                <a class="btn primary" href="AFF_LINK_HERE" rel="nofollow sponsored" target="_blank">点击使用</a>
-              </div>
-              <p>一句话描述：免费试用、无需注册、适合快速聊天。</p>
+            <div class="tool-card" data-search-item data-search-text="deepseek r1 推理 编程 数理 逻辑 开源 免费" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 15px;">
+              <h3 style="color: #3b82f6; font-size: 18px;">DeepSeek R1</h3>
+              <p style="color: #94a3b8; font-size: 14px;">超强推理模型，编程与数理逻辑表现惊人，开源且免费。</p>
+              <a href="https://www.deepseek.com/" target="_blank" rel="noopener noreferrer nofollow sponsored" style="color: #60a5fa; text-decoration: none; font-size: 13px;">立即访问 →</a>
             </div>
-            <div class="tool" data-search-item data-search-text="ai 语音 聊天 陪伴">
-              <div class="row">
-                <h3>工具 B（示例）</h3>
-                <a class="btn" href="AFF_LINK_HERE" rel="nofollow sponsored" target="_blank">打开官网</a>
-              </div>
-              <p>一句话描述：支持语音或陪伴场景（按需替换）。</p>
-            </div>
-          </div>
 
-          <h2>AI 写作</h2>
-          <div class="tools">
-            <div class="tool" data-search-item data-search-text="ai 写作 文案 论文 免费">
-              <div class="row">
-                <h3>写作工具 C（示例）</h3>
-                <a class="btn primary" href="AFF_LINK_HERE" rel="nofollow sponsored" target="_blank">点击使用</a>
-              </div>
-              <p>一句话描述：适合文案/脚本/邮件，提供模板与导出。</p>
+            <div class="tool-card" data-search-item data-search-text="notion ai 笔记 表格 大纲 会议纪要" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 15px;">
+              <h3 style="color: #10b981; font-size: 18px;">Notion AI</h3>
+              <p style="color: #94a3b8; font-size: 14px;">笔记与 AI 的完美结合，一键生成表格、大纲与会议纪要。</p>
+              <a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer nofollow sponsored" style="color: #60a5fa; text-decoration: none; font-size: 13px;">立即访问 →</a>
             </div>
-            <div class="tool" data-search-item data-search-text="ai 生成 ppt">
-              <div class="row">
-                <h3>PPT 工具 D（示例）</h3>
-                <a class="btn" href="AFF_LINK_HERE" rel="nofollow sponsored" target="_blank">打开官网</a>
-              </div>
-              <p>一句话描述：输入主题即可生成大纲与页面（按需替换）。</p>
-            </div>
-          </div>
 
-          <h2>副业与自动化</h2>
-          <div class="tools">
-            <div class="tool" data-search-item data-search-text="副业 赚钱 自动化 工作流">
-              <div class="row">
-                <h3>自动化工具 E（示例）</h3>
-                <a class="btn primary" href="AFF_LINK_HERE" rel="nofollow sponsored" target="_blank">点击使用</a>
-              </div>
-              <p>一句话描述：把内容采集/改写/发布串成工作流，适合做副业提效。</p>
+            <div class="tool-card" data-search-item data-search-text="秘塔 ai 搜索 学术 思维导图 无广告" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 15px;">
+              <h3 style="color: #10b981; font-size: 18px;">秘塔 AI 搜索</h3>
+              <p style="color: #94a3b8; font-size: 14px;">没有广告的搜索引擎，直接给结果，自动生成学术思维导图。</p>
+              <a href="https://metaso.cn/" target="_blank" rel="noopener noreferrer nofollow sponsored" style="color: #60a5fa; text-decoration: none; font-size: 13px;">立即访问 →</a>
             </div>
-            <div class="tool" data-search-item data-search-text="ai 接单 平台">
-              <div class="row">
-                <h3>接单平台 F（示例）</h3>
-                <a class="btn" href="AFF_LINK_HERE" rel="nofollow sponsored" target="_blank">查看平台</a>
-              </div>
-              <p>一句话描述：新手可接单的方向与入口（按需替换）。</p>
-            </div>
-          </div>
 
-          <h2>稳定 SEO 需求（通用工具）</h2>
-          <div class="tools">
-            <div class="tool" data-search-item data-search-text="pdf 转 word 免费 在线">
-              <div class="row">
-                <h3>PDF 转 Word（示例）</h3>
-                <a class="btn primary" href="AFF_LINK_HERE" rel="nofollow sponsored" target="_blank">点击使用</a>
-              </div>
-              <p>一句话描述：常年稳定搜索需求，适合做独立文章页引流。</p>
+            <div class="tool-card" data-search-item data-search-text="midjourney ai 绘画 图片 设计 艺术" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 15px;">
+              <h3 style="color: #f59e0b; font-size: 18px;">Midjourney</h3>
+              <p style="color: #94a3b8; font-size: 14px;">全球最强的 AI 绘画工具，艺术感和光影细节无出其右。</p>
+              <a href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer nofollow sponsored" style="color: #60a5fa; text-decoration: none; font-size: 13px;">立即访问 →</a>
             </div>
-            <div class="tool" data-search-item data-search-text="图片 去水印 压缩 在线">
-              <div class="row">
-                <h3>图片去水印/压缩（示例）</h3>
-                <a class="btn" href="AFF_LINK_HERE" rel="nofollow sponsored" target="_blank">打开工具</a>
-              </div>
-              <p>一句话描述：图片处理工具组合，适合做工具合集与教程页。</p>
+
+            <div class="tool-card" data-search-item data-search-text="luma dream machine 视频 生成 电影 质感" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 15px;">
+              <h3 style="color: #f59e0b; font-size: 18px;">Luma Dream Machine</h3>
+              <p style="color: #94a3b8; font-size: 14px;">文字一键生成高画质视频，分分钟拍出好莱坞质感大片。</p>
+              <a href="https://lumalabs.ai/" target="_blank" rel="noopener noreferrer nofollow sponsored" style="color: #60a5fa; text-decoration: none; font-size: 13px;">立即访问 →</a>
             </div>
           </div>
         </section>

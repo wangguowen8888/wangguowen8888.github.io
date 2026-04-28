@@ -1,5 +1,21 @@
 (() => {
   const byId = (id) => document.getElementById(id);
+  const normalizePath = (path) => {
+    const trimmed = (path || "/").replace(/index\.html$/i, "");
+    return trimmed.endsWith("/") ? trimmed : `${trimmed}/`;
+  };
+
+  // Highlight current navigation item.
+  const currentPath = normalizePath(location.pathname);
+  for (const link of document.querySelectorAll(".nav a")) {
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("http")) continue;
+    const resolved = new URL(href, location.href);
+    const linkPath = normalizePath(resolved.pathname);
+    if (linkPath !== "/" && currentPath.startsWith(linkPath)) {
+      link.setAttribute("aria-current", "page");
+    }
+  }
 
   // Lightweight client-side filter for lists/cards.
   const q = byId("site-search");
