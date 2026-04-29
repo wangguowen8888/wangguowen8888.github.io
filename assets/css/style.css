@@ -402,6 +402,17 @@ html.translated-rtl, body.translated-rtl{
 @media (max-width: 560px){
   h1{font-size:28px}
   .card{grid-column: span 12}
-  .nav{display:none}
+  .topbar-inner{
+    flex-wrap:wrap;
+    row-gap:10px;
+  }
+  .topbar-right{
+    width:100%;
+    justify-content:space-between;
+  }
+  .nav{
+    display:flex;
+    max-width:100%;
+  }
 }
 
