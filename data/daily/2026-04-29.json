@@ -1,33 +1,33 @@
 {
   "dateKey": "2026-04-29",
-  "summary": "今天共整理 20 条 AI 动态，主要涵盖 tool8条、news3条、paper9条。",
+  "summary": "今天共整理 35 条 AI 动态，主要涵盖 资讯5条、工具11条、论文10条、讨论5条、产品4条。",
   "items": [
     {
       "source": "Hacker News",
       "sourceId": "hackernews",
-      "title": "VibeBench: Measuring 1k Engineers' Opinions of New Models",
-      "url": "https://vibebench.standardagents.ai/",
-      "publishedAt": "2026-04-28T23:36:45.000Z",
-      "author": "jpschroeder",
+      "title": "The Abstraction Fallacy: Why AI can simulate but not instantiate consciousness",
+      "url": "https://deepmind.google/research/publications/231971/",
+      "publishedAt": "2026-04-29T17:30:15.000Z",
+      "author": "joshus",
       "summary": "",
       "tags": [
         "hn"
       ],
-      "score": 6,
-      "contentType": "tool",
+      "score": 14,
+      "contentType": "news",
       "rawMeta": {
-        "comments": 2
+        "comments": 4
       },
       "weight": 10,
-      "aiSummary": "来源：Hacker News，类型：tool，VibeBench: Measuring 1k Engineers' Opinions of New Models"
+      "aiSummary": "来源：Hacker News，类型：资讯，The Abstraction Fallacy: Why AI can simulate but not instantiate consciousness"
     },
     {
       "source": "Hacker News",
       "sourceId": "hackernews",
-      "title": "AI Worries Have Returned to Wall Street. Now Come Earnings",
-      "url": "https://www.wsj.com/tech/ai-worries-have-returned-to-wall-street-now-come-earnings-d680e19c",
-      "publishedAt": "2026-04-28T23:58:34.000Z",
-      "author": "htk",
+      "title": "AI reads your Google Reviews and builds a landing page for your business",
+      "url": "https://favurl.com/",
+      "publishedAt": "2026-04-29T17:23:23.000Z",
+      "author": "valon",
       "summary": "",
       "tags": [
         "hn"
@@ -38,34 +38,15 @@
         "comments": 0
       },
       "weight": 10,
-      "aiSummary": "来源：Hacker News，类型：news，AI Worries Have Returned to Wall Street. Now Come Earnings"
+      "aiSummary": "来源：Hacker News，类型：资讯，AI reads your Google Reviews and builds a landing page for your business"
     },
     {
       "source": "Hacker News",
       "sourceId": "hackernews",
-      "title": "AI researchers want AI to fake \"thinking\" – by Mike Elgan",
-      "url": "https://www.machinesociety.ai/p/ai-researchers-want-ai-to-fake-thinking-247",
-      "publishedAt": "2026-04-28T23:52:14.000Z",
-      "author": "MaysonL",
-      "summary": "",
-      "tags": [
-        "hn"
-      ],
-      "score": 3,
-      "contentType": "paper",
-      "rawMeta": {
-        "comments": 1
-      },
-      "weight": 10,
-      "aiSummary": "来源：Hacker News，类型：paper，AI researchers want AI to fake \"thinking\" – by Mike Elgan"
-    },
-    {
-      "source": "Hacker News",
-      "sourceId": "hackernews",
-      "title": "Evaluating CUDA Tile for AI Workloads on Hopper and Blackwell GPUs",
-      "url": "https://arxiv.org/abs/2604.23466",
-      "publishedAt": "2026-04-29T00:07:25.000Z",
-      "author": "matt_d",
+      "title": "Phi Browser – local-first memory and AI that looks like Arc",
+      "url": "https://phibrowser.com/",
+      "publishedAt": "2026-04-29T17:22:45.000Z",
+      "author": "alphato_o",
       "summary": "",
       "tags": [
         "hn"
@@ -76,54 +57,92 @@
         "comments": 0
       },
       "weight": 10,
-      "aiSummary": "来源：Hacker News，类型：news，Evaluating CUDA Tile for AI Workloads on Hopper and Blackwell GPUs"
+      "aiSummary": "来源：Hacker News，类型：资讯，Phi Browser – local-first memory and AI that looks like Arc"
     },
     {
       "source": "Hacker News",
       "sourceId": "hackernews",
-      "title": "From spaghetti to main bus: refactoring an AI agent orchestrator with Elm",
-      "url": "https://blog.mariohayashi.com/p/the-factory-must-grow-part-ii-from",
-      "publishedAt": "2026-04-28T23:35:21.000Z",
-      "author": "mhay",
+      "title": "(One) Good AI Is Here",
+      "url": "https://www.anildash.com/2026/04/28/one-good-ai-is-here/",
+      "publishedAt": "2026-04-29T17:39:49.000Z",
+      "author": "SLHamlet",
       "summary": "",
       "tags": [
         "hn"
       ],
-      "score": 2,
+      "score": 1,
+      "contentType": "news",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：资讯，(One) Good AI Is Here"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Cursor Browser Swarm: letting AI agents see, test, and check their own UI work",
+      "url": "https://twitter.com/tejashaveridev/status/2049518417846190509",
+      "publishedAt": "2026-04-29T17:36:24.000Z",
+      "author": "TejasHaveri",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 1,
       "contentType": "tool",
       "rawMeta": {
         "comments": 0
       },
       "weight": 10,
-      "aiSummary": "来源：Hacker News，类型：tool，From spaghetti to main bus: refactoring an AI agent orchestrator with Elm"
+      "aiSummary": "来源：Hacker News，类型：工具，Cursor Browser Swarm: letting AI agents see, test, and check their own UI work"
     },
     {
       "source": "Hacker News",
       "sourceId": "hackernews",
-      "title": "Joby flies first point-to-point air taxi flight tests in New York",
-      "url": "https://www.reuters.com/business/aerospace-defense/joby-flies-first-point-to-point-air-taxi-flight-tests-new-york-2026-04-28/",
-      "publishedAt": "2026-04-28T23:31:49.000Z",
-      "author": "canucker2016",
+      "title": "Zero: Search Engine for AI Agents",
+      "url": "https://www.zero.xyz/",
+      "publishedAt": "2026-04-29T17:33:14.000Z",
+      "author": "aloukissas",
       "summary": "",
       "tags": [
         "hn"
       ],
-      "score": 2,
+      "score": 1,
+      "contentType": "tool",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：工具，Zero: Search Engine for AI Agents"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "OpenObserve Raises $10M Series A",
+      "url": "https://openobserve.ai/blog/series-a-announcement/",
+      "publishedAt": "2026-04-29T17:17:05.000Z",
+      "author": "prabhatsharma",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 1,
       "contentType": "news",
       "rawMeta": {
         "comments": 0
       },
       "weight": 10,
-      "aiSummary": "来源：Hacker News，类型：news，Joby flies first point-to-point air taxi flight tests in New York"
+      "aiSummary": "来源：Hacker News，类型：资讯，OpenObserve Raises $10M Series A"
     },
     {
       "source": "GitHub Trending",
       "sourceId": "github-trending",
-      "title": "mattpocock/skills",
-      "url": "https://github.com/mattpocock/skills",
-      "publishedAt": "2026-04-29T00:32:47.361Z",
-      "author": "mattpocock",
-      "summary": "Sponsor Star mattpocock / skills Skills for Real Engineers. Straight from my .claude directory.",
+      "title": "1jehuang/jcode",
+      "url": "https://github.com/1jehuang/jcode",
+      "publishedAt": "2026-04-29T17:41:34.036Z",
+      "author": "1jehuang",
+      "summary": "Star 1jehuang / jcode Coding Agent Harness",
       "tags": [
         "github",
         "trending"
@@ -132,14 +151,14 @@
       "contentType": "tool",
       "rawMeta": {},
       "weight": 9,
-      "aiSummary": "来源：GitHub Trending，类型：tool，Sponsor Star mattpocock / skills Skills for Real Engineers. Straight from my .claude directory."
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star 1jehuang / jcode Coding Agent Harness"
     },
     {
       "source": "GitHub Trending",
       "sourceId": "github-trending",
       "title": "abhigyanpatwari/GitNexus",
       "url": "https://github.com/abhigyanpatwari/GitNexus",
-      "publishedAt": "2026-04-29T00:32:47.361Z",
+      "publishedAt": "2026-04-29T17:41:34.036Z",
       "author": "abhigyanpatwari",
       "summary": "Sponsor Star abhigyanpatwari / GitNexus GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a GitHub repo or ZIP file, and get an interactive knowledge graph wit a built in Graph RAG Agent. Perfect for code exploration",
       "tags": [
@@ -150,14 +169,14 @@
       "contentType": "tool",
       "rawMeta": {},
       "weight": 9,
-      "aiSummary": "来源：GitHub Trending，类型：tool，Sponsor Star abhigyanpatwari / GitNexus GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side k"
+      "aiSummary": "来源：GitHub Trending，类型：工具，Sponsor Star abhigyanpatwari / GitNexus GitNexus: The Zero-Server Code Intelligence Engine - GitNexus is a client-side k"
     },
     {
       "source": "GitHub Trending",
       "sourceId": "github-trending",
       "title": "microsoft/VibeVoice",
       "url": "https://github.com/microsoft/VibeVoice",
-      "publishedAt": "2026-04-29T00:32:47.361Z",
+      "publishedAt": "2026-04-29T17:41:34.036Z",
       "author": "microsoft",
       "summary": "Star microsoft / VibeVoice Open-Source Frontier Voice AI",
       "tags": [
@@ -168,32 +187,14 @@
       "contentType": "tool",
       "rawMeta": {},
       "weight": 9,
-      "aiSummary": "来源：GitHub Trending，类型：tool，Star microsoft / VibeVoice Open-Source Frontier Voice AI"
-    },
-    {
-      "source": "GitHub Trending",
-      "sourceId": "github-trending",
-      "title": "fspecii/ace-step-ui",
-      "url": "https://github.com/fspecii/ace-step-ui",
-      "publishedAt": "2026-04-29T00:32:47.361Z",
-      "author": "fspecii",
-      "summary": "Star fspecii / ace-step-ui 🎵 The Ultimate Open Source Suno Alternative - Professional UI for ACE-Step 1.5 AI Music Generation. Free, local, unlimited. Stop paying for Suno!",
-      "tags": [
-        "github",
-        "trending"
-      ],
-      "score": 0,
-      "contentType": "tool",
-      "rawMeta": {},
-      "weight": 9,
-      "aiSummary": "来源：GitHub Trending，类型：tool，Star fspecii / ace-step-ui 🎵 The Ultimate Open Source Suno Alternative - Professional UI for ACE-Step 1.5 AI Music Gene"
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star microsoft / VibeVoice Open-Source Frontier Voice AI"
     },
     {
       "source": "GitHub Trending",
       "sourceId": "github-trending",
       "title": "CJackHwang/ds2api",
       "url": "https://github.com/CJackHwang/ds2api",
-      "publishedAt": "2026-04-29T00:32:47.361Z",
+      "publishedAt": "2026-04-29T17:41:34.036Z",
       "author": "CJackHwang",
       "summary": "Star CJackHwang / ds2api Deepseek to API: A lightweight, high-performance full-stack middleware converting client protocols to universal APIs. Supports multi-account rotation, compiled binaries, Vercel Serverless, and Docker. Compatible with Google, Claude, and OpenAI API formats.",
       "tags": [
@@ -204,16 +205,16 @@
       "contentType": "tool",
       "rawMeta": {},
       "weight": 9,
-      "aiSummary": "来源：GitHub Trending，类型：tool，Star CJackHwang / ds2api Deepseek to API: A lightweight, high-performance full-stack middleware converting client protoc"
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star CJackHwang / ds2api Deepseek to API: A lightweight, high-performance full-stack middleware converting client protoc"
     },
     {
       "source": "GitHub Trending",
       "sourceId": "github-trending",
-      "title": "EbookFoundation/free-programming-books",
-      "url": "https://github.com/EbookFoundation/free-programming-books",
-      "publishedAt": "2026-04-29T00:32:47.361Z",
-      "author": "EbookFoundation",
-      "summary": "Sponsor Star EbookFoundation / free-programming-books 📚 Freely available programming books",
+      "title": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "publishedAt": "2026-04-29T17:41:34.036Z",
+      "author": "obra",
+      "summary": "Sponsor Star obra / superpowers An agentic skills framework & software development methodology that works.",
       "tags": [
         "github",
         "trending"
@@ -222,16 +223,67 @@
       "contentType": "tool",
       "rawMeta": {},
       "weight": 9,
-      "aiSummary": "来源：GitHub Trending，类型：tool，Sponsor Star EbookFoundation / free-programming-books 📚 Freely available programming books"
+      "aiSummary": "来源：GitHub Trending，类型：工具，Sponsor Star obra / superpowers An agentic skills framework & software development methodology that works."
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "ZhuLinsen/daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "publishedAt": "2026-04-29T17:41:34.036Z",
+      "author": "ZhuLinsen",
+      "summary": "Star ZhuLinsen / daily_stock_analysis LLM驱动的 A/H/美股智能分析器：多数据源行情 + 实时新闻 + LLM决策仪表盘 + 多渠道推送，零成本定时运行，纯白嫖. LLM-powered stock analysis system for A/H/US markets.",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "warpdotdev/warp",
+      "url": "https://github.com/warpdotdev/warp",
+      "publishedAt": "2026-04-29T17:41:34.035Z",
+      "author": "warpdotdev",
+      "summary": "Star warpdotdev / warp Warp is an agentic development environment, born out of the terminal.",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills",
+      "publishedAt": "2026-04-29T17:41:34.035Z",
+      "author": "mattpocock",
+      "summary": "Sponsor Star mattpocock / skills Skills for Real Engineers. Straight from my .claude directory.",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9
     },
     {
       "source": "arXiv",
       "sourceId": "arxiv",
-      "title": "Personalized Worked Example Generation from Student Code Submissions using Pattern-based Knowledge Components",
-      "url": "https://arxiv.org/abs/2604.24758v1",
-      "publishedAt": "2026-04-27T17:56:56.000Z",
-      "author": "Griffin Pitts",
-      "summary": "Adaptive programming practice often relies on fixed libraries of worked examples and practice problems, which require substantial authoring effort and may not correspond well to the logical errors and partial solutions students produce while writing code. As a result, students may receive learning content that does not directly address the concepts they are working to understand, while instructors must either invest additional effort in expanding content libraries or accept a coarse level of personalization. We present an approach for knowledge-component (KC) guided educational content generation using pattern-based KCs extracted from student code. Given a problem statement and student submissions, our pipeline extracts recurring structural KC patterns from students' code through AST-based analysis and uses them to condition a generative model. In this study, we apply this approach to worked example generation, and compare baseline and KC-conditioned outputs through expert evaluation. Results suggest that KC-conditioned generation improves topical focus and relevance to learners' underlying logical errors, providing evidence that KC-based steering of generative models can support personalized learning at scale.",
+      "title": "Recursive Multi-Agent Systems",
+      "url": "https://arxiv.org/abs/2604.25917v1",
+      "publishedAt": "2026-04-28T17:59:34.000Z",
+      "author": "Xiyuan Yang",
+      "summary": "Recursive or looped language models have recently emerged as a new scaling axis by iteratively refining the same model computation over latent states to deepen reasoning. We extend such scaling principle from a single model to multi-agent systems, and ask: Can agent collaboration itself be scaled through recursion? To this end, we introduce RecursiveMAS, a recursive multi-agent framework that casts the entire system as a unified latent-space recursive computation. RecursiveMAS connects heterogeneous agents as a collaboration loop through the lightweight RecursiveLink module, enabling in-distribution latent thoughts generation and cross-agent latent state transfer. To optimize our framework, we develop an inner-outer loop learning algorithm for iterative whole-system co-optimization through shared gradient-based credit assignment across recursion rounds. Theoretical analyses of runtime complexity and learning dynamics establish that RecursiveMAS is more efficient than standard text-based MAS and maintains stable gradients during recursive training. Empirically, we instantiate RecursiveMAS under 4 representative agent collaboration patterns and evaluate across 9 benchmarks spanning mathematics, science, medicine, search, and code generation. In comparison with advanced single/multi-agent and recursive computation baselines, RecursiveMAS consistently delivers an average accuracy improvement of 8.3%, together with 1.2$\\times$-2.4$\\times$ end-to-end inference speedup, and 34.6%-75.6% token usage reduction. Code and Data are provided in https://recursivemas.github.io.",
       "tags": [
         "arxiv"
       ],
@@ -243,11 +295,11 @@
     {
       "source": "arXiv",
       "sourceId": "arxiv",
-      "title": "The Optimal Sample Complexity of Multiclass and List Learning",
-      "url": "https://arxiv.org/abs/2604.24749v1",
-      "publishedAt": "2026-04-27T17:54:12.000Z",
-      "author": "Chirag Pabbaraju",
-      "summary": "While the optimal sample complexity of binary classification in terms of the VC dimension is well-established, determining the optimal sample complexity of multiclass classification has remained open. The appropriate complexity parameter for multiclass classification is the DS dimension, and despite significant efforts, a gap of $\\sqrt{\\text{DS}}$ has persisted between the upper and lower bounds on sample complexity. Recent work by Hanneke et al. (2026) shows a novel algebraic characterization of multiclass hypothesis classes in terms of their DS dimension. Building up on this, we show that the maximum hypergraph density of any multiclass hypothesis class is upper-bounded by its DS dimension. This proves a longstanding conjecture of Daniely and Shalev-Shwartz (2014). As a consequence, we determine the optimal dependence of the sample complexity on the DS dimension for multiclass as well as list learning.",
+      "title": "How Fast Should a Model Commit to Supervision? Training Reasoning Models on the Tsallis Loss Continuum",
+      "url": "https://arxiv.org/abs/2604.25907v1",
+      "publishedAt": "2026-04-28T17:52:38.000Z",
+      "author": "Chu-Cheng Lin",
+      "summary": "Adapting reasoning models to new tasks during post-training with only output-level supervision stalls under reinforcement learning from verifiable rewards (RLVR) when the initial success probability $p_0$ is small. Using the Tsallis $q$-logarithm, we define a loss family $J_Q$ that interpolates between RLVR (at $q{=}0$, the exploitation pole) and the log-marginal-likelihood over latent trajectories (at $q{=}1$, the density-estimation pole). All members share the same per-example gradient direction, differing only by a scalar amplification $P_{θ^{-q}}$ that reweights each instance independently of the learning rate. This amplification is the mechanism that addresses cold-start stalling: under gradient flow, the exploitation pole requires $Ω(\\frac{1}{p_0})$ time to escape cold start, while the density-estimation pole escapes in $Θ\\big(\\log(\\frac{1}{p_0})\\big)$; intermediate $q$ trades escape speed against noise memorization. Because $P_θ$ is intractable, we derive two Monte Carlo estimators from the two factorizations of the gradient: Gradient-Amplified RL (GARL) samples from the prior and amplifies the RL gradient, and Posterior-Attenuated Fine-Tuning (PAFT) importance-resamples from the posterior and runs standard SFT. Both have bias $O\\big(\\frac{q}{M P_θ^{q+1}}\\big)$; GARL has lower variance, PAFT has semantically coherent gradients. On FinQA, HotPotQA, and MuSiQue, GARL at $q{=}0.75$ substantially mitigates cold-start stalling, escaping cold start where GRPO fails entirely. In warm start, GARL at low $q$ dominates FinQA where training is stable; on HotPotQA and MuSiQue, GARL destabilizes during training, and PAFT at $q{=}0.75$ provides stable gradients (best overall on HotPotQA at 47.9 maj@16, $+14.4$ over GRPO).",
       "tags": [
         "arxiv"
       ],
@@ -259,11 +311,11 @@
     {
       "source": "arXiv",
       "sourceId": "arxiv",
-      "title": "Conflict-Aware Harmonized Rotational Gradient for Multiscale Kinetic Regimes",
-      "url": "https://arxiv.org/abs/2604.24745v1",
-      "publishedAt": "2026-04-27T17:47:42.000Z",
-      "author": "Zhangyong Liang",
-      "summary": "In this paper, we propose a harmonized rotational gradient method, termed HRGrad, for simultaneously tackling multiscale time-dependent kinetic problems with varying small parameters. These parameters exhibit asymptotic transitions from microscopic to macroscopic physics, making it a challenging multi-task problem to solve over all ranges simultaneously. Solving tasks in different asymptotic regions often encounter gradient conflicts, which can lead to the failure of multi-task learning. To address this challenge, we explicitly encode a hidden representation of these parameters, ensuring that the corresponding solving tasks are serialized for simultaneous training. Furthermore, to mitigate gradient conflicts, we segment the prediction results to construct task losses and introduce a novel gradient alignment metric to ensure a positive dot product between the final update and each loss-specific gradient. This metric maintains consistent optimization rates for all task losses and dynamically adjusts gradient magnitudes based on conflict levels. Moreover, we provide a mathematical proof demonstrating the convergence of the HRGrad method, which is evaluated across a range of challenging asymptotic-preserving neural networks (APNNs) scenarios. We conduct an extensive set of experiments encompassing the Bhatnagar-Gross-Krook (BGK) equation and the linear transport equation in all ranges of Knudsen number. Our results indicate that HRGrad effectively overcomes the `failure modes' of APNNs in these problems.",
+      "title": "Teacher Forcing as Generalized Bayes: Optimization Geometry Mismatch in Switching Surrogates for Chaotic Dynamics",
+      "url": "https://arxiv.org/abs/2604.25904v1",
+      "publishedAt": "2026-04-28T17:50:37.000Z",
+      "author": "Andre Herz",
+      "summary": "Identity teacher forcing (ITF) enables stable training of deterministic recurrent surrogates for chaotic dynamical systems and has been highly effective for dynamical systems reconstruction (DSR) with recurrent neural networks (RNNs), including interpretable almost-linear RNNs (AL-RNNs). However, as an intervention-based prediction loss (and thus a generalized Bayes update), teacher forcing need not match the free-running model's marginal likelihood geometry. We compare the objective-induced curvatures of ITF and marginal likelihood in a probabilistic switching augmentation of AL-RNNs, estimating ambiguity-aware observed information via Louis' identity. In the switching setting studied here, conditioning on a single forced regime path (as ITF does) inflates curvature, while marginal likelihood curvature is reduced by a missing-information correction when multiple switching explanations remain plausible. In Lorenz-63 experiments, windowed evidence fine-tuning improves held-out evidence but can degrade dynamical quantities of interest (QoIs) relative to ITF-pretrained models.",
       "tags": [
         "arxiv"
       ],
@@ -275,11 +327,11 @@
     {
       "source": "arXiv",
       "sourceId": "arxiv",
-      "title": "Learning to Think from Multiple Thinkers",
-      "url": "https://arxiv.org/abs/2604.24737v1",
-      "publishedAt": "2026-04-27T17:43:44.000Z",
-      "author": "Nirmit Joshi",
-      "summary": "We study learning with Chain-of-Thought (CoT) supervision from multiple thinkers, all of whom provide correct but possibly systematically different solutions, e.g., step-by-step solutions to math problems written by different thinkers, or step-by-step execution traces of different programs solving the same problem. We consider classes that are computationally easy to learn using CoT supervision from a single thinker, but hard to learn with only end-result supervision, i.e., without CoT (Joshi et al. 2025). We establish that, under cryptographic assumptions, learning can be hard from CoT supervision provided by two or a few different thinkers, in passive data-collection settings. On the other hand, we provide a generic computationally efficient active learning algorithm that learns with a small amount of CoT data per thinker that is completely independent of the target accuracy $\\varepsilon$, a moderate number of thinkers that scales as $\\log \\frac{1}{\\varepsilon}\\log \\log \\frac{1}{\\varepsilon}$, and sufficient passive end-result data that scales as $\\frac{1}{\\varepsilon}\\cdot poly\\log\\frac{1}{\\varepsilon}$.",
+      "title": "Carbon-Taxed Transformers: A Green Compression Pipeline for Overgrown Language Models",
+      "url": "https://arxiv.org/abs/2604.25903v1",
+      "publishedAt": "2026-04-28T17:48:16.000Z",
+      "author": "Ajmain Inqiad Alam",
+      "summary": "The accelerating adoption of Large Language Models (LLMs) in software engineering (SE) has brought with it a silent crisis: unsustainable computational cost. While these models demonstrate remarkable capabilities in different SE tasks, they are unmanageably large, slow to deploy, memory-intensive, and carbon-heavy. This reality threatens not only the scalability and accessibility of AI-powered SE, but also its long-term environmental sustainability. The research challenge is clear: we must go beyond accuracy and address efficiency and environmental cost as first-class design constraints. To meet this challenge, we introduce Carbon-Taxed Transformers (CTT), a systematic multi-architectural compression principled pipeline ordering inspired by economic carbon taxation principles. Drawing from the economic concept of carbon pricing, CTT operationalizes a computational carbon tax that penalizes architectural inefficiencies and rewards deployment-ready compression. We evaluate CTT across three core SE tasks: code clone detection, code summarization, and code generation, with models spanning encoder-only, encoder-decoder, and decoder-only architecture. Our results show that CTT delivers on inference: (1) up to 49x memory reduction, (2) time reduction up to 8-10x for clone detection, up to 3x for summarization, and 4-7x for generation, (3) up to 81% reduction in CO2 emissions and (4) CTT retains around 98% accuracy on clone detection, around 89% on summarization, and up to 91% (textual metrics) and 68% (pass@1) for generation. Two ablation studies show that pipeline ordering and individual component contributions are both essential, providing empirical justification for CTT's design and effectiveness. This work establishes a viable path toward responsible AI in SE through aggressive yet performance-preserving compression.",
       "tags": [
         "arxiv"
       ],
@@ -291,11 +343,11 @@
     {
       "source": "arXiv",
       "sourceId": "arxiv",
-      "title": "SpecRLBench: A Benchmark for Generalization in Specification-Guided Reinforcement Learning",
-      "url": "https://arxiv.org/abs/2604.24729v1",
-      "publishedAt": "2026-04-27T17:40:18.000Z",
-      "author": "Zijian Guo",
-      "summary": "Specification-guided reinforcement learning (RL) provides a principled framework for encoding complex, temporally extended tasks using formal specifications such as linear temporal logic (LTL). While recent methods have shown promising results, their ability to generalize across unseen specifications and diverse environments remains insufficiently understood. In this work, we introduce SpecRLBench, a benchmark designed to evaluate the generalization capabilities of LTL-based specification-guided RL methods. The benchmark spans multiple difficulty levels across navigation and manipulation domains, incorporating both static and dynamic environments, diverse robot dynamics, and varied observation modalities. Through extensive empirical evaluation, we characterize the strengths and limitations of existing approaches and reveal the challenges that emerge as specification and environment complexity increase. SpecRLBench provides a structured platform for systematic comparison and supports the development of more generalizable specification-guided RL methods. Code is available at https://github.com/BU-DEPEND-Lab/SpecRLBench.",
+      "title": "Toward a Functional Geometric Algebra for Natural Language Semantics",
+      "url": "https://arxiv.org/abs/2604.25902v1",
+      "publishedAt": "2026-04-28T17:47:46.000Z",
+      "author": "James Pustejovsky",
+      "summary": "Distributional and neural approaches to natural language semantics have been built almost exclusively on conventional linear algebra: vectors, matrices, tensors, and the operations that accompany them. These methods have achieved remarkable empirical success, yet they face persistent structural limitations in compositional semantics, type sensitivity, and interpretability. I argue in this paper that geometric algebra (GA) -- specifically, Clifford algebras -- provides a mathematically superior foundation for semantic representation, and that a Functional Geometric Algebra (FGA) framework extends GA toward a typed, compositional semantics capable of supporting inference, transformation, and interpretability while retaining full compatibility with distributional learning and modern neural architectures. I develop the formal foundations, identify three core capabilities that GA provides and linear algebra does not, present a detailed worked example illustrating operator-level semantic contrasts, and show how GA-based operations already implicit in current transformer architectures can be made explicit and extended. The central claim is not merely increased dimensionality but increased structural organization: GA expands an $n$-dimensional embedding space into a $2^n$ multivector algebra where base semantic concepts and their higher-order interactions are represented within a single, principled algebraic framework.",
       "tags": [
         "arxiv"
       ],
@@ -307,11 +359,11 @@
     {
       "source": "arXiv",
       "sourceId": "arxiv",
-      "title": "Learning to Rotate: Temporal and Semantic Rotary Encoding for Sequential Modeling",
-      "url": "https://arxiv.org/abs/2604.24717v1",
-      "publishedAt": "2026-04-27T17:26:15.000Z",
-      "author": "Hailing Cheng",
-      "summary": "Every Transformer architecture dedicates enormous capacity to learning rich representations in semantic embedding space -- yet the rotation manifold acted upon by Rotary Positional Embeddings (RoPE) has been treated as a fixed, hand-crafted structure, populated only by discrete ordinal indices. We argue that this rotation space is a largely overlooked second dimension of expressivity in the attention mechanism, one whose systematic exploration may open a new door for attention-based architectures. The analogy to complex numbers is instructive: just as introducing the imaginary axis -- orthogonal to and independent of the real line -- unlocked new algebraic structure once believed impossible, treating the rotation manifold as a learnable, signal-conditioned space opens an orthogonal degree of freedom in attention. In this framing, the token embedding encodes the semantic (real) component of a representation -- what a token means -- while the rotation encodes its dynamic (imaginary) component -- how it relates to every other token across time, position, and context. We introduce SIREN-RoPE, a concrete instantiation of this idea, which populates the rotation dimension with heterogeneous signals -- continuous timestamps, cyclical temporal patterns, and categorical metadata -- via a dual-branch Sinusoidal Representation Network (SIREN). As a proof of concept, we evaluate on a production-scale news feed dataset from a major social network using a generative recommender as the ranking model, demonstrating that activating this hidden dimension yields consistent improvements across calibration and ranking objectives with negligible computational overhead. We invite the community to view the rotation space not as a solved positional-encoding detail, but as an untapped axis whose rich structure may prove as consequential for attention as the imaginary unit proved for algebra.",
+      "title": "TSN-Affinity: Similarity-Driven Parameter Reuse for Continual Offline Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2604.25898v1",
+      "publishedAt": "2026-04-28T17:41:04.000Z",
+      "author": "Dominik Żurek",
+      "summary": "Continual offline reinforcement learning (CORL) aims to learn a sequence of tasks from datasets collected over time while preserving performance on previously learned tasks. This setting corresponds to domains where new tasks arise over time, but adapting the model in live environment interactions is expensive, risky, or impossible. However, CORL inherits the dual difficulty of offline reinforcement learning and adapting while preventing catastrophic forgetting. Replay-based continual learning approaches remain a strong baseline but incur memory overhead and suffer from a distribution mismatch between replayed samples and newly learned policies. At the same time, architectural continual learning methods have shown strong potential in supervised learning but remain underexplored in CORL. In this work, we propose TSN-Affinity, a novel CORL method based on TinySubNetworks and Decision Transformer. The method enables task-specific parameterization and controlled knowledge sharing through a RL-aware reuse strategy that routes tasks according to action compatibility and latent similarity. We evaluate the approach on benchmarks based on Atari games and simulations of manipulation tasks with the Franka Emika Panda robotic arm, covering both discrete and continuous control. Results show strong retention from sparse SubNetworks, with routing further improving multi-task performance. Our findings suggest that similarity-guided architectural reuse is a strong and viable alternative to replay-based strategies in a CORL setting. Our code is available at: https://github.com/anonymized-for-submission123/tsn-affinity.",
       "tags": [
         "arxiv"
       ],
@@ -323,11 +375,11 @@
     {
       "source": "arXiv",
       "sourceId": "arxiv",
-      "title": "Long-Context Aware Upcycling: A New Frontier for Hybrid LLM Scaling",
-      "url": "https://arxiv.org/abs/2604.24715v1",
-      "publishedAt": "2026-04-27T17:23:37.000Z",
-      "author": "Parsa Ashrafi Fashi",
-      "summary": "Hybrid sequence models that combine efficient Transformer components with linear sequence modeling blocks are a promising alternative to pure Transformers, but most are still pretrained from scratch and therefore fail to reuse existing Transformer checkpoints. We study upcycling as a practical path to convert pretrained Transformer LLMs into hybrid architectures while preserving short-context quality and improving long-context capability. We call our solution \\emph{HyLo} (HYbrid LOng-context): a long-context upcycling recipe that combines architectural adaptation with efficient Transformer blocks, Multi-Head Latent Attention (MLA), and linear blocks (Mamba2 or Gated DeltaNet), together with staged long-context training and teacher-guided distillation for stable optimization. HyLo extends usable context length by up to $32\\times$ through efficient post-training and reduces KV-cache memory by more than $90\\%$, enabling up to 2M-token prefill and decoding in our \\texttt{vLLM} inference stack, while comparable Llama baselines run out of memory beyond 64K context. Across 1B- and 3B-scale settings (Llama- and Qwen-based variants), HyLo delivers consistently strong short- and long-context performance and significantly outperforms state-of-the-art upcycled hybrid baselines on long-context evaluations such as RULER. Notably, at similar scale, HyLo-Qwen-1.7B trained on only 10B tokens significantly outperforms JetNemotron (trained on 400B tokens) on GSM8K, Lm-Harness common sense reasoning and RULER-64K.",
+      "title": "Variational Neural Belief Parameterizations for Robust Dexterous Grasping under Multimodal Uncertainty",
+      "url": "https://arxiv.org/abs/2604.25897v1",
+      "publishedAt": "2026-04-28T17:40:49.000Z",
+      "author": "Clinton Enwerem",
+      "summary": "Contact variability, sensing uncertainty, and external disturbances make grasp execution stochastic. Expected-quality objectives ignore tail outcomes and often select grasps that fail under adverse contact realizations. Risk-sensitive POMDPs address this failure mode, but many use particle-filter beliefs that scale poorly, obstruct gradient-based optimization, and estimate Conditional Value-at-Risk (CVaR) with high-variance approximations. We instead formulate grasp acquisition as variational inference over latent contact parameters and object pose, representing the belief with a differentiable Gaussian mixture. We use Gumbel-Softmax component selection and location-scale reparameterization to express samples as smooth functions of the belief parameters, enabling pathwise gradients through a differentiable CVaR surrogate for direct optimization of tail robustness. In simulation, our variational neural belief improves robust grasp success under contact-parameter uncertainty and exogenous force perturbations while reducing planning time by roughly an order of magnitude relative to particle-filter model-predictive control. On a serial-chain robot arm with a multifingered hand, we validate grasp-and-lift success under object-pose uncertainty against a Gaussian baseline. Both methods succeed on the tested perturbations, but our controller terminates in fewer steps and less wall-clock time while achieving a higher tactile grasp-quality proxy. Our learned belief also calibrates risk more accurately, keeping mean absolute calibration error below 0.14 across tested simulation regimes, compared with 0.58 for a Cross-Entropy Method planner.",
       "tags": [
         "arxiv"
       ],
@@ -339,11 +391,11 @@
     {
       "source": "arXiv",
       "sourceId": "arxiv",
-      "title": "Case-Specific Rubrics for Clinical AI Evaluation: Methodology, Validation, and LLM-Clinician Agreement Across 823 Encounters",
-      "url": "https://arxiv.org/abs/2604.24710v1",
-      "publishedAt": "2026-04-27T17:17:56.000Z",
-      "author": "Aaryan Shah",
-      "summary": "Objective. Clinical AI documentation systems require evaluation methodologies that are clinically valid, economically viable, and sensitive to iterative changes. Methods requiring expert review per scoring instance are too slow and expensive for safe, iterative deployment. We present a case-specific, clinician-authored rubric methodology for clinical AI evaluation and examine whether LLM-generated rubrics can approximate clinician agreement. Materials and Methods. Twenty clinicians authored 1,646 rubrics for 823 clinical cases (736 real-world, 87 synthetic) across primary care, psychiatry, oncology, and behavioral health. Each rubric was validated by confirming that an LLM-based scoring agent consistently scored clinician-preferred outputs higher than rejected ones. Seven versions of an EHR-embedded AI agent for clinicians were evaluated across all cases. Results. Clinician-authored rubrics discriminated effectively between high- and low-quality outputs (median score gap: 82.9%) with high scoring stability (median range: 0.00%). Median scores improved from 84% to 95%. In later experiments, clinician-LLM ranking agreement (tau: 0.42-0.46) matched or exceeded clinician-clinician agreement (tau: 0.38-0.43), attributable to both ceiling compression and LLM rubric improvement. Discussion. This convergence supports incorporating LLM rubrics alongside clinician-authored ones. At roughly 1,000 times lower cost, LLM rubrics enable substantially greater evaluation coverage, while continued clinical authorship grounds evaluation in expert judgment. Ceiling compression poses a methodological challenge for future inter-rater agreement studies. Conclusion. Case-specific rubrics offer a path for clinical AI evaluation that preserves expert judgment while enabling automation at three orders lower cost. Clinician-authored rubrics establish the baseline against which LLM rubrics are validated.",
+      "title": "Three Models of RLHF Annotation: Extension, Evidence, and Authority",
+      "url": "https://arxiv.org/abs/2604.25895v1",
+      "publishedAt": "2026-04-28T17:39:14.000Z",
+      "author": "Steve Coyne",
+      "summary": "Preference-based alignment methods, most prominently Reinforcement Learning with Human Feedback (RLHF), use the judgments of human annotators to shape large language model behaviour. However, the normative role of these judgments is rarely made explicit. I distinguish three conceptual models of that role. The first is extension: annotators extend the system designers' own judgments about what outputs should be. The second is evidence: annotators provide independent evidence about some facts, whether moral, social or otherwise. The third is authority: annotators have some independent authority (as representatives of the broader population) to determine system outputs. I argue that these models have implications for how RLHF pipelines should solicit, validate and aggregate annotations. I survey landmark papers in the literature on RLHF and related methods to illustrate how they implicitly draw on these models, describe failure modes that come from unintentionally or intentionally conflating them, and offer normative criteria for choosing among them. My central recommendation is that RLHF pipeline designers should decompose annotation into separable dimensions and tailor each pipeline to the model most appropriate for that dimension, rather than seeking a single unified pipeline.",
       "tags": [
         "arxiv"
       ],
@@ -351,6 +403,198 @@
       "contentType": "paper",
       "rawMeta": {},
       "weight": 9
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "Ernie5.1 简易测试",
+      "url": "https://linux.do/t/topic/2084830",
+      "publishedAt": "2026-04-29T17:20:45.000Z",
+      "author": "linux.do",
+      "summary": "省流：依旧纯弱智，还不如豆包2.0pro 晚上闲的蛋疼 测下看看是不是还是和之前一样傻子 在竞技场使用 和mimo-v2.5-pro对比一下 首先就是速度感人 竞技场明显没mimo速度快 不过竞技场的模型速度和官方的一不一样不清楚 逻辑问题 初见端倪 虽然都错了但是mimo只推理了13s SVG 画一个鹈鹕骑自行车的svg Ernie5.1（61行） mimo v2.5 pro（183行） 因为竞技场渲染麻烦就不多测了 网页 以 iOS 18 的设计风格做一个带有动画效果的天气卡片，要求是使用 HTML、CSS 和基础 JavaScript，使用横板天气页面（拥有 4 个天气卡片 (晴天，大风，暴雨，暴雪))。应足够美观，实现一定的交互效果。 Ernie-5.1(请输入文本 动画还行背景太丑 而且布局有问题 暴雨卡片被挡了) Mimo-V2.5-Pro（感觉有点好看 多截几张） 没有人类了只能说 1 个帖子 - 1 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "AI极差的零回归率说明了什么，AI写的是屎山吗",
+      "url": "https://linux.do/t/topic/2084813",
+      "publishedAt": "2026-04-29T17:09:57.000Z",
+      "author": "linux.do",
+      "summary": "中山大学和阿里巴巴联合测试 2026 年 3 月 4 日中山大学、阿里巴巴集团联合搞了一场AI测试。他们先从 GitHub 上筛选真实 Python 项目，选取了 100 个样本，来自 68 个不同仓库，平均每个样本跨越 233 天、71 次连续提交。然后通过不断给AI提出需求来测试AI的代码生成能力，整个测试包含了国内外主流的20 个模型，来自 8 个提供商，测试消耗了超过 100 亿 token。 最主要的是，测试中发现大多数模型的零回归率低于25%，即便是在这方面最好的两个 Claude Opus 模型也只才堪堪超过50%。 所以这也就是为什么说AI写的是屎山代码，为什么说AI的能力极限在于所开发软件的架构设计的好不好 零回归率的概念 零回归率指的是：“AI 在修改过程中有没有把原来正常的功能改坏”。例如 100 个任务里有 30 个任务没有出现任何旧功能退化，那么零回归率就是 30%。 1 个帖子 - 1 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "【Agent 工程化的边界】一文读懂 Hook：如何把 Agent 行动权拉回开发者手中",
+      "url": "https://linux.do/t/topic/2084811",
+      "publishedAt": "2026-04-29T17:09:39.000Z",
+      "author": "linux.do",
+      "summary": "当 AI Agent 从\"辅助生成内容\"走向\"实际执行操作\"时，能力不再是边界，边界本身才是新的能力； 而 Hook — 就是将 Agent 行动权重新拉回工程控制之内的\"钩子\"。 作为重度Vibe Coding使用者，在使用AI的过程中时常出现失控感，特别是在程序长时间执行过程中，由于中间思考决策过程的缺失，导致Agent申请权限或者更改文件等风险操作时都需要花大量时间来进行double check。 为了让开发者中重新获得掌控感，寻找问题的解决办法，笔者对claude code的hook机制仔细研读，顺便以写教程的方式促进自己的理解,同步也在开发一个插件希望能缓解这种由于失控带来的焦虑。 本帖主要是用来梳理逻辑，构建知识Map，官方文档更全面且详细 如有需要可以自行查阅： Hooks 参考 - Claude Code Docs 一、前言 Agent的概念层出不穷，在正式介绍Hook之前，也许你更在意的是他跟目前广为人知的MCP，Skill之间的差异，为什么我们会需要Hook而不是其他的？这一点很重要，因为明白各个技术的边界将成为你使用工具还是被工具使用最重要的区别： 机制 核心问题 更像什么 Skill Claude 应该如何完成某类任务？ 任务说明书 / 工作流知识包 MCP Claude 可以调用哪些外部能力？ 工具接口 / 外部能力总线 Hook Claude 执行到某个节点时，必须先经过什么规则？ 生命周期拦截器 / 工程治理层 总而言之，Hook 像是加在 Agent 执行链路上的一把\"工程锁\"： 它不是为了限制 Agent 的能力，而是为了让 Agent 的每一次关键行动都能被看见、被解释、被约束、被接管。在几乎不牺牲执行灵活性的前提下，Hook 极大增强了工程师对 Agent 行为边界的掌控。 二、什么是Hook？ hook的英文直译就是钩子，如果你之前没接触过事件响应、插件或者复杂框架，第一次看到这个词可能会有点懵：程序里的钩子是什么的？其实可以把 Hook 就是一种 “在特定时机自动执行的函数” 。比如说，某个事件发生了、某个流程结束了、某个状态发生变化了，系统就会自动调用你提前写好的那段代码。就像你提前在这个位置\"挂了一个钩子\"，等程序运行到这里时，这个钩子就会被 连带 触发。作为一种抽象概念hook的思想广泛存在不同领域/场景，例如： 前端组件挂载后执行初始化逻辑； Git 提交前自动运行格式检查； 请求完成后执行回调处理； 程序退出前自动保存状态或清理资源。 在Claude Code中也用于有效管理Agent的运行设计了对应的Hook机制，并且贯穿整个 Agent生命周期 与详细的官方文档不同，这篇博文将从下面三个问题出发让你快速理解Hook的整个逻辑，当你需要使用Hook来改善你自己的工作流的时候能快速切入： 当然如果觉得冗长可以直接跳转到 六、实例展示 中根据实际用例来理解Hook的流程！ When？ ------ 三、Hook的触发时机（Trigger） What？ ------ 四、Hook的匹配机制（Matcher） How？ ------ 五、Hook的执行逻辑（Handler） Go ----- 六、实例展示 三、Hook的触发时机（Trigger） Claude Code 处理一次用户请求时，并不是简单地\"接收输入，然后生成答案\"。它会进入一轮完整的 Agent 执行流程： 接收用户输入、理解任务意图、规划操作、调用工具、处理工具结果，并根据结果继续迭代，直到任务完成或中止。 这个流程对应的就是Agent的生命周期，在生命周期的各个阶段都可以使用hook来执行对应的逻辑，下面是官方以流程图的形式可视化了这个过程： 这个图虽然很完善，但是太长了也没有归类，因此从 Agent 运行设计的角度，笔者将hook的触发时机大致的归类为四类分别对应Agent四项基础能力： 输入与提示词工程（Prompt Engineering） ：负责会话初始化、上下文注入、用户输入检查和 Prompt 展开，决定用户请求如何进入 Agent 流程。 工具调用控制（Tool Use） ：负责工具调用前后的权限校验、安全拦截、结果处理和失败处理，决定 Agent 如何安全地执行外部操作。 事务分发与子代理编排（Sub-agent / Task Orchestration） ：负责复杂任务的拆分、分发、子代理启动和任务完成追踪，决定 Agent 如何组织多步骤任务。 上下文与状态管理（Context Management） ：负责上下文压缩、配置变化、文件变化和通知事件，决定 Agent 如何维护运行状态和长期上下文。 目前可设置的触发时机有29个，以输入与提示词工程为例： SessionStart 、 SessionEnd 分别在创建会话以及结束会话时可以调用，适合注入系统提示词/持久化会话内容的功能， UserPromptSubmit 、 UserPromptExpansion 用于优化或者二次处理用户提示。笔者根据自己的理解对目前的29个触发时机进行分类，总结为一图流，并提供一个速查表方便后续查找以及理解： 触发时机&含义解释 速查表 （点击了解更多详细信息） 四、Hook的匹配器（Matcher） 在确定 Hook 的触发时机（Trigger）之后，并不意味着该触发节点下的所有 Hook 都会被执行。Claude Code 还会继续根据 matcher 做一次过滤：只有当前事件满足匹配条件时，对应 Hook 才会被执行。 对于 PreToolUse / PostToolUse 这类工具事件 matcher 匹配的是本次调用的具体工具名，而在 SessionStart 中匹配的是会话启动方式， Setup 匹配的是触发 setup 的 CLI flag。 具体的触发时机启用的匹配字段需要查看官方文档来确认，官方文档中对每个触发时机的参数都有详细的说明，同样为了方便查找，按照之前的分类进行简单的展示： Matcher 匹配对象速查表 （点击了解更多详细信息） 由于单个hook包含多种触发条件，因此可以使用正则匹配的方式来自己组合可能的触发情况，具体的操作可以参考官方给出的方式： 写法 含义 示例 省略 / 空字符串 / * 匹配全部 \"matcher\": \"*\" 精确匹配 只匹配指定对象 \"matcher\": \"Bash\" 多值匹配 用 | 匹配多个对象 \"matcher\": \"Edit | Write\" 正则匹配 匹配更复杂的名称模式 \"matcher\": \"mcp__.*__write.*\" 五、Hook的执行器（Handler） 在恰当的触发节点，对应的Hook满足了匹配器的触发条件，那么就可以触发后续的执行逻辑，也就是实际的可执行的具体操作 为了保证可扩展性，同时为了维持对MCP，Http，Command的不同响应差异，Claude Code对Hook将执行的操作使用字段来进行区分来适配不同方式独特的需求，官方目前支持了5种不同的类型： Handler 类型 配置写法 执行方式 适合场景 命令型 type: \"command\" 执行本地 shell 命令或脚本 日志记录、格式化、lint、安全检查、权限拦截 HTTP type: \"http\" 将 Hook 输入 JSON 作为 HTTP POST 请求发送到指定 URL 接入远程审计服务、团队策略服务、Webhook 系统 MCP 工具 type: \"mcp_tool\" 调用已连接 MCP server 上的工具 复用现有 MCP 能力，例如安全扫描、知识库查询、业务系统校验 Prompt type: \"prompt\" 向 Claude 模型发送一次提示，进行单轮判断 让模型解释权限原因、判断操作风险、生成轻量决策 Agent type: \"agent\" 启动一个 subagent，并允许其使用 Read、Grep、Glob 等工具验证条件后返回结果 更复杂的检查任务，例如跨文件审查、代码变更复核；官方标注为实验性 总的来说，根据实际需求你可以进行下面的判断： 如果需要接入外部服务，用 http ； 如果已有 MCP 工具可复用，用 mcp_tool ； 如果需要模型做一次轻量判断，用 prompt ； 如果需要一个能读文件、查代码、综合判断的子代理，用 agent 。 六、实例解析（MVP） 在了解了Hook的触发时机（Trigger），匹配机制（Matcher）以及 执行器（Handler）的抽象逻辑之后 笔者介绍一个具体的例子，来介绍实际Claude Code中是如何将上面讲的抽象概念转为可拓展开发的工程实践。只要读懂这个实例那么就掌握了绝大部分Hook的知识。 与 MCP、Skill 类似，Claude Code 也通过配置文件来管理 Hook。Hook 通常写在 settings.json 中，并可以根据配置文件所在位置作用于不同范围（用户级/项目级）。 { \"hooks\": { \"PreToolUse\": [ { \"matcher\": \"Bash\", \"hooks\": [ { \"type\": \"command\", \"command\": \"echo 'Claude is about to use Bash' >> ~/claude-hook-demo.log\" } ] } ] } } 下面我们根据之前的总结将 回答三个问题 When？ What？ How？，这三个问题分别对应上述配置的三个字段 抽象层 直观问题 对应配置 含义 Trigger When：什么时候触发？ PreToolUse 在工具调用执行前触发 Matcher What：匹配什么对象？ \"Bash\" 只匹配 Bash 工具调用 Handler How：命中后如何执行？ type: \"command\" + command 匹配成功后执行一条 shell 命令 PreToolUse 决定 Hook 挂在哪个生命周期节点。它表示\"工具调用前\"，所以这个 Hook 会发生在 Bash 真正执行之前。 matcher: \"Bash\" 匹配的不是 PreToolUse 这个事件名，而是本次工具调用的工具名称。也就是说，只有当 Claude Code 即将调用的工具是 Bash 时，这个 Hook 才会被命中。如果 Claude Code 调用的是 Read 、 Edit 、 Write 等其他工具，这条 Hook 不会触发。 hooks 数组中的 command 才是真正的执行逻辑。这里的命令只是写入一条日志，因此它不会改变 Claude Code 的执行结果，只是用于观察 Hook 是否被触发。 上面是一个Log型的Hook程序，如果你希望调用Hook的时候执行其他的那么只需要修改command中的内容即可，甚至你可以再调用claude code来进行分析，下面是笔者正在开发的项目的彩蛋～ { \"hooks\": { \"PermissionRequest\": [ { \"matcher\": \"Edit|Write|Bash\", \"hooks\": [ { \"type\": \"prompt\", \"prompt\": \"You are explaining a Claude Code permission request to the user. Based on the hook input, explain in Chinese why Claude is requesting this tool permission. Be concise, concrete, and mention the tool name, target file or command if available. Do not approve or deny the request; only explain the reason.\" } ] } ] } } 这个示例展示的是一个\"模型解释型 Hook\"。 它不是用 command 执行固定脚本，而是使用 prompt handler，让模型根据本次权限申请的上下文生成说明。这样，当 Claude Code 申请 Edit 、 Write 或 Bash 权限时，用户不仅能看到\"它要申请权限\"，还能看到\"它为什么需要这个权限\"。 例如： 如果是 Edit ，模型可以说明它准备修改哪个文件、修改目的是什么； 如果是 Write ，模型可以说明它准备新建或覆盖哪个文件； 如果是 Bash ，模型可以说明它准备执行什么命令，以及这个命令大致用于什么操作。 需要注意的是，这个 Hook 只负责解释原因，并不代表自动批准或拒绝权限。最终是否允许执行，仍然由权限机制本身决定。 这个 Hook 的作用是：在高风险工具申请权限时，用模型动态生成一段面向用户的权限解释。 这个最小可行性Hook就是我目前认为如何在控制多Agent并行开发过程中，迅速切换上下文来当Agent需要授权或者类似操作时，降低开发者理解以及认知负担的原型机（Prototype） 前段时间忙了好久博士的事情，以至于一直没更新，不过今天我Nick又回来啦，嘿嘿！ 3 个帖子 - 3 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "拿小米、deepseek、glm同时review gpt-5.5写的代码，小米的表现也太夸张了吧",
+      "url": "https://linux.do/t/topic/2084803",
+      "publishedAt": "2026-04-29T17:06:53.000Z",
+      "author": "linux.do",
+      "summary": "这是gpt-5.5@xhigh一批8次提交写的爬虫-解析-落库流水线代码，流程和功能都不复杂。 因为各家模型的思考强度映射不一样，统一开了max effort。 小米耗时4分钟 全程在说对对对干得好，最后挑了点无关痛痒的代码风格小毛病。 DSV4耗时12分钟 找到了一些非关键问题。 GLM5.1耗时30分钟（和TPS慢也有关系） 主动调动了最多的subagents，找出了影响功能的关键问题。 最后是gpt基于这三份报告再自己review和打分，额外找到了一个关键问题（但是有了其他模型的既有工作，这里不能算gpt最强）。 报告 分数 评价 phase4_glm.md 80/100 最有价值。抓到了 CrossValidator 未接入，这是关键验收缺口。但把 evidence_grade() 枚举问题评成 Critical 偏重；compliance_rules.yaml 为空壳这个判断不成立，因为空/注释 YAML 会回落到默认规则。 phase4_deepseek.md 78/100 成本丢失判断准确，IntegrityError、fuzzy 性能等也有价值。但漏掉 CrossValidator 未接入，也漏掉 EntityMapper 状态被覆盖。部分项>偏风格或语义争议，比如 enqueue 后仍 pending 不一定是 bug。 phase4_mimo.md 48/100 覆盖了重复工具函数等风格问题，但“无严重代码实现错误”结论不成立。它漏掉 CrossValidator 未接入、实体映射状态覆盖、成本丢失，还把过宽 IntegrityError 捕获判断为合理。 review窗口 （点击了解更多详细信息） 2 个帖子 - 2 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "An interactive semantic map of the latest 10 million published papers [P]",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1sz14mi/an_interactive_semantic_map_of_the_latest_10/",
+      "publishedAt": "2026-04-29T14:53:29.000Z",
+      "author": "MachineLearning",
+      "summary": "I built a map to help navigate the complex scientific landscape through spatial exploration. How it works: Sourced the latest 10M papers from OpenAlex and generated embeddings using SPECTER 2 on titles and abstracts. Reduced dimensionality with UMAP, then applied Voronoi partitioning on density peaks to create distinct semantic neighborhoods. The floating topic labels are generated via custom labelling algorithms (definitely still a work in progress!). There is also support for both keyword and semantic queries, and there's an analytics layer for ranking institutions, authors, and topics etc. For anyone who wants to try the interactive map, it is free to use at The Global Research Space Any feedback or suggestions is welcome! &#32; submitted by &#32; /u/icannotchangethename [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "16x DGX Sparks - What should I run?",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1sz0lyk/16x_dgx_sparks_what_should_i_run/",
+      "publishedAt": "2026-04-29T14:34:17.000Z",
+      "author": "LocalLLaMA",
+      "summary": "Let’s build the biggest ever DGX Spark Cluster at home. This is going into my home lab server rack, 2TB of unified memory. • 16x Sparks • 1x 200Gbps FS 24 x 200Gb QSFP56 Switch • 16x QSFP56 DAC cables Should be all setup by tomorrow afternoon, what should I run? &#32; submitted by &#32; /u/Kurcide [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "AMA Announcement: Nous Research, The Opensource Lab Behind Hermes Agent (Wednesday, 8AM-11AM PST)",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1suw9on/ama_announcement_nous_research_the_opensource_lab/",
+      "publishedAt": "2026-04-24T23:52:19.000Z",
+      "author": "LocalLLaMA",
+      "summary": "Hi r/LocalLLaMA 👋 We're excited for Wednesday's guests, The Nous Research Team! Kicking things off Wednesday, April. 29th, 8 AM–11 AM PST ⚠️ Note: The AMA itself will be hosted in a separate thread, please don’t post questions here. &#32; submitted by &#32; /u/XMasterrrr [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "r/LocalLLaMa Rule Updates",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1su3ao4/rlocalllama_rule_updates/",
+      "publishedAt": "2026-04-24T02:46:24.000Z",
+      "author": "LocalLLaMA",
+      "summary": "As the sub has grown (and as AI based tools have gotten better) with over 1M weekly visitors , we've seen a marked increase in slop, spam etc. This has been on the mod team's mind for a while + there have been many threads started by users on this topic garnering lots of upvotes/comments. We're thus happy to announce the first set of rule updates! We believe these simple changes will have a sizable impact. We will monitor how these changes help and appropriately plan future updates. Changes Minimum Karma Requirements! Rule 3 and Rule 4 updates : These rules were already well thought fundamental categories. We have now added explicit verbiage that will provide clarity and bolster rule enforcement/reporting. See the attached slides for details. FAQ Q: How does this prevent LLM Bots that post slop/spam? A: For fresh bots, the minimum karma requirements will stop them. Unfortunately most of the bots that are getting through reddit wide defenses are from older reddit accounts with lots of karma. These wont be stopped and is a site wide problem with even bot bouncer being unable to detect them. Often times, humans (mods and users) on the sub struggle to detect LLM based bots. We are looking into options on how to better detect these programmatically. Q: This is an AI sub so why don't you allow AI to post or allow AI written posts? A: The sub is meant for human posters, commenters and readers, not AI. Regardless, posting LLM written content without disclosure is deceitful and betrays the implicit trust in the community. It will long term result in erosion of participation and goodwill. And generally, it merely falls into Rule 3 - Low effort. Prompting an LLM and simply copy-pasting its outputs does not require much effort. This is specifically different to thoughtful use of LLMs, validating/filtering/verifying outputs etc. &#32; submitted by &#32; /u/rm-rf-rm [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "[D] Self-Promotion Thread",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1sa4rlx/d_selfpromotion_thread/",
+      "publishedAt": "2026-04-02T02:15:24.000Z",
+      "author": "MachineLearning",
+      "summary": "Please post your personal projects, startups, product placements, collaboration needs, blogs etc. Please mention the payment and pricing requirements for products and services. Please do not post link shorteners, link aggregator websites , or auto-subscribe links. -- Any abuse of trust will lead to bans. Encourage others who create new posts for questions to post here instead! Thread will stay alive until next one so keep posting after the date in the title. -- Meta: This is an experiment. If the community doesnt like this, we will cancel it. This is to encourage those in the community to promote their work by not spamming the main threads. &#32; submitted by &#32; /u/AutoModerator [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "[D] Monthly Who's Hiring and Who wants to be Hired?",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1s8b199/d_monthly_whos_hiring_and_who_wants_to_be_hired/",
+      "publishedAt": "2026-03-31T02:30:15.000Z",
+      "author": "MachineLearning",
+      "summary": "For Job Postings please use this template Hiring: [Location], Salary:[], [Remote | Relocation], [Full Time | Contract | Part Time] and [Brief overview, what you're looking for] For Those looking for jobs please use this template Want to be Hired: [Location], Salary Expectation:[], [Remote | Relocation], [Full Time | Contract | Part Time] Resume: [Link to resume] and [Brief overview, what you're looking for] &#x200B; Please remember that this community is geared towards those with experience. &#32; submitted by &#32; /u/AutoModerator [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "Sora 2 megathread (part 3)",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1o8kmg9/sora_2_megathread_part_3/",
+      "publishedAt": "2025-10-16T22:41:55.000Z",
+      "author": "OpenAI",
+      "summary": "The last one hit the post limit of 100,000 comments. Do not try to buy codes. You will get scammed. Do not try to sell codes. You will get permanently banned. We have a bot set up to distribute invite codes in the Discord so join if you can't find codes in the comments here. Check the #sora-invite-codes channel. The Discord has dozens of invite codes available, with more being posted constantly! Update: Discord is down until Discord unlocks our server. The massive flood of joins caused the server to get locked because Discord thought we were botting lol. Also check the megathread on Chambers for invites. &#32; submitted by &#32; /u/WithoutReason1729 [link] &#32; [comments]",
+      "tags": [
+        "OpenAI"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "AMA on our DevDay Launches",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1o1j23g/ama_on_our_devday_launches/",
+      "publishedAt": "2025-10-08T18:39:36.000Z",
+      "author": "OpenAI",
+      "summary": "It’s the best time in history to be a builder. At DevDay [2025], we introduced the next generation of tools and models to help developers code faster, build agents more reliably, and scale their apps in ChatGPT. Ask us questions about our launches such as: AgentKit Apps SDK Sora 2 in the API GPT-5 Pro in the API Codex Missed out on our announcements? Watch the replays: https://youtube.com/playlist?list=PLOXw6I10VTv8-mTZk0v7oy1Bxfo3D2K5o&si=nSbLbLDZO7o-NMmo Join our team for an AMA to ask questions and learn more, Thursday 11am PT. Answering Q's now are: Dmitry Pimenov - u/dpim Alexander Embiricos - u/embirico Ruth Costigan - u/ruth_on_reddit Christina Huang - u/Brief-Detective-9368 Rohan Mehta - u/ Downtown_Finance4558 Olivia Morgan - u/Additional-Fig6133 Tara Seshan - u/tara-oai Sherwin Wu - u/sherwin-openai PROOF: https://x.com/OpenAI/status/1976057496168169810 EDIT: 12PM PT, That's a wrap on the main portion of our AMA, thank you for your questions. We're going back to build. The team will jump in and answer a few more questions throughout the day. &#32; submitted by &#32; /u/OpenAI [link] &#32; [comments]",
+      "tags": [
+        "OpenAI"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
     }
   ]
 }
