@@ -1,0 +1,8 @@
+{
+  "name": "ai-project",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "ai-daily": "node ./scripts/ai-daily/run.js"
+  }
+}

@@ -9,29 +9,18 @@
     <link rel="canonical" href="https://example.com/ai-writing/" />
     <meta name="theme-color" content="#0b1020" />
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <script defer src="../assets/js/site-config.js"></script>
     <script defer src="../assets/js/main.js"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1025508631552415" crossorigin="anonymous"></script>
   </head>
-  <body>
-    <div class="topbar">
-      <div class="container topbar-inner">
-        <a class="brand" href="../">
-          <span class="logo" aria-hidden="true"></span>
-          <span>AI 工具导航</span>
-        </a>
-        <nav class="nav" aria-label="主导航">
-          <a href="../ai-chat/">AI 聊天</a>
-          <a href="../ai-writing/">AI 写作</a>
-          <a href="../side-hustle/">副业赚钱</a>
-          <a href="../tools/">工具合集</a>
-        </nav>
-      </div>
-    </div>
+  <body data-root=".." data-page-kind="category" data-footer-kind="default" data-breadcrumb-current="AI 写作">
+    <div data-site-topbar></div>
 
     <main class="post">
       <div class="container">
         <header>
+          <div data-site-breadcrumb></div>
           <h1>AI 写作工具推荐（2026）</h1>
           <p class="subtitle">稳定 SEO：免费 / 推荐 / 最好 / 对比。适合做“对比页”与“资源合集页”。</p>
           <div class="byline">
@@ -65,19 +54,7 @@
       </div>
     </main>
 
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div>© <span id="y">2026</span> AI 工具导航</div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="../">首页</a>
-          <a href="../privacy.html">隐私政策</a>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      document.getElementById("y").textContent = String(new Date().getFullYear());
-    </script>
+    <div data-site-footer></div>
   </body>
 </html>
 

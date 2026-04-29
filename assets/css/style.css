@@ -43,21 +43,45 @@ a:hover{color:var(--text)}
 .topbar-inner{
   display:flex;align-items:center;justify-content:space-between;gap:14px;
   padding:14px 0;
+  min-width:0;
+}
+.topbar-right{
+  display:flex;align-items:center;gap:10px;
+  flex:1;
+  min-width:0;
+  justify-content:flex-end;
 }
 .brand{
   display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;
+  flex:0 0 auto;
+  white-space:nowrap;
 }
 .logo{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   width:34px;height:34px;border-radius:12px;
   background: linear-gradient(135deg, var(--brand), var(--brand2));
   box-shadow: 0 10px 26px rgba(124,92,255,.25);
+  color:#ffffff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.4px;
 }
+.logo::before{content:"AI"}
 .nav{
-  display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;
+  display:flex;gap:10px;flex-wrap:nowrap;align-items:center;justify-content:flex-end;
+  min-width:0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:none;
 }
+.nav::-webkit-scrollbar{display:none}
 .nav a{
   padding:8px 10px;border-radius:12px;color:var(--muted);
   border:1px solid transparent;
+  white-space:nowrap;
+  flex:0 0 auto;
 }
 .nav a:hover{
   color:var(--text);
@@ -104,6 +128,7 @@ h1{font-size:34px;line-height:1.15;margin:0 0 10px}
   background: rgba(255,255,255,.04);
   color:var(--text);
   font-weight:750;
+  cursor:pointer;
 }
 .btn:hover{background: rgba(255,255,255,.08)}
 .btn.primary{
@@ -112,6 +137,106 @@ h1{font-size:34px;line-height:1.15;margin:0 0 10px}
 }
 .btn.primary:hover{filter:saturate(1.05) contrast(1.02)}
 .btn.ghost{background: transparent}
+.locale-switch{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  flex:0 0 auto;
+}
+.locale-choice{
+  min-width:44px;
+  padding:8px 10px;
+  border-radius:10px;
+  color:var(--muted);
+}
+.locale-choice.is-active{
+  color:var(--text);
+  border-color:rgba(124,92,255,.45);
+  background: rgba(124,92,255,.16);
+}
+.is-locale-loading .locale-choice{
+  pointer-events:none;
+}
+.locale-choice.is-loading{
+  opacity:.75;
+  position:relative;
+}
+.locale-choice.is-loading::after{
+  content:"";
+  width:12px;
+  height:12px;
+  margin-left:6px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.35);
+  border-top-color:var(--text);
+  display:inline-block;
+  vertical-align:middle;
+  animation: locale-spin .8s linear infinite;
+}
+@keyframes locale-spin{
+  to{transform:rotate(360deg)}
+}
+.global-loading-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:rgba(7,11,22,.48);
+  backdrop-filter: blur(2px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease;
+}
+.global-loading-spinner{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.3);
+  border-top-color:#ffffff;
+  animation:locale-spin .9s linear infinite;
+}
+.global-loading-text{
+  color:var(--text);
+  font-size:14px;
+  letter-spacing:.2px;
+}
+.is-global-loading .global-loading-overlay{
+  opacity:1;
+  pointer-events:auto;
+}
+.is-global-loading{
+  overflow:hidden;
+}
+
+/* Hide Google Translate injected banner/tooltips to avoid layout jump. */
+body{
+  top:0 !important;
+}
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame{
+  display:none !important;
+}
+body > .skiptranslate,
+body > .skiptranslate > iframe.skiptranslate,
+.VIpgJd-ZVi9od-ORHb-OEVmcd{
+  display:none !important;
+  visibility:hidden !important;
+}
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight{
+  background:none !important;
+  box-shadow:none !important;
+}
+html.translated-ltr, body.translated-ltr,
+html.translated-rtl, body.translated-rtl{
+  top:0 !important;
+}
 
 .hero-right{
   border-left:1px solid var(--border);
@@ -164,12 +289,25 @@ h1{font-size:34px;line-height:1.15;margin:0 0 10px}
 .section-title a{color:var(--muted)}
 .section-title a:hover{color:var(--text)}
 
+.breadcrumb{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:13px;
+}
+.breadcrumb a{color:var(--muted)}
+.breadcrumb a:hover{color:var(--text)}
+.breadcrumb .current{color:var(--text)}
+
 .ad{
   border:1px dashed rgba(255,255,255,.18);
   background: rgba(0,0,0,.16);
   border-radius: var(--radius);
   padding:14px;
   color:var(--muted);
+  display:none;
 }
 .ad strong{color:var(--text)}
 .ad .adbox{

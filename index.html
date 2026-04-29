@@ -12,29 +12,15 @@
     <meta property="og:url" content="https://example.com/" />
     <meta name="theme-color" content="#0b1020" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script defer src="./assets/js/site-config.js"></script>
     <script defer src="./assets/js/main.js"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1025508631552415"
      crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body data-root="." data-page-kind="home" data-footer-kind="home">
     <a class="skip-link" href="#main">跳到正文</a>
-
-    <div class="topbar">
-      <div class="container topbar-inner">
-        <a class="brand" href="./">
-          <span class="logo" aria-hidden="true"></span>
-          <span>AI 工具导航</span>
-        </a>
-        <nav class="nav" aria-label="主导航">
-          <a href="./ai-chat/">AI 聊天</a>
-          <a href="./ai-writing/">AI 写作</a>
-          <a href="./side-hustle/">副业赚钱</a>
-          <a href="./tools/">工具合集</a>
-          <a class="cta" href="./post/deepseek.html">热门：DeepSeek R1 评测</a>
-        </nav>
-      </div>
-    </div>
+    <div data-site-topbar></div>
 
     <main id="main">
       <section class="hero">
@@ -46,6 +32,7 @@
                 <h1>最全 AI 工具合集：聊天、写作与副业</h1>
                 <p class="lead">你不是在“找工具”，你是在找<strong>更快解决问题</strong>的路径。这里把高点击话题、稳定 SEO 需求与高收益对比页都整理好了。</p>
                 <div class="hero-actions">
+                  <a class="btn" href="./daily/">查看 AI 日报</a>
                   <a class="btn primary" href="./tools/">进入工具合集</a>
                 </div>
               </div>
@@ -106,6 +93,11 @@
             <a href="./tools/">工具合集 →</a>
           </div>
           <div class="grid">
+            <a class="card" href="./daily/" data-search-item data-search-text="ai 日报 资讯 新闻 社区 论文 工具">
+              <h3>AI 日报</h3>
+              <p class="meta">每日自动聚合 AI 社区、论文、工具与产品动态</p>
+              <span class="btn primary">进入 AI 日报</span>
+            </a>
             <a class="card" href="./ai-chat/" data-search-item data-search-text="ai 聊天 陪伴 女友 语音">
               <h3>AI 聊天</h3>
               <p class="meta">免费 / 不用注册 / 陪伴 / 语音</p>
@@ -161,19 +153,7 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div>© <span id="y">2026</span> AI 工具导航 · 纯静态站</div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="./about.html">About</a>
-          <a href="./privacy.html">隐私政策</a>
-        </div>
-      </div>
-    </footer>
-
-    <script>
-      document.getElementById("y").textContent = String(new Date().getFullYear());
-    </script>
+    <div data-site-footer></div>
   </body>
 </html>
 
