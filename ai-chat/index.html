@@ -17,55 +17,13 @@
     <div data-site-topbar></div>
     <main class="post chat-page">
       <div class="container">
-        <header>
-          <div data-site-breadcrumb></div>
-          <h1>AI 聊天室</h1>
-          <p class="subtitle">纯聊天测试页面：输入问题 -> 发送 -> 等待回复。</p>
-          <div class="byline">
-            <span>后端模式（Cloudflare Worker）</span>
-            <span>·</span>
-            <a href="../tools/">查看工具合集</a>
-          </div>
-        </header>
-        <section class="prose chat-panel" id="chat-tester">
-          <h2>AI 聊天测试（限流版）</h2>
-          <p>用于测试用户体验和成本控制。支持两种限制方式：每日 5 次 或 单次字数上限。</p>
-          <div class="callout">
-            <p style="margin:0"><strong>连接方式：</strong>默认只走你配置的后端接口（由 Codex 固定使用 <code>gpt-5.2</code>，禁止其它模型）。</p>
-          </div>
-          <div class="chat-conn-grid">
-            <div>
-              <label>连接模式</label>
-              <select id="chat-conn-mode" disabled>
-                <option value="backend">后端接口（chatApiEndpoint）</option>
-              </select>
-            </div>
-            <div>
-              <label>模型</label>
-              <input id="chat-model" type="text" value="gpt-5.2" disabled />
-            </div>
-          </div>
-          <div class="chat-conn-grid" style="display:none">
-            <div style="grid-column: span 2;">
-              <label>API Key（仅本地）</label>
-              <input id="chat-api-key" type="password" placeholder="sk-..." autocomplete="off" />
-              <p class="meta">不会写入仓库，仅保存在你当前浏览器 localStorage。</p>
-            </div>
-          </div>
-          <div class="chat-limiter">
-            <label>限制模式</label>
-            <select id="chat-limit-mode">
-              <option value="daily">每日 5 次</option>
-              <option value="chars">单次最多 500 字</option>
-            </select>
-            <p id="chat-limit-hint" class="meta">今日剩余 5/5 次</p>
-          </div>
+        <div data-site-breadcrumb></div>
+        <section class="prose chat-panel chat-panel--minimal" id="chat-tester" aria-label="AI 聊天">
           <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
           <div class="chat-input-wrap">
-            <textarea id="chat-input" rows="4" placeholder="输入你要测试的问题..."></textarea>
-            <div class="chat-actions">
-              <small id="chat-char-count">0 / 500</small>
-              <button id="chat-send" class="btn primary" type="button">发送测试</button>
+            <div class="chat-input-row">
+              <textarea id="chat-input" rows="3" placeholder="输入你要问 AI 的问题..."></textarea>
+              <button id="chat-send" class="btn primary" type="button">发送</button>
             </div>
           </div>
         </section>

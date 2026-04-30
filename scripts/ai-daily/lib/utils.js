@@ -80,14 +80,24 @@ function isoDate(value) {
   return date.toISOString();
 }
 
-function formatDateParts(date = new Date()) {
-  const year = date.getUTCFullYear();
-  const month = `${date.getUTCMonth() + 1}`.padStart(2, "0");
-  const day = `${date.getUTCDate()}`.padStart(2, "0");
+function formatDateParts(date = new Date(), timeZone = "UTC") {
+  const dt = date instanceof Date ? date : new Date(date);
+  const safeTz = typeof timeZone === "string" && timeZone.trim() ? timeZone.trim() : "UTC";
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: safeTz,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(dt);
+
+  const year = parts.find((p) => p.type === "year")?.value || "1970";
+  const month = parts.find((p) => p.type === "month")?.value || "01";
+  const day = parts.find((p) => p.type === "day")?.value || "01";
+
   return {
     year: String(year),
-    month,
-    day,
+    month: String(month),
+    day: String(day),
     dateKey: `${year}-${month}-${day}`
   };
 }

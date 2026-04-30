@@ -90,7 +90,7 @@ async function collectSource(source) {
 
 async function main() {
   const now = new Date();
-  const { dateKey } = formatDateParts(now);
+  const { dateKey } = formatDateParts(now, config.generation?.timezone || "UTC");
   const dataDir = path.join(process.cwd(), "data", "daily");
   const dailyRootDir = path.join(process.cwd(), "daily");
   await resetIfNewWeek({ dataDir, dailyRootDir, now });

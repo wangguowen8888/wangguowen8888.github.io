@@ -1,26 +1,26 @@
 import argparse
 import html
 import json
-import os
 import re
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 from string import Template
 from typing import Any, Dict, List, Optional
 from urllib.parse import urljoin
+from zoneinfo import ZoneInfo
 
 import feedparser
 import requests
 import trafilatura
 from bs4 import BeautifulSoup
 from dateutil import parser as dtparser
-from deep_translator import GoogleTranslator
 
 
 MAX_PER_DAY_DEFAULT = 20
 RETENTION_DAYS_DEFAULT = 7
 TIMEOUT_SECONDS = 20
+LOCAL_TIMEZONE = "Asia/Shanghai"
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
@@ -50,18 +50,6 @@ def safe_text(value: Any) -> str:
     return re.sub(r"\s+", " ", html.unescape(str(value or ""))).strip()
 
 
-def strip_html_tags(text: str) -> str:
-    # Remove leftover HTML from feed extracts / LLM outputs.
-    text = html.unescape(str(text or ""))
-    return re.sub(r"<[^>]*>", "", text)
-
-
-def normalize_translated_output(text: str) -> str:
-    # Keep translated output as "plain text" for markdown rendering.
-    cleaned = strip_html_tags(text)
-    return safe_text(cleaned)
-
-
 def clean_html_summary(value: Any) -> str:
     raw = str(value or "")
     if not raw:
@@ -84,15 +72,6 @@ def load_dotenv(base_dir: Path) -> None:
     env_path = base_dir / ".env"
     if not env_path.exists():
         return
-    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip().strip('"').strip("'")
-        if key and key not in os.environ:
-            os.environ[key] = value
 
 
 def parse_dt(value: Optional[str]) -> datetime:
@@ -211,128 +190,6 @@ def clip_text(text: str, max_chars: int) -> str:
     return text[: max_chars - 1].rstrip() + "..."
 
 
-def split_for_translation(text: str, max_chars: int = 2800) -> List[str]:
-    clean = safe_text(text)
-    if len(clean) <= max_chars:
-        return [clean] if clean else []
-    pieces: List[str] = []
-    current = ""
-    for sentence in re.split(r"(?<=[。！？.!?])\s+", clean):
-        part = safe_text(sentence)
-        if not part:
-            continue
-        if len(part) > max_chars:
-            if current:
-                pieces.append(current)
-                current = ""
-            for idx in range(0, len(part), max_chars):
-                pieces.append(part[idx : idx + max_chars])
-            continue
-        candidate = f"{current} {part}".strip()
-        if current and len(candidate) > max_chars:
-            pieces.append(current)
-            current = part
-        else:
-            current = candidate
-    if current:
-        pieces.append(current)
-    return pieces
-
-
-def looks_like_target_language(text: str, target_lang: str) -> bool:
-    if not text:
-        return False
-    if target_lang.lower().startswith("zh"):
-        # Cover most CJK ranges.
-        return bool(re.search(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]", text))
-    return True
-
-
-def call_openai_translate(text: str, target_lang: str) -> Optional[str]:
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        return None
-    model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
-    payload = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": "You are a professional translator."},
-            {
-                "role": "user",
-                "content": f"Translate the following text to {target_lang}, preserve meaning and keep markdown-friendly plain text.\n\n{text}",
-            },
-        ],
-        "temperature": 0.2,
-    }
-    try:
-        r = requests.post(
-            "https://api.openai.com/v1/chat/completions",
-            headers=headers,
-            json=payload,
-            timeout=TIMEOUT_SECONDS,
-        )
-        r.raise_for_status()
-        data = r.json()
-        return normalize_translated_output(data["choices"][0]["message"]["content"])
-    except Exception:
-        return None
-
-
-def translate_text(text: str, target_lang: str, translation_engine: str = "google") -> str:
-    """
-    translation_engine:
-      - google: prefer GoogleTranslator; fallback to OpenAI only if output looks wrong
-      - openai: prefer OpenAI; fallback to GoogleTranslator only if output looks wrong
-      - auto: google first then openai (heuristic fallback)
-    """
-    chunks = split_for_translation(text)
-    if not chunks:
-        return ""
-
-    translated_chunks: List[str] = []
-    for chunk in chunks:
-        google_first = translation_engine in ("google", "auto")
-
-        if google_first:
-            try:
-                google_out = GoogleTranslator(source="auto", target=target_lang).translate(chunk)
-            except Exception:
-                google_out = None
-
-            if google_out:
-                google_out = normalize_translated_output(google_out)
-                if looks_like_target_language(google_out, target_lang):
-                    translated_chunks.append(google_out)
-                    continue
-
-            # Rescue with OpenAI if available/allowed.
-            ai_out = call_openai_translate(chunk, target_lang) if translation_engine in ("google", "auto", "openai") else None
-            if ai_out and looks_like_target_language(ai_out, target_lang):
-                translated_chunks.append(ai_out)
-            else:
-                translated_chunks.append(normalize_translated_output(chunk))
-        else:
-            ai_out = call_openai_translate(chunk, target_lang) if translation_engine in ("openai", "auto") else None
-            if ai_out and looks_like_target_language(ai_out, target_lang):
-                translated_chunks.append(ai_out)
-                continue
-
-            try:
-                google_out = GoogleTranslator(source="auto", target=target_lang).translate(chunk)
-            except Exception:
-                google_out = chunk
-            translated_chunks.append(normalize_translated_output(google_out))
-
-    merged = normalize_translated_output("\n\n".join(translated_chunks))
-    if looks_like_target_language(merged, target_lang):
-        return merged
-    return merged or text
-
-
 def ensure_dirs(base_dir: Path, date_key: str) -> Dict[str, Path]:
     data_root = base_dir / "data" / "daily-crawler"
     output_root = base_dir / "daily-crawler"
@@ -358,12 +215,7 @@ def prune_old(data_root: Path, output_root: Path, keep_days: int) -> None:
             old_dir.rmdir()
 
 
-def build_markdown(
-    tpl: Template,
-    article: Article,
-    translated: str,
-    translation_target: str,
-) -> str:
+def build_markdown(tpl: Template, article: Article) -> str:
     return tpl.safe_substitute(
         title=article.title,
         source_name=article.source_name,
@@ -374,8 +226,6 @@ def build_markdown(
         images_count=str(len(article.images)),
         summary=clip_text(article.summary or article.content, 500),
         content=clip_text(article.content, 8000),
-        translation_target=translation_target,
-        translated_content=clip_text(translated, 8000),
         monetization_hook=(
             "顺便说一下，这个工具如果你想对比更多替代方案，可以去我们的每日榜单继续看。"
         ),
@@ -396,17 +246,71 @@ def write_index(output_root: Path, date_key: str, articles: List[Article]) -> No
     index_path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def write_index_html(output_root: Path, date_key: str, articles: List[Article]) -> None:
+    index_html = output_root / "index.html"
+    item_lines: List[str] = []
+    for idx, article in enumerate(articles, start=1):
+        rel_md = f"./{date_key}/{idx:02d}-{article.source_id}.md"
+        desc = safe_text(article.summary or article.content)[:180]
+        item_lines.append(
+            (
+                f'            <a href="{rel_md}">\n'
+                f"              <div>\n"
+                f'                <div class="title">{html.escape(article.title)}</div>\n'
+                f'                <div class="desc">{html.escape(article.source_name)} · {html.escape(desc)}</div>\n'
+                f"              </div>\n"
+                f'              <time datetime="{date_key}">{date_key}</time>\n'
+                f"            </a>"
+            )
+        )
+    if not item_lines:
+        item_lines.append(
+            "            <div><div class=\"title\">No articles generated today</div></div>"
+        )
+
+    html_text = f"""<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>内容工厂｜每日抓取文章</title>
+    <meta name="description" content="每日抓取文章列表。" />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <script defer src="../assets/js/site-config.js"></script>
+    <script defer src="../assets/js/main.js"></script>
+  </head>
+  <body data-root=".." data-page-kind="page" data-footer-kind="default" data-breadcrumb-current="内容工厂">
+    <div data-site-topbar></div>
+    <main class="post">
+      <div class="container">
+        <header>
+          <div data-site-breadcrumb></div>
+          <h1>内容工厂</h1>
+          <p class="subtitle">最近抓取文章（按当天输出）</p>
+        </header>
+        <section class="prose">
+          <div class="list">
+{chr(10).join(item_lines)}
+          </div>
+        </section>
+      </div>
+    </main>
+    <div data-site-footer></div>
+  </body>
+</html>
+"""
+    index_html.write_text(html_text, encoding="utf-8")
+
+
 def run(
     base_dir: Path,
     max_per_day: int,
     per_source_limit: int,
     retention_days: int,
-    lang_mode: str,
-    target_lang: str,
-    translation_engine: str,
 ) -> None:
     load_dotenv(base_dir)
-    date_key = datetime.now().strftime("%Y-%m-%d")
+    date_key = datetime.now(ZoneInfo(LOCAL_TIMEZONE)).strftime("%Y-%m-%d")
     dirs = ensure_dirs(base_dir, date_key)
     sources = load_sources(base_dir / "scripts" / "content-factory" / "sources.json")
     template_text = (base_dir / "scripts" / "content-factory" / "template.md").read_text(
@@ -452,13 +356,7 @@ def run(
         articles.append(article)
 
     for idx, article in enumerate(articles, start=1):
-        if lang_mode == "none":
-            translated = article.content
-            translation_target = "none"
-        else:
-            translated = translate_text(article.content, target_lang=target_lang, translation_engine=translation_engine)
-            translation_target = target_lang
-        md = build_markdown(template, article, translated, translation_target)
+        md = build_markdown(template, article)
         md_path = dirs["day_output"] / f"{idx:02d}-{article.source_id}.md"
         md_path.write_text(md, encoding="utf-8")
 
@@ -472,8 +370,6 @@ def run(
             "publishedAt": article.published_at.isoformat(),
             "summary": article.summary,
             "content": article.content,
-            "translatedContent": translated,
-            "translationTarget": translation_target,
             "images": article.images,
             "language": article.language,
             "score": article.score,
@@ -500,28 +396,16 @@ def run(
     )
 
     write_index(dirs["output_root"], date_key, articles)
+    write_index_html(dirs["output_root"], date_key, articles)
     prune_old(dirs["data_root"], dirs["output_root"], keep_days=retention_days)
     print(f"[content-factory] done: {len(articles)} articles @ {date_key}")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Daily AI content crawler with translation + templates")
+    parser = argparse.ArgumentParser(description="Daily AI content crawler (fetch only)")
     parser.add_argument("--max-per-day", type=int, default=MAX_PER_DAY_DEFAULT)
     parser.add_argument("--per-source-limit", type=int, default=12)
     parser.add_argument("--retention-days", type=int, default=RETENTION_DAYS_DEFAULT)
-    parser.add_argument(
-        "--lang-mode",
-        choices=["none", "translate"],
-        default="translate",
-        help="none = keep original content only; translate = generate translated block",
-    )
-    parser.add_argument("--target-lang", choices=["zh-CN", "en"], default="zh-CN")
-    parser.add_argument(
-        "--translation-engine",
-        choices=["google", "openai", "auto"],
-        default="google",
-        help="google = prefer GoogleTranslator; openai = prefer OpenAI; auto = google first then openai",
-    )
     args = parser.parse_args()
 
     base_dir = Path.cwd()
@@ -530,9 +414,6 @@ def main() -> None:
         max_per_day=args.max_per_day,
         per_source_limit=args.per_source_limit,
         retention_days=args.retention_days,
-        lang_mode=args.lang_mode,
-        target_lang=args.target_lang,
-        translation_engine=args.translation_engine,
     )
 
 

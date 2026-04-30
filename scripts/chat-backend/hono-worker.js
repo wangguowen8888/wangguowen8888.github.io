@@ -24,7 +24,7 @@ import { cors } from "hono/cors";
 
 const FIXED_MODEL = "gpt-5.2";
 const UPSTREAM_BASE_URL = "https://code.newcli.com/codex/v1";
-const UPSTREAM_CHAT_COMPLETIONS_URL = `${UPSTREAM_BASE_URL}/chat/completions`;
+const UPSTREAM_RESPONSES_URL = `${UPSTREAM_BASE_URL}/responses`;
 
 const toIsoNow = () => new Date().toISOString();
 
@@ -45,22 +45,154 @@ async function sha256Hex(input) {
     .join("");
 }
 
-async function callUpstreamRaw(prompt, apiKey) {
-  const upstreamResp = await fetch(UPSTREAM_CHAT_COMPLETIONS_URL, {
+function extractOutputText(upstream) {
+  // Best-effort extraction for OpenAI Responses API.
+  if (typeof upstream?.output_text === "string" && upstream.output_text.trim()) return upstream.output_text.trim();
+
+  const output = upstream?.output;
+  if (!Array.isArray(output)) return "";
+
+  for (const item of output) {
+    const content = item?.content;
+    if (!Array.isArray(content)) continue;
+    for (const c of content) {
+      if (c?.type === "output_text" && typeof c?.text === "string" && c.text.trim()) return c.text.trim();
+      if (typeof c?.text === "string" && c.text.trim()) return c.text.trim();
+    }
+  }
+  return "";
+}
+
+function tryParseSseResponsesText(text) {
+  // Upstream may respond with SSE (text/event-stream). We parse "data: {...}" frames
+  // and return the last embedded response object if present.
+  // Also best-effort reconstruct output text from delta events.
+  const raw = String(text || "");
+  if (!raw) return null;
+
+  let lastResponse = null;
+  let outputText = "";
+  const frames = raw.split(/\n\n+/g);
+  for (const frame of frames) {
+    const lines = frame.split(/\n/g);
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed.startsWith("data:")) continue;
+      const payload = trimmed.slice("data:".length).trim();
+      if (!payload || payload === "[DONE]") continue;
+      try {
+        const obj = JSON.parse(payload);
+        const type = obj?.type;
+        if (type === "response.output_text.delta" && typeof obj?.delta === "string") {
+          outputText += obj.delta;
+        } else if (type === "response.output_text.done" && typeof obj?.text === "string") {
+          outputText += obj.text;
+        }
+        const response = obj?.response;
+        if (response && typeof response === "object") lastResponse = response;
+      } catch {
+        // ignore
+      }
+    }
+  }
+  if (lastResponse && outputText.trim()) {
+    // Some proxies never send an updated response object; stitch deltas in.
+    if (typeof lastResponse.output_text !== "string") lastResponse.output_text = "";
+    lastResponse.output_text = `${lastResponse.output_text}${outputText}`.trim();
+  }
+  return lastResponse;
+}
+
+async function callUpstreamWithBody(apiKey, requestBody) {
+  const upstreamResp = await fetch(UPSTREAM_RESPONSES_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
-    body: JSON.stringify({
-      model: FIXED_MODEL,
-      messages: [{ role: "user", content: prompt }],
-      max_tokens: 1024,
-      temperature: 0.2,
-    }),
+    body: JSON.stringify(requestBody),
   });
-  const upstreamJson = await upstreamResp.json().catch(() => ({}));
-  return { status: upstreamResp.status, body: upstreamJson };
+  const upstreamText = await upstreamResp.text().catch(() => "");
+  let upstreamJson = {};
+  try {
+    upstreamJson = upstreamText ? JSON.parse(upstreamText) : {};
+  } catch {
+    upstreamJson = {};
+  }
+  const contentType = upstreamResp.headers.get("content-type") || "";
+  if (
+    (!upstreamJson || Object.keys(upstreamJson).length === 0) &&
+    /text\/event-stream/i.test(contentType)
+  ) {
+    const parsed = tryParseSseResponsesText(upstreamText);
+    if (parsed) upstreamJson = parsed;
+  }
+  return {
+    status: upstreamResp.status,
+    body: upstreamJson,
+    raw_text: upstreamText,
+    content_type: contentType,
+  };
+}
+
+function withAttemptTag(result, tag) {
+  return {
+    ...result,
+    attempt: tag,
+  };
+}
+
+function buildAttemptsForModel(prompt, model) {
+  return [
+    {
+      tag: `${model}:responses_message_input_text`,
+      body: {
+        model,
+        text: { format: { type: "text" } },
+        input: [
+          {
+            role: "user",
+            content: [{ type: "input_text", text: prompt }],
+          },
+        ],
+      },
+    },
+    {
+      tag: `${model}:responses_message_plain_content`,
+      body: {
+        model,
+        text: { format: { type: "text" } },
+        input: [{ role: "user", content: prompt }],
+      },
+    },
+    {
+      tag: `${model}:responses_plain_input`,
+      body: { model, input: prompt, text: { format: { type: "text" } } },
+    },
+  ];
+}
+
+async function callUpstreamAcrossModels(prompt, apiKey, preferredModel) {
+  const modelOrder = [preferredModel || FIXED_MODEL];
+  const attempts = [];
+
+  for (const model of modelOrder) {
+    const modelAttempts = buildAttemptsForModel(prompt, model);
+    for (const attempt of modelAttempts) {
+      const result = withAttemptTag(await callUpstreamWithBody(apiKey, attempt.body), attempt.tag);
+      const hasText = Boolean(extractOutputText(result?.body || {}));
+      attempts.push({
+        tag: attempt.tag,
+        status: result?.status,
+        content_type: result?.content_type,
+        has_text: hasText,
+      });
+      if (hasText) {
+        return { result, attempts };
+      }
+    }
+  }
+  return { result: null, attempts };
 }
 
 const app = new Hono();
@@ -88,16 +220,18 @@ app.use(
 );
 
 app.get("/api/health", (c) => {
-  return c.json({ ok: true, model: FIXED_MODEL });
+  return c.json({ ok: true, model: FIXED_MODEL, protocol: "responses" });
 });
 
 app.post("/api/chat", async (c) => {
   const body = await c.req.json().catch(() => ({}));
   const promptRaw = String(body?.prompt ?? "").trim();
-  const model = body?.model;
+  const model = String(body?.model ?? "").trim();
 
   if (!promptRaw) return c.json({ error: "Missing 'prompt'." }, 400);
-  if (model != null && model !== FIXED_MODEL) return c.json({ error: "Only gpt-5.2 is allowed." }, 400);
+  if (model && model !== FIXED_MODEL) {
+    return c.json({ error: `Model is fixed to ${FIXED_MODEL}.` }, 400);
+  }
 
   const apiKey = c.env?.OPENAI_API_KEY;
   if (!apiKey) return c.json({ error: "Missing secret OPENAI_API_KEY in Worker." }, 500);
@@ -137,10 +271,39 @@ app.post("/api/chat", async (c) => {
   const prompt = promptRaw.slice(0, maxPromptChars);
 
   let upstream = null;
+  let attempts = [];
   try {
-    upstream = await callUpstreamRaw(prompt, apiKey);
+    const run = await callUpstreamAcrossModels(prompt, apiKey, FIXED_MODEL);
+    upstream = run.result;
+    attempts = run.attempts;
   } catch (e) {
     return c.json({ error: e?.message || "Internal error" }, 500);
+  }
+
+  if (!upstream) {
+    return c.json(
+      {
+        error: "Upstream returned empty output.",
+        upstream_attempts: attempts,
+      },
+      502,
+    );
+  }
+
+  const reply = extractOutputText(upstream?.body || {});
+  if (!reply) {
+    return c.json(
+      {
+        error: "Upstream returned empty output.",
+        upstream_status: upstream?.status,
+        upstream_content_type: upstream?.content_type,
+        upstream_attempt: upstream?.attempt,
+        upstream_attempts: attempts,
+        upstream: upstream?.body || {},
+        upstream_raw_preview: String(upstream?.raw_text || "").slice(0, 1200),
+      },
+      upstream?.status || 502,
+    );
   }
 
   // Best-effort persistence (usage + logs).
@@ -166,14 +329,28 @@ app.post("/api/chat", async (c) => {
           VALUES (?, ?, ?, ?, ?)
           `,
         )
-        .bind(ipHash, day, prompt, JSON.stringify(upstream?.body || {}), now)
+        .bind(ipHash, day, prompt, reply.slice(0, maxReplyChars), now)
         .run();
     } catch {
       // Ignore persistence errors; respond with the reply.
     }
   }
 
-  return c.json(upstream?.body || {}, upstream?.status || 200);
+  // Keep response small/stable for frontend: reply + model, plus upstream metadata for debugging.
+  return c.json(
+    {
+      reply: reply.slice(0, maxReplyChars),
+      model: FIXED_MODEL,
+      model_used: FIXED_MODEL,
+      protocol: "responses",
+      upstream_id: upstream?.body?.id,
+      upstream_object: upstream?.body?.object,
+      usage: upstream?.body?.usage,
+      upstream_attempt: upstream?.attempt,
+      upstream_attempts: attempts,
+    },
+    upstream?.status || 200,
+  );
 });
 
 export default app;

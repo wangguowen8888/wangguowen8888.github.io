@@ -1,0 +1,37 @@
+{
+  "dateKey": "2026-04-30",
+  "count": 3,
+  "items": [
+    {
+      "title": "Mozilla's Opposition to Chrome's Prompt API",
+      "url": "https://github.com/mozilla/standards-positions/issues/1213",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-30T07:43:55+00:00",
+      "images": [
+        "https://opengraph.githubassets.com/d0bc0dd6b1d1c7d1848988c9257bd0a1773d2b1ea852889138b745a4b8d18975/mozilla/standards-positions/issues/1213",
+        "https://avatars.githubusercontent.com/u/3396686?v=4&size=80",
+        "https://avatars.githubusercontent.com/u/3396686?v=4&size=48"
+      ]
+    },
+    {
+      "title": "Will you heed my warnings now?",
+      "url": "https://scottaaronson.blog/?p=9718",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-30T06:30:30+00:00",
+      "images": [
+        "https://s0.wp.com/_si/?t=eyJpbWciOiJodHRwczpcL1wvc2NvdHRhYXJvbnNvbi5ibG9nXC93cC1jb250ZW50XC91cGxvYWRzXC8yMDIxXC8xMFwvY3JvcHBlZC1KYWNrZXQuZ2lmIiwidHh0IjoiU2h0ZXRsLU9wdGltaXplZCIsInRlbXBsYXRlIjoiZWRnZSIsImZvbnQiOiIiLCJibG9nX2lkIjoxMjk1MjA1ODB9.siOtN7gHw4tefA_rZickBw4GfI6tPxGgOQ1AXr2ZoOQMQ",
+        "https://scottaaronson.blog/wp-content/uploads/2021/10/cropped-Jacket-270x270.gif",
+        "https://scottaaronson.blog/wp-content/plugins/really-simple-facebook-twitter-share-buttons/images/specificfeeds_follow.png"
+      ]
+    },
+    {
+      "title": "Monad Tutorials Timeline",
+      "url": "https://wiki.haskell.org/Monad_tutorials_timeline",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-30T04:28:07+00:00",
+      "images": [
+        "https://wiki.haskell.org/wikiupload/2/23/Monad-tutorials-chart.png"
+      ]
+    }
+  ]
+}

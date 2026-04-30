@@ -7,13 +7,13 @@
 - Images: ${images_count}
 
 ## Quick Summary
+
 ${summary}
 
 ## Article Content
+
 ${content}
 
-## Translation (${translation_target})
-${translated_content}
-
 ## Monetization Hook
+
 ${monetization_hook}

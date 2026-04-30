@@ -645,63 +645,11 @@
   // AI chat tester with client-side usage limits.
   const chatTesterRoot = byId("chat-tester");
   if (chatTesterRoot) {
-    const DAILY_LIMIT = Infinity;
-    const CHAR_LIMIT = 500;
-    const FIXED_MODEL = "gpt-5.2";
-    const STORAGE_KEY = `chat-usage-${new Date().toISOString().slice(0, 10)}`;
-    const CHAT_KEY_STORAGE = "chat-tester-api-key";
-    const CHAT_MODEL_STORAGE = "chat-tester-model";
-    const CHAT_CONN_MODE_STORAGE = "chat-tester-conn-mode";
-    const connModeEl = byId("chat-conn-mode");
-    const apiKeyEl = byId("chat-api-key");
-    const modelEl = byId("chat-model");
-    const modeSelect = byId("chat-limit-mode");
-    const hintEl = byId("chat-limit-hint");
     const inputEl = byId("chat-input");
     const sendBtn = byId("chat-send");
     const messagesEl = byId("chat-messages");
-    const countEl = byId("chat-char-count");
     const inputWrapEl = document.querySelector("#chat-tester .chat-input-wrap");
     let loadingMessageEl = null;
-
-    const getUsage = () => {
-      try {
-        return Number(localStorage.getItem(STORAGE_KEY) || "0");
-      } catch {
-        return 0;
-      }
-    };
-    const setUsage = (value) => {
-      try {
-        localStorage.setItem(STORAGE_KEY, String(value));
-      } catch {
-        // Ignore storage failure.
-      }
-    };
-    const getConnMode = () => "backend";
-    const getModel = () => FIXED_MODEL;
-    const getApiKey = () => (apiKeyEl?.value || "").trim();
-    const saveConnSettings = () => {
-      try {
-        // Force backend + fixed model. API key is intentionally not used in frontend.
-        localStorage.setItem(CHAT_CONN_MODE_STORAGE, "backend");
-        localStorage.setItem(CHAT_MODEL_STORAGE, FIXED_MODEL);
-        if (apiKeyEl) apiKeyEl.value = "";
-      } catch {
-        // Ignore storage failures.
-      }
-    };
-    const loadConnSettings = () => {
-      try {
-        // Always enforce backend + fixed model.
-        if (connModeEl) connModeEl.value = "backend";
-        if (modelEl) modelEl.value = FIXED_MODEL;
-        // Clear any stored key to avoid accidental direct calls.
-        if (apiKeyEl) apiKeyEl.value = "";
-      } catch {
-        // Ignore storage failures.
-      }
-    };
     const addMessage = (role, text) => {
       if (!messagesEl) return;
       const item = document.createElement("div");
@@ -711,9 +659,10 @@
       messagesEl.scrollTop = messagesEl.scrollHeight;
     };
     const setChatBusy = (isBusy) => {
+      chatTesterRoot.classList.toggle("is-busy", isBusy);
       if (sendBtn) {
         sendBtn.disabled = isBusy;
-        sendBtn.textContent = isBusy ? "发送中..." : "发送测试";
+        sendBtn.textContent = isBusy ? "思考中..." : "发送";
       }
       if (inputEl) {
         inputEl.disabled = isBusy;
@@ -734,31 +683,11 @@
       loadingMessageEl.remove();
       loadingMessageEl = null;
     };
-    const updateCounter = () => {
-      if (!inputEl || !countEl) return;
-      countEl.textContent = `${(inputEl.value || "").length} / ${CHAR_LIMIT}`;
-    };
-    const updateHint = () => {
-      if (!hintEl || !modeSelect) return;
-      if (modeSelect.value === "daily") {
-        hintEl.textContent = "当前本地测试次数不限。";
-      } else {
-        hintEl.textContent = `当前启用单次字数限制：最多 ${CHAR_LIMIT} 字`;
-      }
-    };
     const canSend = () => {
-      if (!inputEl || !modeSelect) return false;
+      if (!inputEl) return false;
       const text = (inputEl.value || "").trim();
       if (!text) return false;
-      if (modeSelect.value === "chars" && text.length > CHAR_LIMIT) {
-        addMessage("system", `已超出字数限制，最多 ${CHAR_LIMIT} 字。`);
-        return false;
-      }
       return true;
-    };
-    const callDirectOpenAI = async (prompt) => {
-      // Direct mode is intentionally disabled for security reasons.
-      return "已禁用直连模型调用，请改用后端接口。";
     };
     const callBackendApi = async (prompt) => {
       const endpoint = String(window.siteConfig?.chatApiEndpoint || "").trim();
@@ -772,30 +701,19 @@
           body: JSON.stringify({ prompt }),
         });
         const data = await response.json().catch(() => null);
-        if (data) return JSON.stringify(data, null, 2);
+        if (data?.reply) return String(data.reply);
+        if (data?.error) return `后端错误：${data.error}`;
+        if (data && !response.ok) return `后端接口调用失败（HTTP ${response.status}）。`;
+        if (data) return "后端返回了非标准格式响应，请检查 Worker 日志。";
         if (!response.ok) return `后端接口调用失败（HTTP ${response.status}）。`;
         return "{}";
       } catch {
         return "后端接口调用失败，请检查网络、接口地址或服务状态。";
       }
     };
-    const callChatApi = async (prompt) => callBackendApi(prompt);
-    loadConnSettings();
-    if (inputEl) {
-      inputEl.addEventListener("input", updateCounter);
-      updateCounter();
-    }
-    if (connModeEl) connModeEl.addEventListener("change", saveConnSettings);
-    if (apiKeyEl) apiKeyEl.addEventListener("input", saveConnSettings);
-    if (modelEl) modelEl.addEventListener("input", saveConnSettings);
-    if (modeSelect) {
-      modeSelect.addEventListener("change", updateHint);
-      updateHint();
-    }
     if (sendBtn && inputEl) {
       sendBtn.addEventListener("click", async () => {
         if (!canSend()) {
-          updateHint();
           return;
         }
         const prompt = inputEl.value.trim();
@@ -803,19 +721,14 @@
         setChatBusy(true);
         showLoadingMessage();
         try {
-          const reply = await callChatApi(prompt);
+          const reply = await callBackendApi(prompt);
           hideLoadingMessage();
           addMessage("assistant", reply);
-          if (modeSelect && modeSelect.value === "daily" && Number.isFinite(DAILY_LIMIT)) {
-            setUsage(getUsage() + 1);
-          }
         } finally {
           hideLoadingMessage();
           setChatBusy(false);
         }
-        updateHint();
         inputEl.value = "";
-        updateCounter();
         inputEl.focus();
       });
     }
