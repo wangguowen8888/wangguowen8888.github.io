@@ -11,8 +11,8 @@ MAX_REPLY_CHARS = "4000"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "ai-chat"
+database_name = "my-ai-db"
 migrations_dir = "migrations"
 # Your D1 database id (provided by user)
-database_id = "abffe8f7-7858-4f16-ab75-95d24cad2746"
+database_id = "573b4861-ab22-4480-97b0-8d53d3c05408"
 
