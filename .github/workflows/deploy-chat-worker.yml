@@ -28,7 +28,8 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
-          command: d1 migrations apply DB --remote --config scripts/chat-backend/wrangler.toml
+          workingDirectory: "scripts/chat-backend"
+          command: d1 migrations apply DB --remote
 
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
@@ -36,5 +37,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
-          command: deploy --config scripts/chat-backend/wrangler.toml
+          workingDirectory: "scripts/chat-backend"
+          command: deploy
 
