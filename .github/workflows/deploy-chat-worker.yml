@@ -12,15 +12,7 @@ jobs:
     env:
       WRANGLER_SEND_METRICS: "false"
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
-
-      - name: Install npm dependencies
-        run: npm install --no-audit --no-fund
+      - uses: actions/checkout@v6
 
       - name: Apply D1 migrations
         uses: cloudflare/wrangler-action@v3
@@ -28,8 +20,8 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
-          workingDirectory: "scripts/chat-backend"
-          command: d1 migrations apply DB --remote
+          packageManager: npm
+          command: d1 migrations apply DB --remote --config scripts/chat-backend/wrangler.toml
 
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
@@ -37,6 +29,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
-          workingDirectory: "scripts/chat-backend"
-          command: deploy
+          packageManager: npm
+          command: deploy --config scripts/chat-backend/wrangler.toml
 
