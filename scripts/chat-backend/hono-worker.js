@@ -45,81 +45,8 @@ async function sha256Hex(input) {
     .join("");
 }
 
-function extractOutputText(upstream) {
-  const collectContentParts = (content) => {
-    if (typeof content === "string") return content;
-    if (!Array.isArray(content)) return "";
-    return content
-      .map((part) => {
-        if (typeof part === "string") return part;
-        if (typeof part?.text === "string") return part.text;
-        if (typeof part?.content === "string") return part.content;
-        if (typeof part?.value === "string") return part.value;
-        return "";
-      })
-      .join("");
-  };
-
-  // Best-effort extraction: prefer `output_text`, else scan `output[]`.
-  if (typeof upstream?.output_text === "string" && upstream.output_text.trim()) return upstream.output_text.trim();
-  if (Array.isArray(upstream?.output_text)) {
-    const joined = upstream.output_text
-      .map((part) => (typeof part === "string" ? part : ""))
-      .join("")
-      .trim();
-    if (joined) return joined;
-  }
-
-  // Some gateways may wrap response payloads.
-  const wrappedOutputText = upstream?.response?.output_text || upstream?.data?.output_text;
-  if (typeof wrappedOutputText === "string" && wrappedOutputText.trim()) return wrappedOutputText.trim();
-
-  const output = upstream?.output;
-  if (Array.isArray(output)) {
-    for (const item of output) {
-      const content = item?.content;
-      if (!Array.isArray(content)) continue;
-
-      for (const c of content) {
-        // OpenAI Responses API usually has: { type: "output_text", text: "..." }
-        if (c?.type === "output_text" && typeof c?.text === "string" && c.text.trim()) return c.text.trim();
-        if (typeof c?.text === "string" && c.text.trim()) return c.text.trim();
-        if (typeof c?.text?.value === "string" && c.text.value.trim()) return c.text.value.trim();
-        if (Array.isArray(c?.text)) {
-          const textFromArray = c.text
-            .map((t) => (typeof t === "string" ? t : t?.value || ""))
-            .join("")
-            .trim();
-          if (textFromArray) return textFromArray;
-        }
-      }
-    }
-  }
-
-  // Compatibility fallback for chat-completions-shaped responses.
-  const choiceMessage = upstream?.choices?.[0]?.message;
-  const choiceText = choiceMessage?.content;
-  const reasoningText = choiceMessage?.reasoning_content;
-  const refusalText = choiceMessage?.refusal;
-  const choicePlainText = upstream?.choices?.[0]?.text;
-  const deltaText = upstream?.choices?.[0]?.delta?.content;
-  const resultText = upstream?.result?.text;
-  if (typeof choicePlainText === "string" && choicePlainText.trim()) return choicePlainText.trim();
-  if (typeof deltaText === "string" && deltaText.trim()) return deltaText.trim();
-  if (typeof resultText === "string" && resultText.trim()) return resultText.trim();
-  if (typeof refusalText === "string" && refusalText.trim()) return refusalText.trim();
-  if (typeof choiceText === "string" && choiceText.trim()) return choiceText.trim();
-  const contentJoined = collectContentParts(choiceText).trim();
-  if (contentJoined) return contentJoined;
-  const reasoningJoined = collectContentParts(reasoningText).trim();
-  if (reasoningJoined) return reasoningJoined;
-  return "";
-}
-
-async function forwardToCodex(prompt, apiKey) {
-  // Prefer chat/completions first for this provider: it is more stable here
-  // and avoids an extra round-trip when /responses returns empty output.
-  const chatResp = await fetch(UPSTREAM_CHAT_COMPLETIONS_URL, {
+async function callUpstreamRaw(prompt, apiKey) {
+  const upstreamResp = await fetch(UPSTREAM_CHAT_COMPLETIONS_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -127,25 +54,13 @@ async function forwardToCodex(prompt, apiKey) {
     },
     body: JSON.stringify({
       model: FIXED_MODEL,
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a concise assistant. Always provide a direct final answer in message.content. Do not return role-only or empty content.",
-        },
-        { role: "user", content: prompt },
-      ],
-      temperature: 0.7,
+      messages: [{ role: "user", content: prompt }],
+      max_tokens: 1024,
+      temperature: 0.2,
     }),
   });
-  const chatJson = await chatResp.json().catch(() => ({}));
-  if (!chatResp.ok) {
-    const msg = chatJson?.error?.message || chatJson?.message || `HTTP ${chatResp.status}`;
-    throw new Error(`Upstream chat failed: ${msg}`);
-  }
-  const reply = extractOutputText(chatJson);
-  if (reply) return reply;
-  throw new Error("Upstream returned no displayable text.");
+  const upstreamJson = await upstreamResp.json().catch(() => ({}));
+  return { status: upstreamResp.status, body: upstreamJson };
 }
 
 const app = new Hono();
@@ -221,14 +136,12 @@ app.post("/api/chat", async (c) => {
 
   const prompt = promptRaw.slice(0, maxPromptChars);
 
-  let replyText = "";
+  let upstream = null;
   try {
-    replyText = await forwardToCodex(prompt, apiKey);
+    upstream = await callUpstreamRaw(prompt, apiKey);
   } catch (e) {
     return c.json({ error: e?.message || "Internal error" }, 500);
   }
-
-  const reply = String(replyText || "").trim().slice(0, maxReplyChars);
 
   // Best-effort persistence (usage + logs).
   if (db) {
@@ -253,14 +166,14 @@ app.post("/api/chat", async (c) => {
           VALUES (?, ?, ?, ?, ?)
           `,
         )
-        .bind(ipHash, day, prompt, reply, now)
+        .bind(ipHash, day, prompt, JSON.stringify(upstream?.body || {}), now)
         .run();
     } catch {
       // Ignore persistence errors; respond with the reply.
     }
   }
 
-  return c.json({ reply, model: FIXED_MODEL });
+  return c.json(upstream?.body || {}, upstream?.status || 200);
 });
 
 export default app;

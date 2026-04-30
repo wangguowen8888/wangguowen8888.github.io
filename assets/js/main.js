@@ -645,7 +645,7 @@
   // AI chat tester with client-side usage limits.
   const chatTesterRoot = byId("chat-tester");
   if (chatTesterRoot) {
-    const DAILY_LIMIT = 5;
+    const DAILY_LIMIT = Infinity;
     const CHAR_LIMIT = 500;
     const FIXED_MODEL = "gpt-5.2";
     const STORAGE_KEY = `chat-usage-${new Date().toISOString().slice(0, 10)}`;
@@ -741,9 +741,7 @@
     const updateHint = () => {
       if (!hintEl || !modeSelect) return;
       if (modeSelect.value === "daily") {
-        const used = getUsage();
-        const left = Math.max(0, DAILY_LIMIT - used);
-        hintEl.textContent = `今日剩余 ${left}/${DAILY_LIMIT} 次`;
+        hintEl.textContent = "当前本地测试次数不限。";
       } else {
         hintEl.textContent = `当前启用单次字数限制：最多 ${CHAR_LIMIT} 字`;
       }
@@ -754,10 +752,6 @@
       if (!text) return false;
       if (modeSelect.value === "chars" && text.length > CHAR_LIMIT) {
         addMessage("system", `已超出字数限制，最多 ${CHAR_LIMIT} 字。`);
-        return false;
-      }
-      if (modeSelect.value === "daily" && getUsage() >= DAILY_LIMIT) {
-        addMessage("system", "你今天的测试次数已用完，请明天再试。");
         return false;
       }
       return true;
@@ -778,11 +772,9 @@
           body: JSON.stringify({ prompt }),
         });
         const data = await response.json().catch(() => null);
-        if (!response.ok) {
-          const message = String(data?.error || data?.message || "").trim();
-          return message || `后端接口调用失败（HTTP ${response.status}）。`;
-        }
-        return String(data?.reply || "").trim() || "收到请求，但接口没有返回有效文本。";
+        if (data) return JSON.stringify(data, null, 2);
+        if (!response.ok) return `后端接口调用失败（HTTP ${response.status}）。`;
+        return "{}";
       } catch {
         return "后端接口调用失败，请检查网络、接口地址或服务状态。";
       }
@@ -814,7 +806,7 @@
           const reply = await callChatApi(prompt);
           hideLoadingMessage();
           addMessage("assistant", reply);
-          if (modeSelect && modeSelect.value === "daily") {
+          if (modeSelect && modeSelect.value === "daily" && Number.isFinite(DAILY_LIMIT)) {
             setUsage(getUsage() + 1);
           }
         } finally {
