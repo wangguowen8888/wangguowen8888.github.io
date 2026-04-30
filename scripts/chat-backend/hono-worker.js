@@ -107,12 +107,21 @@ function extractOutputText(upstream) {
   if (typeof choicePlainText === "string" && choicePlainText.trim()) return choicePlainText.trim();
   if (typeof deltaText === "string" && deltaText.trim()) return deltaText.trim();
   if (typeof resultText === "string" && resultText.trim()) return resultText.trim();
-  const reasoningJoined = collectContentParts(reasoningText).trim();
-  if (reasoningJoined) return reasoningJoined;
   if (typeof refusalText === "string" && refusalText.trim()) return refusalText.trim();
   if (typeof choiceText === "string" && choiceText.trim()) return choiceText.trim();
   const contentJoined = collectContentParts(choiceText).trim();
   if (contentJoined) return contentJoined;
+  const reasoningJoined = collectContentParts(reasoningText).trim();
+  if (reasoningJoined) {
+    // If provider only returns reasoning traces, convert to a readable short answer.
+    const normalized = reasoningJoined
+      .replace(/\s+/g, " ")
+      .replace(/^(analysis|reasoning|thoughts?)\s*:\s*/i, "")
+      .trim();
+    return normalized
+      ? `简要结论：${normalized.slice(0, 320)}${normalized.length > 320 ? "..." : ""}`
+      : "";
+  }
   return "";
 }
 
@@ -127,7 +136,14 @@ async function forwardToCodex(prompt, apiKey) {
     },
     body: JSON.stringify({
       model: FIXED_MODEL,
-      messages: [{ role: "user", content: prompt }],
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a concise assistant. Always provide a direct final answer in message.content. Do not return role-only or empty content.",
+        },
+        { role: "user", content: prompt },
+      ],
       temperature: 0.7,
     }),
   });
