@@ -2,7 +2,21 @@
   "name": "ai-project",
   "private": true,
   "version": "1.0.0",
+  "dependencies": {
+    "hono": "^4.12.15"
+  },
+  "devDependencies": {
+    "wrangler": "^4.86.0"
+  },
   "scripts": {
-    "ai-daily": "node ./scripts/ai-daily/run.js"
+    "ai-daily": "node ./scripts/ai-daily/run.js",
+    "scan-secrets": "node ./scripts/security/scan-secrets.js",
+    "install-precommit": "node ./scripts/security/install-git-hook.js",
+    "chat-backend": "node ./scripts/chat-backend/server.js",
+    "chat-worker:types": "wrangler types --config scripts/chat-backend/wrangler.toml scripts/chat-backend/worker-configuration.d.ts",
+    "chat-worker:d1:migrations:list:local": "wrangler d1 migrations list DB --local --config scripts/chat-backend/wrangler.toml",
+    "chat-worker:deploy:dry-run": "wrangler deploy --dry-run --config scripts/chat-backend/wrangler.toml --outdir .wrangler/chat-worker-bundle",
+    "chat-worker:d1:migrations:apply:remote": "wrangler d1 migrations apply DB --remote --config scripts/chat-backend/wrangler.toml",
+    "chat-worker:deploy": "wrangler deploy --config scripts/chat-backend/wrangler.toml"
   }
 }

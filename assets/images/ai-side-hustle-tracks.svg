@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="t d">
+  <title id="t">AI side hustle tracks</title>
+  <desc id="d">five practical tracks in 2026</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#faf5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="680" fill="url(#bg)"/>
+  <text x="600" y="70" fill="#0f172a" font-size="40" text-anchor="middle" font-family="Segoe UI, Arial" font-weight="700">5 Practical AI Side Hustle Tracks (2026)</text>
+  <g font-family="Segoe UI, Arial" font-size="26" fill="#0f172a">
+    <rect x="90" y="120" width="320" height="120" rx="16" fill="#ffffff" stroke="#bae6fd"/><text x="250" y="190" text-anchor="middle">1. AI Video Matrix</text>
+    <rect x="440" y="120" width="320" height="120" rx="16" fill="#ffffff" stroke="#bfdbfe"/><text x="600" y="190" text-anchor="middle">2. Vertical Agents</text>
+    <rect x="790" y="120" width="320" height="120" rx="16" fill="#ffffff" stroke="#ddd6fe"/><text x="950" y="190" text-anchor="middle">3. SEO Content Sites</text>
+    <rect x="260" y="280" width="320" height="120" rx="16" fill="#ffffff" stroke="#bbf7d0"/><text x="420" y="350" text-anchor="middle">4. AI Design Service</text>
+    <rect x="620" y="280" width="320" height="120" rx="16" fill="#ffffff" stroke="#fecdd3"/><text x="780" y="350" text-anchor="middle">5. Automation Delivery</text>
+  </g>
+  <text x="600" y="500" fill="#1d4ed8" font-size="30" text-anchor="middle" font-family="Segoe UI, Arial">Choose one track, run 8 weeks, then scale</text>
+  <text x="600" y="560" fill="#475569" font-size="24" text-anchor="middle" font-family="Segoe UI, Arial">Do not start five tracks at once</text>
+</svg>

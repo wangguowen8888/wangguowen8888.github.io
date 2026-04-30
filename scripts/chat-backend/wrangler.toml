@@ -1,0 +1,18 @@
+name = "ai-chat-worker"
+main = "hono-worker.js"
+compatibility_date = "2026-04-29"
+workers_dev = true
+
+[vars]
+CHAT_ALLOWED_ORIGINS = "*"
+DAILY_LIMIT = "5"
+MAX_PROMPT_CHARS = "2000"
+MAX_REPLY_CHARS = "4000"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ai-chat"
+migrations_dir = "migrations"
+# Your D1 database id (provided by user)
+database_id = "abffe8f7-7858-4f16-ab75-95d24cad2746"
+

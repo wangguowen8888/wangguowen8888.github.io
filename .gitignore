@@ -1,0 +1,15 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Wrangler / Workers local artifacts
+.wrangler/
+scripts/chat-backend/worker-configuration.d.ts

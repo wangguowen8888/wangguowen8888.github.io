@@ -423,14 +423,25 @@
   const initSavedLocale = async () => {
     setLocaleLoadingState(true);
     setGlobalLoadingState(true, "locale-init");
+    const withTimeout = (promise, ms, message) =>
+      new Promise((resolve, reject) => {
+        const timer = setTimeout(() => reject(new Error(message || `timeout after ${ms}ms`)), ms);
+        promise.then((value) => {
+          clearTimeout(timer);
+          resolve(value);
+        }).catch((err) => {
+          clearTimeout(timer);
+          reject(err);
+        });
+      });
     try {
       if (currentLocale === "en") {
         setGtCookie("en");
-        await triggerTranslateLocale("en");
+        await withTimeout(triggerTranslateLocale("en"), 5000, "Google Translate init timeout");
         retriggerTranslation("en");
       } else {
         setGtCookie("zh");
-        await triggerTranslateLocale("zh-CN");
+        await withTimeout(triggerTranslateLocale("zh-CN"), 5000, "Google Translate init timeout");
         retriggerTranslation("zh-CN");
       }
     } catch (error) {
@@ -629,6 +640,159 @@
         copyBtn.textContent = originalText;
       }, 1600);
     });
+  }
+
+  // AI chat tester with client-side usage limits.
+  const chatTesterRoot = byId("chat-tester");
+  if (chatTesterRoot) {
+    const DAILY_LIMIT = 5;
+    const CHAR_LIMIT = 500;
+    const FIXED_MODEL = "gpt-5.2";
+    const STORAGE_KEY = `chat-usage-${new Date().toISOString().slice(0, 10)}`;
+    const CHAT_KEY_STORAGE = "chat-tester-api-key";
+    const CHAT_MODEL_STORAGE = "chat-tester-model";
+    const CHAT_CONN_MODE_STORAGE = "chat-tester-conn-mode";
+    const connModeEl = byId("chat-conn-mode");
+    const apiKeyEl = byId("chat-api-key");
+    const modelEl = byId("chat-model");
+    const modeSelect = byId("chat-limit-mode");
+    const hintEl = byId("chat-limit-hint");
+    const inputEl = byId("chat-input");
+    const sendBtn = byId("chat-send");
+    const messagesEl = byId("chat-messages");
+    const countEl = byId("chat-char-count");
+
+    const getUsage = () => {
+      try {
+        return Number(localStorage.getItem(STORAGE_KEY) || "0");
+      } catch {
+        return 0;
+      }
+    };
+    const setUsage = (value) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, String(value));
+      } catch {
+        // Ignore storage failure.
+      }
+    };
+    const getConnMode = () => "backend";
+    const getModel = () => FIXED_MODEL;
+    const getApiKey = () => (apiKeyEl?.value || "").trim();
+    const saveConnSettings = () => {
+      try {
+        // Force backend + fixed model. API key is intentionally not used in frontend.
+        localStorage.setItem(CHAT_CONN_MODE_STORAGE, "backend");
+        localStorage.setItem(CHAT_MODEL_STORAGE, FIXED_MODEL);
+        if (apiKeyEl) apiKeyEl.value = "";
+      } catch {
+        // Ignore storage failures.
+      }
+    };
+    const loadConnSettings = () => {
+      try {
+        // Always enforce backend + fixed model.
+        if (connModeEl) connModeEl.value = "backend";
+        if (modelEl) modelEl.value = FIXED_MODEL;
+        // Clear any stored key to avoid accidental direct calls.
+        if (apiKeyEl) apiKeyEl.value = "";
+      } catch {
+        // Ignore storage failures.
+      }
+    };
+    const addMessage = (role, text) => {
+      if (!messagesEl) return;
+      const item = document.createElement("div");
+      item.className = `chat-message ${role}`;
+      item.textContent = text;
+      messagesEl.appendChild(item);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    };
+    const updateCounter = () => {
+      if (!inputEl || !countEl) return;
+      countEl.textContent = `${(inputEl.value || "").length} / ${CHAR_LIMIT}`;
+    };
+    const updateHint = () => {
+      if (!hintEl || !modeSelect) return;
+      if (modeSelect.value === "daily") {
+        const used = getUsage();
+        const left = Math.max(0, DAILY_LIMIT - used);
+        hintEl.textContent = `今日剩余 ${left}/${DAILY_LIMIT} 次`;
+      } else {
+        hintEl.textContent = `当前启用单次字数限制：最多 ${CHAR_LIMIT} 字`;
+      }
+    };
+    const canSend = () => {
+      if (!inputEl || !modeSelect) return false;
+      const text = (inputEl.value || "").trim();
+      if (!text) return false;
+      if (modeSelect.value === "chars" && text.length > CHAR_LIMIT) {
+        addMessage("system", `已超出字数限制，最多 ${CHAR_LIMIT} 字。`);
+        return false;
+      }
+      if (modeSelect.value === "daily" && getUsage() >= DAILY_LIMIT) {
+        addMessage("system", "你今天的测试次数已用完，请明天再试。");
+        return false;
+      }
+      return true;
+    };
+    const callDirectOpenAI = async (prompt) => {
+      // Direct mode is intentionally disabled for security reasons.
+      return "已禁用直连模型调用，请改用后端接口。";
+    };
+    const callBackendApi = async (prompt) => {
+      const endpoint = String(window.siteConfig?.chatApiEndpoint || "").trim();
+      if (!endpoint) {
+        return "当前未配置 chatApiEndpoint，请在 site-config.js 配置后端接口。";
+      }
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt }),
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        return String(data?.reply || "").trim() || "收到请求，但接口没有返回有效文本。";
+      } catch {
+        return "后端接口调用失败，请检查接口地址或服务状态。";
+      }
+    };
+    const callChatApi = async (prompt) => callBackendApi(prompt);
+    loadConnSettings();
+    if (inputEl) {
+      inputEl.addEventListener("input", updateCounter);
+      updateCounter();
+    }
+    if (connModeEl) connModeEl.addEventListener("change", saveConnSettings);
+    if (apiKeyEl) apiKeyEl.addEventListener("input", saveConnSettings);
+    if (modelEl) modelEl.addEventListener("input", saveConnSettings);
+    if (modeSelect) {
+      modeSelect.addEventListener("change", updateHint);
+      updateHint();
+    }
+    if (sendBtn && inputEl) {
+      sendBtn.addEventListener("click", async () => {
+        if (!canSend()) {
+          updateHint();
+          return;
+        }
+        const prompt = inputEl.value.trim();
+        addMessage("user", prompt);
+        sendBtn.disabled = true;
+        sendBtn.textContent = "发送中...";
+        const reply = await callChatApi(prompt);
+        addMessage("assistant", reply);
+        if (modeSelect && modeSelect.value === "daily") {
+          setUsage(getUsage() + 1);
+        }
+        updateHint();
+        inputEl.value = "";
+        updateCounter();
+        sendBtn.disabled = false;
+        sendBtn.textContent = "发送测试";
+      });
+    }
   }
 })();
 

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hackernews",
+    "name": "Hacker News",
+    "type": "rss",
+    "weight": 10,
+    "enabled": true,
+    "url": "https://hnrss.org/frontpage"
+  },
+  {
+    "id": "producthunt",
+    "name": "Product Hunt",
+    "type": "rss",
+    "weight": 9,
+    "enabled": true,
+    "url": "https://www.producthunt.com/feed"
+  },
+  {
+    "id": "futurepedia",
+    "name": "Futurepedia Blog",
+    "type": "rss",
+    "weight": 10,
+    "enabled": true,
+    "url": "https://www.futurepedia.io/blog/rss.xml"
+  },
+  {
+    "id": "towards-data-science",
+    "name": "Towards Data Science",
+    "type": "rss",
+    "weight": 8,
+    "enabled": true,
+    "url": "https://towardsdatascience.com/feed"
+  },
+  {
+    "id": "openai-blog",
+    "name": "OpenAI Blog",
+    "type": "rss",
+    "weight": 10,
+    "enabled": true,
+    "url": "https://openai.com/news/rss.xml"
+  },
+  {
+    "id": "anthropic-news",
+    "name": "Anthropic News",
+    "type": "rss",
+    "weight": 10,
+    "enabled": true,
+    "url": "https://www.anthropic.com/news/rss.xml"
+  }
+]

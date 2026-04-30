@@ -33,6 +33,38 @@ function renderCards(items) {
 
 function renderDayPage({ dateKey, summary, items }) {
   const grouped = groupByType(items);
+  const ctaSection = `
+    <section class="section" id="daily-cta">
+      <div class="container">
+        <div class="section-title"><h2>今日推荐入口</h2></div>
+        <div class="grid">
+          <article class="card" style="grid-column: span 4">
+            <h3>热门推荐工具</h3>
+            <p class="meta">优先看高转化入口</p>
+            <p><a class="btn primary" href="../../tools/">查看工具合集</a></p>
+            <div class="tagrow">
+              <span class="tag">Kimi</span>
+              <span class="tag">DeepSeek</span>
+              <span class="tag">Notion AI</span>
+            </div>
+          </article>
+          <article class="card" style="grid-column: span 4">
+            <h3>高转化分类</h3>
+            <p class="meta">从资讯直接进入可落地场景</p>
+            <p><a class="btn" href="../../ai-chat/">AI 聊天工具</a></p>
+            <p><a class="btn" href="../../ai-writing/">AI 写作工具</a></p>
+            <p><a class="btn" href="../../side-hustle/">副业赚钱工具</a></p>
+          </article>
+          <article class="card" style="grid-column: span 4">
+            <h3>查看更多对比评测</h3>
+            <p class="meta">持续更新：推荐 / 对比 / 教程</p>
+            <p>把日报热点和长期可搜索内容打通，便于后续转化。</p>
+            <p><a class="btn primary" href="../../money/">进入赚钱专题</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  `;
   const sections = Object.entries(grouped).map(([type, typeItems]) => `
     <section class="section">
       <div class="container">
@@ -65,6 +97,7 @@ function renderDayPage({ dateKey, summary, items }) {
           <div class="byline"><span>${items.length} 条动态</span></div>
         </header>
       </div>
+      ${ctaSection}
       ${sections}
     </main>
     <div data-site-footer></div>

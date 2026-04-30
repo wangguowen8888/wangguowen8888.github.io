@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="t d">
+  <title id="t">8 week roadmap</title>
+  <desc id="d">execution roadmap for AI side hustle</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eef6ff"/>
+      <stop offset="100%" stop-color="#fdf4ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="620" fill="url(#bg)"/>
+  <text x="600" y="80" fill="#0f172a" font-size="40" text-anchor="middle" font-family="Segoe UI, Arial" font-weight="700">AI Side Hustle 8-Week Roadmap</text>
+  <line x1="120" y1="300" x2="1080" y2="300" stroke="#94a3b8" stroke-width="4"/>
+  <g font-family="Segoe UI, Arial">
+    <circle cx="180" cy="300" r="34" fill="#ffffff" stroke="#38bdf8"/><text x="180" y="307" text-anchor="middle" fill="#0f172a" font-size="20">W1</text>
+    <circle cx="360" cy="300" r="34" fill="#ffffff" stroke="#38bdf8"/><text x="360" y="307" text-anchor="middle" fill="#0f172a" font-size="20">W2</text>
+    <circle cx="540" cy="300" r="34" fill="#ffffff" stroke="#38bdf8"/><text x="540" y="307" text-anchor="middle" fill="#0f172a" font-size="20">W3-4</text>
+    <circle cx="720" cy="300" r="34" fill="#ffffff" stroke="#a78bfa"/><text x="720" y="307" text-anchor="middle" fill="#0f172a" font-size="20">W5-6</text>
+    <circle cx="900" cy="300" r="34" fill="#ffffff" stroke="#a78bfa"/><text x="900" y="307" text-anchor="middle" fill="#0f172a" font-size="20">W7-8</text>
+    <text x="180" y="240" text-anchor="middle" fill="#334155" font-size="20">Pick niche</text>
+    <text x="360" y="240" text-anchor="middle" fill="#334155" font-size="20">Build MVP</text>
+    <text x="540" y="240" text-anchor="middle" fill="#334155" font-size="20">Publish content</text>
+    <text x="720" y="240" text-anchor="middle" fill="#334155" font-size="20">Add monetization</text>
+    <text x="900" y="240" text-anchor="middle" fill="#334155" font-size="20">Optimize ROI</text>
+  </g>
+  <text x="600" y="520" fill="#475569" font-size="26" text-anchor="middle" font-family="Segoe UI, Arial">Focus on one KPI per stage: output, traffic, conversion, revenue</text>
+</svg>

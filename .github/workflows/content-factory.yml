@@ -1,0 +1,44 @@
+name: Content Factory
+
+on:
+  schedule:
+    - cron: "10 16 * * *"
+  workflow_dispatch:
+
+jobs:
+  build-content-factory:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r scripts/content-factory/requirements.txt
+
+      - name: Run content factory crawler
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+        run: python scripts/content-factory/crawl_daily.py --max-per-day 20 --retention-days 7 --lang-mode translate --target-lang zh-CN
+
+      - name: Publish generated pages
+        run: python scripts/content-factory/publish_generated.py
+
+      - name: Commit generated files
+        run: |
+          git add daily-crawler data/daily-crawler post index.html money ai-chat ai-writing side-hustle tools sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: generate content factory daily"
+          git push

@@ -1,0 +1,111 @@
+{
+  "dateKey": "2026-04-29",
+  "count": 10,
+  "items": [
+    {
+      "title": "Bugs Rust won't catch",
+      "url": "https://corrode.dev/blog/bugs-rust-wont-catch/",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-29T02:19:11+00:00",
+      "images": [
+        "https://corrode.dev/blog/bugs-rust-wont-catch/social.png",
+        "https://corrode.dev/avatar.png"
+      ]
+    },
+    {
+      "title": "When the Internet Was a Place",
+      "url": "https://www.frontporchrepublic.com/2025/09/when-the-internet-was-a-place/",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-29T01:36:52+00:00",
+      "images": [
+        "https://www.frontporchrepublic.com/wp-content/uploads/2025/09/5321590647_afe4692f53_b.jpg",
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8sAAADAAQMAAAAJEGOyAAAAA1BMVEVHcEyC+tLSAAAAAXRSTlMAQObYZgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAC5JREFUeNrtwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBcDXEAAAcxTzj4AAAAASUVORK5CYII=",
+        "https://www.frontporchrepublic.com/wp-content/uploads/2025/03/fpr-logo1.webp",
+        "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20680'%3E%3C/svg%3E",
+        "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E"
+      ]
+    },
+    {
+      "title": "We decreased our LLM costs with Opus",
+      "url": "https://www.mendral.com/blog/frontier-model-lower-costs",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-29T00:57:12+00:00",
+      "images": [
+        "https://mendral.com/og?title=We%20Upgraded%20to%20a%20Frontier%20Model%20and%20Our%20Costs%20Went%20Down",
+        "https://www.mendral.com/blog/frontier-model-lower-costs/pipeline.svg?dpl=dpl_BhxkJBWT4tWkkRe48qQ5Qryq8a94",
+        "https://www.mendral.com/blog/frontier-model-lower-costs/orchestration.svg?dpl=dpl_BhxkJBWT4tWkkRe48qQ5Qryq8a94"
+      ]
+    },
+    {
+      "title": "Regression: malware reminder on every read still causes subagent refusals",
+      "url": "https://github.com/anthropics/claude-code/issues/49363",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-28T23:59:57+00:00",
+      "images": [
+        "https://opengraph.githubassets.com/1064771c48ee8924f01657569f38b44040f2a114639cd110cdf58bf25a4cd0db/anthropics/claude-code/issues/49363",
+        "https://avatars.githubusercontent.com/u/31913027?u=66518797ec6d4355f928595ce0b8ea20f5698759&v=4&size=80",
+        "https://avatars.githubusercontent.com/u/31913027?u=66518797ec6d4355f928595ce0b8ea20f5698759&v=4&size=48"
+      ]
+    },
+    {
+      "title": "How ChatGPT serves ads",
+      "url": "https://www.buchodi.com/how-chatgpt-serves-ads-heres-the-full-attribution-loop/",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-28T23:54:14+00:00",
+      "images": [
+        "https://storage.ghost.io/c/b8/53/b853e3d4-3186-409d-9c7f-7da931a60431/content/images/2026/03/buchodi-600x600.png"
+      ]
+    },
+    {
+      "title": "Claude for Creative Work",
+      "url": "https://www.anthropic.com/news/claude-for-creative-work",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-28T23:46:56+00:00",
+      "images": [
+        "https://www.anthropic.com/api/opengraph-illustration?name=Hand%20ShapeArrow&backgroundColor=cactus",
+        "https://www-cdn.anthropic.com/images/4zrzovbb/website/a62b6eb169818f14c35b7a192af269e283f8fa93-1000x1000.svg"
+      ]
+    },
+    {
+      "title": "Before GitHub",
+      "url": "https://lucumr.pocoo.org/2026/4/28/before-github/",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-28T21:17:40+00:00",
+      "images": [
+        "https://lucumr.pocoo.org/social/2026-04-28-before-github-social.png"
+      ]
+    },
+    {
+      "title": "I won a championship that doesn't exist",
+      "url": "https://ron.stoner.com/How_I_Won_a_Championship_That_Doesnt_Exist/",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-28T20:38:21+00:00",
+      "images": [
+        "https://ron.stoner.com/images/6nimmt/poison.jpg",
+        "https://ron.stoner.com/images/ron.jpg",
+        "https://raw.githubusercontent.com/ronaldstoner/ron/gh-pages/images/6nimmt/champion.png",
+        "https://raw.githubusercontent.com/ronaldstoner/ron/gh-pages/images/6nimmt/wikipedia.png",
+        "https://raw.githubusercontent.com/ronaldstoner/ron/gh-pages/images/6nimmt/omg1.png"
+      ]
+    },
+    {
+      "title": "Ghostty is leaving GitHub",
+      "url": "https://mitchellh.com/writing/ghostty-leaving-github",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-28T19:44:52+00:00",
+      "images": []
+    },
+    {
+      "title": "OpenAI models coming to Amazon Bedrock: Interview with OpenAI and AWS CEOs",
+      "url": "https://stratechery.com/2026/an-interview-with-openai-ceo-sam-altman-and-aws-ceo-matt-garman-about-bedrock-managed-agents/",
+      "source": "Hacker News",
+      "publishedAt": "2026-04-28T19:24:43+00:00",
+      "images": [
+        "https://s0.wp.com/_si/?t=eyJpbWciOiJodHRwczpcL1wvaTAud3AuY29tXC9zdHJhdGVjaGVyeS5jb21cL3dwLWNvbnRlbnRcL3VwbG9hZHNcLzIwMThcLzAzXC9jcm9wcGVkLWFuZHJvaWQtY2hyb21lLTUxMng1MTItMS5wbmc_Zml0PTUxMiUyQzUxMiZzc2w9MSIsInR4dCI6IlN0cmF0ZWNoZXJ5IGJ5IEJlbiBUaG9tcHNvbiIsInRlbXBsYXRlIjoiZWRnZSIsImZvbnQiOiIiLCJibG9nX2lkIjoxODgwNDM0MTV9.5VWck4PcKPWCTPe_HVznn3n3xsgn-G0b3d2OeiNNC7cMQ",
+        "https://i0.wp.com/stratechery.com/wp-content/uploads/2018/03/cropped-android-chrome-512x512-1.png?fit=240%2C240&ssl=1",
+        "https://stratechery.com/wp-content/uploads/2025/01/Stratechery-logo-1.svg",
+        "https://i0.wp.com/goat.passport.online/assets/goat-podcast-cover-plus.png?w=128&h=128&ssl=1"
+      ]
+    }
+  ]
+}

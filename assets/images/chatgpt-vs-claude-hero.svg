@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+  <title id="t">ChatGPT vs Claude Hero</title>
+  <desc id="d">Bright comparison hero visual</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eef6ff"/>
+      <stop offset="100%" stop-color="#f8f5ff"/>
+    </linearGradient>
+    <linearGradient id="left" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="right" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="180" cy="110" r="120" fill="#dbeafe" opacity="0.8"/>
+  <circle cx="1030" cy="570" r="160" fill="#ede9fe" opacity="0.9"/>
+
+  <text x="600" y="74" fill="#0f172a" font-size="40" text-anchor="middle" font-family="Segoe UI, Arial" font-weight="700">ChatGPT Plus vs Claude 3.5 / 4</text>
+  <text x="600" y="108" fill="#334155" font-size="22" text-anchor="middle" font-family="Segoe UI, Arial">2026 practical comparison by real workflows</text>
+
+  <rect x="70" y="140" width="500" height="470" rx="24" fill="#ffffff" stroke="#cbd5e1"/>
+  <rect x="630" y="140" width="500" height="470" rx="24" fill="#ffffff" stroke="#cbd5e1"/>
+
+  <rect x="95" y="168" width="450" height="62" rx="12" fill="url(#left)"/>
+  <rect x="655" y="168" width="450" height="62" rx="12" fill="url(#right)"/>
+  <text x="320" y="208" fill="#ffffff" font-size="30" text-anchor="middle" font-family="Segoe UI, Arial" font-weight="700">ChatGPT Plus</text>
+  <text x="880" y="208" fill="#ffffff" font-size="30" text-anchor="middle" font-family="Segoe UI, Arial" font-weight="700">Claude 3.5 / 4</text>
+
+  <text x="116" y="282" fill="#0f172a" font-size="22" font-family="Segoe UI, Arial">- Voice and multimodal tasks</text>
+  <text x="116" y="322" fill="#0f172a" font-size="22" font-family="Segoe UI, Arial">- Mature ecosystem and tools</text>
+  <text x="116" y="362" fill="#0f172a" font-size="22" font-family="Segoe UI, Arial">- Better mobile convenience</text>
+  <text x="116" y="402" fill="#0f172a" font-size="22" font-family="Segoe UI, Arial">- Fast for daily quick jobs</text>
+
+  <text x="676" y="282" fill="#0f172a" font-size="22" font-family="Segoe UI, Arial">- Better long-form writing</text>
+  <text x="676" y="322" fill="#0f172a" font-size="22" font-family="Segoe UI, Arial">- Strong long-context stability</text>
+  <text x="676" y="362" fill="#0f172a" font-size="22" font-family="Segoe UI, Arial">- Artifacts workflow efficiency</text>
+  <text x="676" y="402" fill="#0f172a" font-size="22" font-family="Segoe UI, Arial">- Deep reasoning collaboration</text>
+
+  <text x="600" y="650" fill="#334155" font-size="22" text-anchor="middle" font-family="Segoe UI, Arial">Pick by scenario, not by hype</text>
+</svg>
