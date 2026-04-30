@@ -24,7 +24,6 @@ import { cors } from "hono/cors";
 
 const FIXED_MODEL = "gpt-5.2";
 const UPSTREAM_BASE_URL = "https://code.newcli.com/codex/v1";
-const UPSTREAM_URL = `${UPSTREAM_BASE_URL}/responses`;
 const UPSTREAM_CHAT_COMPLETIONS_URL = `${UPSTREAM_BASE_URL}/chat/completions`;
 
 const toIsoNow = () => new Date().toISOString();
@@ -47,23 +46,18 @@ async function sha256Hex(input) {
 }
 
 function extractOutputText(upstream) {
-  const collectText = (node) => {
-    if (typeof node === "string") return node;
-    if (node == null) return "";
-    if (Array.isArray(node)) return node.map((item) => collectText(item)).join("");
-    if (typeof node !== "object") return "";
-    const direct = [
-      node.text,
-      node.content,
-      node.value,
-      node.reasoning_content,
-      node.output_text,
-      node.result?.text,
-    ];
-    const joinedDirect = direct.map((part) => collectText(part)).join("");
-    if (joinedDirect.trim()) return joinedDirect;
-    // Last-resort: walk plain object values.
-    return Object.values(node).map((part) => collectText(part)).join("");
+  const collectContentParts = (content) => {
+    if (typeof content === "string") return content;
+    if (!Array.isArray(content)) return "";
+    return content
+      .map((part) => {
+        if (typeof part === "string") return part;
+        if (typeof part?.text === "string") return part.text;
+        if (typeof part?.content === "string") return part.content;
+        if (typeof part?.value === "string") return part.value;
+        return "";
+      })
+      .join("");
   };
 
   // Best-effort extraction: prefer `output_text`, else scan `output[]`.
@@ -106,84 +100,25 @@ function extractOutputText(upstream) {
   const choiceMessage = upstream?.choices?.[0]?.message;
   const choiceText = choiceMessage?.content;
   const reasoningText = choiceMessage?.reasoning_content;
-  const toolCallsText = choiceMessage?.tool_calls;
+  const refusalText = choiceMessage?.refusal;
   const choicePlainText = upstream?.choices?.[0]?.text;
   const deltaText = upstream?.choices?.[0]?.delta?.content;
   const resultText = upstream?.result?.text;
   if (typeof choicePlainText === "string" && choicePlainText.trim()) return choicePlainText.trim();
   if (typeof deltaText === "string" && deltaText.trim()) return deltaText.trim();
   if (typeof resultText === "string" && resultText.trim()) return resultText.trim();
-  const reasoningJoined = collectText(reasoningText).trim();
+  const reasoningJoined = collectContentParts(reasoningText).trim();
   if (reasoningJoined) return reasoningJoined;
+  if (typeof refusalText === "string" && refusalText.trim()) return refusalText.trim();
   if (typeof choiceText === "string" && choiceText.trim()) return choiceText.trim();
-  if (Array.isArray(choiceText)) {
-    const joined = choiceText
-      .map((part) => {
-        if (typeof part === "string") return part;
-        if (typeof part?.text === "string") return part.text;
-        if (typeof part?.content === "string") return part.content;
-        if (typeof part?.value === "string") return part.value;
-        return "";
-      })
-      .join("")
-      .trim();
-    if (joined) return joined;
-  }
-  const messageJoined = collectText(choiceMessage).trim();
-  if (messageJoined) return messageJoined;
-  const toolJoined = collectText(toolCallsText).trim();
-  if (toolJoined) return toolJoined;
+  const contentJoined = collectContentParts(choiceText).trim();
+  if (contentJoined) return contentJoined;
   return "";
 }
 
-function summarizeUpstream(upstream) {
-  try {
-    const summary = {
-      topLevelKeys: Object.keys(upstream || {}),
-      outputTextType: typeof upstream?.output_text,
-      outputType: Array.isArray(upstream?.output) ? "array" : typeof upstream?.output,
-      choiceCount: Array.isArray(upstream?.choices) ? upstream.choices.length : 0,
-      firstChoiceKeys: upstream?.choices?.[0] ? Object.keys(upstream.choices[0]) : [],
-      firstChoiceMessageKeys: upstream?.choices?.[0]?.message ? Object.keys(upstream.choices[0].message) : [],
-    };
-    return JSON.stringify(summary);
-  } catch {
-    return "unserializable-upstream-summary";
-  }
-}
-
 async function forwardToCodex(prompt, apiKey) {
-  const reqBody = {
-    model: FIXED_MODEL,
-    input: [
-      {
-        type: "message",
-        role: "user",
-        content: [{ type: "input_text", text: prompt }],
-      },
-    ],
-  };
-
-  const upstreamResp = await fetch(UPSTREAM_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      // Codex provider requires OpenAI auth.
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify(reqBody),
-  });
-
-  const upstreamJson = await upstreamResp.json().catch(() => ({}));
-  if (!upstreamResp.ok) {
-    const msg = upstreamJson?.error?.message || upstreamJson?.message || `HTTP ${upstreamResp.status}`;
-    throw new Error(`Upstream Codex failed: ${msg}`);
-  }
-
-  const reply = extractOutputText(upstreamJson);
-  if (reply) return reply;
-
-  // Fallback for providers/models that return empty content on /responses.
+  // Prefer chat/completions first for this provider: it is more stable here
+  // and avoids an extra round-trip when /responses returns empty output.
   const chatResp = await fetch(UPSTREAM_CHAT_COMPLETIONS_URL, {
     method: "POST",
     headers: {
@@ -199,15 +134,11 @@ async function forwardToCodex(prompt, apiKey) {
   const chatJson = await chatResp.json().catch(() => ({}));
   if (!chatResp.ok) {
     const msg = chatJson?.error?.message || chatJson?.message || `HTTP ${chatResp.status}`;
-    throw new Error(`Upstream fallback failed: ${msg}`);
+    throw new Error(`Upstream chat failed: ${msg}`);
   }
-  const fallbackReply = extractOutputText(chatJson);
-  if (!fallbackReply) {
-    const primarySummary = summarizeUpstream(upstreamJson);
-    const fallbackSummary = summarizeUpstream(chatJson);
-    throw new Error(`Codex returned empty output. primary=${primarySummary}; fallback=${fallbackSummary}`);
-  }
-  return fallbackReply;
+  const reply = extractOutputText(chatJson);
+  if (reply) return reply;
+  return "模型已响应，但暂未返回可展示文本。请重试一次，或换个更明确的问题。";
 }
 
 const app = new Hono();
