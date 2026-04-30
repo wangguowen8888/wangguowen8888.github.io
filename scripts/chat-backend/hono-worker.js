@@ -25,6 +25,7 @@ import { cors } from "hono/cors";
 const FIXED_MODEL = "gpt-5.2";
 const UPSTREAM_BASE_URL = "https://code.newcli.com/codex/v1";
 const UPSTREAM_URL = `${UPSTREAM_BASE_URL}/responses`;
+const UPSTREAM_CHAT_COMPLETIONS_URL = `${UPSTREAM_BASE_URL}/chat/completions`;
 
 const toIsoNow = () => new Date().toISOString();
 
@@ -48,19 +49,45 @@ async function sha256Hex(input) {
 function extractOutputText(upstream) {
   // Best-effort extraction: prefer `output_text`, else scan `output[]`.
   if (typeof upstream?.output_text === "string" && upstream.output_text.trim()) return upstream.output_text.trim();
+  if (Array.isArray(upstream?.output_text)) {
+    const joined = upstream.output_text
+      .map((part) => (typeof part === "string" ? part : ""))
+      .join("")
+      .trim();
+    if (joined) return joined;
+  }
 
   const output = upstream?.output;
-  if (!Array.isArray(output)) return "";
+  if (Array.isArray(output)) {
+    for (const item of output) {
+      const content = item?.content;
+      if (!Array.isArray(content)) continue;
 
-  for (const item of output) {
-    const content = item?.content;
-    if (!Array.isArray(content)) continue;
-
-    for (const c of content) {
-      // OpenAI Responses API usually has: { type: "output_text", text: "..." }
-      if (c?.type === "output_text" && typeof c?.text === "string" && c.text.trim()) return c.text.trim();
-      if (typeof c?.text === "string" && c.text.trim()) return c.text.trim();
+      for (const c of content) {
+        // OpenAI Responses API usually has: { type: "output_text", text: "..." }
+        if (c?.type === "output_text" && typeof c?.text === "string" && c.text.trim()) return c.text.trim();
+        if (typeof c?.text === "string" && c.text.trim()) return c.text.trim();
+        if (typeof c?.text?.value === "string" && c.text.value.trim()) return c.text.value.trim();
+        if (Array.isArray(c?.text)) {
+          const textFromArray = c.text
+            .map((t) => (typeof t === "string" ? t : t?.value || ""))
+            .join("")
+            .trim();
+          if (textFromArray) return textFromArray;
+        }
+      }
     }
+  }
+
+  // Compatibility fallback for chat-completions-shaped responses.
+  const choiceText = upstream?.choices?.[0]?.message?.content;
+  if (typeof choiceText === "string" && choiceText.trim()) return choiceText.trim();
+  if (Array.isArray(choiceText)) {
+    const joined = choiceText
+      .map((part) => (typeof part?.text === "string" ? part.text : ""))
+      .join("")
+      .trim();
+    if (joined) return joined;
   }
   return "";
 }
@@ -94,8 +121,29 @@ async function forwardToCodex(prompt, apiKey) {
   }
 
   const reply = extractOutputText(upstreamJson);
-  if (!reply) throw new Error("Codex returned empty output.");
-  return reply;
+  if (reply) return reply;
+
+  // Fallback for providers/models that return empty content on /responses.
+  const chatResp = await fetch(UPSTREAM_CHAT_COMPLETIONS_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: FIXED_MODEL,
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.7,
+    }),
+  });
+  const chatJson = await chatResp.json().catch(() => ({}));
+  if (!chatResp.ok) {
+    const msg = chatJson?.error?.message || chatJson?.message || `HTTP ${chatResp.status}`;
+    throw new Error(`Upstream fallback failed: ${msg}`);
+  }
+  const fallbackReply = extractOutputText(chatJson);
+  if (!fallbackReply) throw new Error("Codex returned empty output.");
+  return fallbackReply;
 }
 
 const app = new Hono();
