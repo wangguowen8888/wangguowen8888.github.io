@@ -47,6 +47,25 @@ async function sha256Hex(input) {
 }
 
 function extractOutputText(upstream) {
+  const collectText = (node) => {
+    if (typeof node === "string") return node;
+    if (node == null) return "";
+    if (Array.isArray(node)) return node.map((item) => collectText(item)).join("");
+    if (typeof node !== "object") return "";
+    const direct = [
+      node.text,
+      node.content,
+      node.value,
+      node.reasoning_content,
+      node.output_text,
+      node.result?.text,
+    ];
+    const joinedDirect = direct.map((part) => collectText(part)).join("");
+    if (joinedDirect.trim()) return joinedDirect;
+    // Last-resort: walk plain object values.
+    return Object.values(node).map((part) => collectText(part)).join("");
+  };
+
   // Best-effort extraction: prefer `output_text`, else scan `output[]`.
   if (typeof upstream?.output_text === "string" && upstream.output_text.trim()) return upstream.output_text.trim();
   if (Array.isArray(upstream?.output_text)) {
@@ -56,6 +75,10 @@ function extractOutputText(upstream) {
       .trim();
     if (joined) return joined;
   }
+
+  // Some gateways may wrap response payloads.
+  const wrappedOutputText = upstream?.response?.output_text || upstream?.data?.output_text;
+  if (typeof wrappedOutputText === "string" && wrappedOutputText.trim()) return wrappedOutputText.trim();
 
   const output = upstream?.output;
   if (Array.isArray(output)) {
@@ -80,16 +103,53 @@ function extractOutputText(upstream) {
   }
 
   // Compatibility fallback for chat-completions-shaped responses.
-  const choiceText = upstream?.choices?.[0]?.message?.content;
+  const choiceMessage = upstream?.choices?.[0]?.message;
+  const choiceText = choiceMessage?.content;
+  const reasoningText = choiceMessage?.reasoning_content;
+  const toolCallsText = choiceMessage?.tool_calls;
+  const choicePlainText = upstream?.choices?.[0]?.text;
+  const deltaText = upstream?.choices?.[0]?.delta?.content;
+  const resultText = upstream?.result?.text;
+  if (typeof choicePlainText === "string" && choicePlainText.trim()) return choicePlainText.trim();
+  if (typeof deltaText === "string" && deltaText.trim()) return deltaText.trim();
+  if (typeof resultText === "string" && resultText.trim()) return resultText.trim();
+  const reasoningJoined = collectText(reasoningText).trim();
+  if (reasoningJoined) return reasoningJoined;
   if (typeof choiceText === "string" && choiceText.trim()) return choiceText.trim();
   if (Array.isArray(choiceText)) {
     const joined = choiceText
-      .map((part) => (typeof part?.text === "string" ? part.text : ""))
+      .map((part) => {
+        if (typeof part === "string") return part;
+        if (typeof part?.text === "string") return part.text;
+        if (typeof part?.content === "string") return part.content;
+        if (typeof part?.value === "string") return part.value;
+        return "";
+      })
       .join("")
       .trim();
     if (joined) return joined;
   }
+  const messageJoined = collectText(choiceMessage).trim();
+  if (messageJoined) return messageJoined;
+  const toolJoined = collectText(toolCallsText).trim();
+  if (toolJoined) return toolJoined;
   return "";
+}
+
+function summarizeUpstream(upstream) {
+  try {
+    const summary = {
+      topLevelKeys: Object.keys(upstream || {}),
+      outputTextType: typeof upstream?.output_text,
+      outputType: Array.isArray(upstream?.output) ? "array" : typeof upstream?.output,
+      choiceCount: Array.isArray(upstream?.choices) ? upstream.choices.length : 0,
+      firstChoiceKeys: upstream?.choices?.[0] ? Object.keys(upstream.choices[0]) : [],
+      firstChoiceMessageKeys: upstream?.choices?.[0]?.message ? Object.keys(upstream.choices[0].message) : [],
+    };
+    return JSON.stringify(summary);
+  } catch {
+    return "unserializable-upstream-summary";
+  }
 }
 
 async function forwardToCodex(prompt, apiKey) {
@@ -142,7 +202,11 @@ async function forwardToCodex(prompt, apiKey) {
     throw new Error(`Upstream fallback failed: ${msg}`);
   }
   const fallbackReply = extractOutputText(chatJson);
-  if (!fallbackReply) throw new Error("Codex returned empty output.");
+  if (!fallbackReply) {
+    const primarySummary = summarizeUpstream(upstreamJson);
+    const fallbackSummary = summarizeUpstream(chatJson);
+    throw new Error(`Codex returned empty output. primary=${primarySummary}; fallback=${fallbackSummary}`);
+  }
   return fallbackReply;
 }
 
