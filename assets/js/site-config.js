@@ -3,7 +3,7 @@ window.siteConfig = {
   faviconPath: "assets/favicon.svg",
   // Optional. Set to real API endpoint to enable server chat.
   // Example: "https://your-domain.com/api/chat"
-  chatApiEndpoint: "http://127.0.0.1:3001/api/chat",
+  chatApiEndpoint: "https://ai-chat-worker.wangguowen73.workers.dev/api/chat",
   navItems: [
     { href: "daily/", label: "AI 日报" },
     { href: "money/", label: "赚钱专题" },
