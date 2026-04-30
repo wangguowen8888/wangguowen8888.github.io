@@ -661,6 +661,8 @@
     const sendBtn = byId("chat-send");
     const messagesEl = byId("chat-messages");
     const countEl = byId("chat-char-count");
+    const inputWrapEl = document.querySelector("#chat-tester .chat-input-wrap");
+    let loadingMessageEl = null;
 
     const getUsage = () => {
       try {
@@ -707,6 +709,30 @@
       item.textContent = text;
       messagesEl.appendChild(item);
       messagesEl.scrollTop = messagesEl.scrollHeight;
+    };
+    const setChatBusy = (isBusy) => {
+      if (sendBtn) {
+        sendBtn.disabled = isBusy;
+        sendBtn.textContent = isBusy ? "发送中..." : "发送测试";
+      }
+      if (inputEl) {
+        inputEl.disabled = isBusy;
+        inputEl.setAttribute("aria-busy", isBusy ? "true" : "false");
+      }
+      if (inputWrapEl) inputWrapEl.classList.toggle("is-busy", isBusy);
+    };
+    const showLoadingMessage = () => {
+      if (!messagesEl || loadingMessageEl) return;
+      loadingMessageEl = document.createElement("div");
+      loadingMessageEl.className = "chat-message loading";
+      loadingMessageEl.textContent = "AI 正在思考，请稍候...";
+      messagesEl.appendChild(loadingMessageEl);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    };
+    const hideLoadingMessage = () => {
+      if (!loadingMessageEl) return;
+      loadingMessageEl.remove();
+      loadingMessageEl = null;
     };
     const updateCounter = () => {
       if (!inputEl || !countEl) return;
@@ -779,18 +805,23 @@
         }
         const prompt = inputEl.value.trim();
         addMessage("user", prompt);
-        sendBtn.disabled = true;
-        sendBtn.textContent = "发送中...";
-        const reply = await callChatApi(prompt);
-        addMessage("assistant", reply);
-        if (modeSelect && modeSelect.value === "daily") {
-          setUsage(getUsage() + 1);
+        setChatBusy(true);
+        showLoadingMessage();
+        try {
+          const reply = await callChatApi(prompt);
+          hideLoadingMessage();
+          addMessage("assistant", reply);
+          if (modeSelect && modeSelect.value === "daily") {
+            setUsage(getUsage() + 1);
+          }
+        } finally {
+          hideLoadingMessage();
+          setChatBusy(false);
         }
         updateHint();
         inputEl.value = "";
         updateCounter();
-        sendBtn.disabled = false;
-        sendBtn.textContent = "发送测试";
+        inputEl.focus();
       });
     }
   }
