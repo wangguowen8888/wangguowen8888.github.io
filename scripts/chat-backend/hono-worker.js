@@ -112,16 +112,7 @@ function extractOutputText(upstream) {
   const contentJoined = collectContentParts(choiceText).trim();
   if (contentJoined) return contentJoined;
   const reasoningJoined = collectContentParts(reasoningText).trim();
-  if (reasoningJoined) {
-    // If provider only returns reasoning traces, convert to a readable short answer.
-    const normalized = reasoningJoined
-      .replace(/\s+/g, " ")
-      .replace(/^(analysis|reasoning|thoughts?)\s*:\s*/i, "")
-      .trim();
-    return normalized
-      ? `简要结论：${normalized.slice(0, 320)}${normalized.length > 320 ? "..." : ""}`
-      : "";
-  }
+  if (reasoningJoined) return reasoningJoined;
   return "";
 }
 
@@ -154,7 +145,7 @@ async function forwardToCodex(prompt, apiKey) {
   }
   const reply = extractOutputText(chatJson);
   if (reply) return reply;
-  return "模型已响应，但暂未返回可展示文本。请重试一次，或换个更明确的问题。";
+  throw new Error("Upstream returned no displayable text.");
 }
 
 const app = new Hono();

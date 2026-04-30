@@ -777,11 +777,14 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt }),
         });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const data = await response.json();
+        const data = await response.json().catch(() => null);
+        if (!response.ok) {
+          const message = String(data?.error || data?.message || "").trim();
+          return message || `后端接口调用失败（HTTP ${response.status}）。`;
+        }
         return String(data?.reply || "").trim() || "收到请求，但接口没有返回有效文本。";
       } catch {
-        return "后端接口调用失败，请检查接口地址或服务状态。";
+        return "后端接口调用失败，请检查网络、接口地址或服务状态。";
       }
     };
     const callChatApi = async (prompt) => callBackendApi(prompt);
