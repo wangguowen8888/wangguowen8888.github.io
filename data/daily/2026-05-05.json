@@ -1,0 +1,602 @@
+{
+  "dateKey": "2026-05-05",
+  "summary": "今天共整理 35 条 AI 动态，主要涵盖 资讯4条、工具10条、产品5条、论文12条、讨论4条。",
+  "items": [
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "AI facial recognition oversight lagging far behind technology, watchdogs warn",
+      "url": "https://www.theguardian.com/technology/ng-interactive/2026/may/03/ai-facial-recognition-oversight-lagging-far-behind-technology-watchdogs-warn",
+      "publishedAt": "2026-05-04T17:18:11.000Z",
+      "author": "Brajeshwar",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 2,
+      "contentType": "news",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：资讯，AI facial recognition oversight lagging far behind technology, watchdogs warn"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Making Fuel from Thin Air: The Magical Methane Machine",
+      "url": "https://www.corememory.com/p/the-magical-methane-machine-casey-handmer-terraform",
+      "publishedAt": "2026-05-04T17:03:17.000Z",
+      "author": "metadat",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 2,
+      "contentType": "news",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：资讯，Making Fuel from Thin Air: The Magical Methane Machine"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Show HN: [inerrata] – Collective and Causal Knowledge Layer for Coding Agents",
+      "url": "https://www.inerrata.ai/",
+      "publishedAt": "2026-05-04T17:27:52.000Z",
+      "author": "errata_dev",
+      "summary": "Agents posting questions, answers, and knowledge reports will find their contributions distilled, enriched, and organized into causal chains, powered by our proprietary OKN (Ontological Knowledge Network) alongside graph-walking MCP search tooling. Instead of ingesting hundreds of thousands of tokens worth of context in searching Google, StackOverflow, GitHub and Medium, agents connected to [inerrata] glide along causal chains at a fraction of the cost, a truly agent-native search methodology. Incoming data is generalized and stripped of potentially sensitive information in a multi-step process, utilizing heavy content prompt guidance, NER, regex, and LLM-as-judge, ensuring agents do not leak API keys or personal names through file paths, etc. We&#x27;ve kickstarted our knowledge base with a couple of key domains, and run a few invite-only testing periods, and now we are ready to open registration to the public. We hope to see you there! https:&#x2F;&#x2F;inerrata.ai&#x2F;",
+      "tags": [
+        "hn"
+      ],
+      "score": 1,
+      "contentType": "tool",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：工具，Agents posting questions, answers, and knowledge reports will find their contributions distilled, enriched, and organize"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Show HN: Vibe-coding video games with Claude (Day 21: Blackjack)",
+      "url": "https://gamevibe.us/21-blackjack",
+      "publishedAt": "2026-05-04T17:17:54.000Z",
+      "author": "pzxc",
+      "summary": "I used to run a flash games website (SWF files) years ago. I&#x27;ve made a few games of my own. I&#x27;m also an avid gamer and love to play games of all kinds. I&#x27;m also a software engineer, and a few days ago I decided I wanted to run a games website again. So I bought the domain gamevibe.us and with the help of Claude I&#x27;ve been vibe-coding one video game every day since. Happy to answer questions, take feedback, etc Other games made in the past week (sometimes with a single AI prompt, sometimes multiple): https:&#x2F;&#x2F;gamevibe.us&#x2F;20-gem-cascade https:&#x2F;&#x2F;gamevibe.us&#x2F;19-flappy-bird https:&#x2F;&#x2F;gamevibe.us&#x2F;18-hexfield https:&#x2F;&#x2F;gamevibe.us&#x2F;17-connect-four https:&#x2F;&#x2F;gamevibe.us&#x2F;16-klondike-solitaire https:&#x2F;&#x2F;gamevibe.us&#x2F;15-emoji-mahjong All the games have scoring to inspire a little competition, but it&#x27;s mostly just to \"scratch that itch\" of making games again, even if AI is doing all the work. The majority of games I don&#x27;t give any details at all and the AI just fills in all the blanks. I&#x27;ve spent a lot more time prompting to do the overall architecture of the site and the scoring system built around it than I do for the games themselves, Claude just \"knows what to do\".",
+      "tags": [
+        "hn"
+      ],
+      "score": 1,
+      "contentType": "product",
+      "rawMeta": {
+        "comments": 1
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：产品，I used to run a flash games website (SWF files) years ago. I&#x27;ve made a few games of my own. I&#x27;m also an avid g"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Clone Talking – Real-Time Voice Conversations with AI Persona Clones",
+      "url": "https://github.com/MatheusSimonaci/clone-talking",
+      "publishedAt": "2026-05-04T17:17:37.000Z",
+      "author": "MatheusSimonaci",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 1,
+      "contentType": "news",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：资讯，Clone Talking – Real-Time Voice Conversations with AI Persona Clones"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Ask HN: Why is sharing private static HTML with non-engineers still hard?",
+      "url": "https://news.ycombinator.com/item?id=48011523",
+      "publishedAt": "2026-05-04T17:05:01.000Z",
+      "author": "nate",
+      "summary": "This sounds like a problem from 2005. But I keep running into it. I have a folder of static HTML and CSS. Think: docs, reports, AI prototype, whatever. It’s just a tiny html microsite. Nothing dynamic. And I want to share it with some people. Easily. But now the hard stuff: SSO gets involved. Github Pages is public unless you are using an Enterprise account and just with engineers? Google Sites? I guess the old days that would work like you would hope: and let you upload sites. Today, it&#x27;s more like a website builder? Can&#x27;t upload raw HTML sites there. My wife works at 1pass :) So my brain is in 1pass a lot. Would you use some kind of additional app that is basically “Vault Pages”? I don’t think you can have any kind of tree inside a vault. So things have to be pretty flat or deflate something like a zip file with the folder structure in it. You’d be able to share urls like (as long as you all agree to use this additional .app, and I’m assuming you&#x27;re a Mac shop): `vaultpages:&#x2F;&#x2F;engineering-handbook&#x2F;deploy-checklist` Would you us this? Or you already have a great private microsite solution that isn’t messing with additional SSO, VPNs, IAM policies, etc.",
+      "tags": [
+        "hn"
+      ],
+      "score": 1,
+      "contentType": "product",
+      "rawMeta": {
+        "comments": 1
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：产品，This sounds like a problem from 2005. But I keep running into it. I have a folder of static HTML and CSS. Think: docs, r"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Future of Work with AI Agents",
+      "url": "https://futureofwork.saltlab.stanford.edu/",
+      "publishedAt": "2026-05-04T17:02:28.000Z",
+      "author": "iceboundrock",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 1,
+      "contentType": "tool",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：工具，Future of Work with AI Agents"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Tailoring AI solutions for health care needs",
+      "url": "https://www.technologyreview.com/2026/05/04/1134425/tailoring-ai-solutions-for-health-care-needs/",
+      "publishedAt": "2026-05-04T17:01:32.000Z",
+      "author": "joozio",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 1,
+      "contentType": "news",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：资讯，Tailoring AI solutions for health care needs"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "ruvnet/ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "publishedAt": "2026-05-04T17:43:30.642Z",
+      "author": "ruvnet",
+      "summary": "Star ruvnet / ruflo 🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star ruvnet / ruflo 🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coord"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "TauricResearch/TradingAgents",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "publishedAt": "2026-05-04T17:43:30.642Z",
+      "author": "TauricResearch",
+      "summary": "Star TauricResearch / TradingAgents TradingAgents: Multi-Agents LLM Financial Trading Framework",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：论文，Star TauricResearch / TradingAgents TradingAgents: Multi-Agents LLM Financial Trading Framework"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "browserbase/skills",
+      "url": "https://github.com/browserbase/skills",
+      "publishedAt": "2026-05-04T17:43:30.642Z",
+      "author": "browserbase",
+      "summary": "Star browserbase / skills Claude Agent SDK with a web browsing tool",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star browserbase / skills Claude Agent SDK with a web browsing tool"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "Hmbown/DeepSeek-TUI",
+      "url": "https://github.com/Hmbown/DeepSeek-TUI",
+      "publishedAt": "2026-05-04T17:43:30.642Z",
+      "author": "Hmbown",
+      "summary": "Star Hmbown / DeepSeek-TUI Coding agent for DeepSeek models that runs in your terminal",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star Hmbown / DeepSeek-TUI Coding agent for DeepSeek models that runs in your terminal"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "soxoj/maigret",
+      "url": "https://github.com/soxoj/maigret",
+      "publishedAt": "2026-05-04T17:43:30.642Z",
+      "author": "soxoj",
+      "summary": "Sponsor Star soxoj / maigret 🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "1jehuang/jcode",
+      "url": "https://github.com/1jehuang/jcode",
+      "publishedAt": "2026-05-04T17:43:30.642Z",
+      "author": "1jehuang",
+      "summary": "Star 1jehuang / jcode Coding Agent Harness",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "msitarzewski/agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "publishedAt": "2026-05-04T17:43:30.642Z",
+      "author": "msitarzewski",
+      "summary": "Sponsor Star msitarzewski / agency-agents A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "virattt/dexter",
+      "url": "https://github.com/virattt/dexter",
+      "publishedAt": "2026-05-04T17:43:30.642Z",
+      "author": "virattt",
+      "summary": "Star virattt / dexter An autonomous agent for deep financial research",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "HyCOP: Hybrid Composition Operators for Interpretable Learning of PDEs",
+      "url": "https://arxiv.org/abs/2605.00820v1",
+      "publishedAt": "2026-05-01T17:57:48.000Z",
+      "author": "Jinpai Zhao",
+      "summary": "We introduce HyCOP, a modular framework that learns parametric PDE solution operators by composing simple modules (advection, diffusion, learned closures, boundary handling) in a query-conditioned way. Rather than learning a monolithic map, HyCOP learns a policy over short programs - which module to apply and for how long - conditioned on regime features and state statistics. Modules may be numerical sub-solvers or learned components, enabling hybrid surrogates evaluated at arbitrary query times without autoregressive rollout. Across diverse PDE benchmarks, HyCOP produces interpretable programs, delivers order-of-magnitude OOD improvements over monolithic neural operators, and supports modular transfer through dictionary updates (e.g., boundary swaps, residual enrichment). Our theory characterizes expressivity and gives an error decomposition that separates composition error from module error and doubles as a process-level diagnostic.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Persistent Visual Memory: Sustaining Perception for Deep Generation in LVLMs",
+      "url": "https://arxiv.org/abs/2605.00814v1",
+      "publishedAt": "2026-05-01T17:54:37.000Z",
+      "author": "Siyuan Huang",
+      "summary": "While autoregressive Large Vision-Language Models (LVLMs) demonstrate remarkable proficiency in multimodal tasks, they face a \"Visual Signal Dilution\" phenomenon, where the accumulation of textual history expands the attention partition function, causing visual attention to decay inversely with generated sequence length. To counteract this, we propose Persistent Visual Memory (PVM), a lightweight learnable module designed to ensure sustained, on-demand visual perception. Integrated as a parallel branch alongside the Feed-Forward Network (FFN) in LVLMs, PVM establishes a distance-agnostic retrieval pathway that directly provides visual embeddings for precise visual perception, thereby structurally mitigating the signal suppression inherent to deep generation. Extensive experiments on Qwen3-VL models demonstrate that PVM brings notable improvements with negligible parameter overhead, delivering consistent average accuracy gains across both 4B and 8B scales, particularly in complex reasoning tasks that demand persistent visual perception. Furthermore, in-depth analysis reveals that PVM can resist length-induced signal decay and accelerate internal prediction convergence.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Can Coding Agents Reproduce Findings in Computational Materials Science?",
+      "url": "https://arxiv.org/abs/2605.00803v1",
+      "publishedAt": "2026-05-01T17:42:12.000Z",
+      "author": "Ziyang Huang",
+      "summary": "Large language models are increasingly deployed as autonomous coding agents and have achieved remarkably strong performance on software engineering benchmarks. However, it is unclear whether such success transfers to computational scientific workflows, where tasks require not only strong coding ability, but also the ability to navigate complex, domain-specific procedures and to interpret results in the context of scientific claims. To address this question, we present AutoMat, a benchmark for evaluating LLM-based agents' ability to reproduce claims from computational materials science. AutoMat poses three interrelated challenges: recovering underspecified computational procedures, navigating specialized toolchains, and determining whether the resulting evidence supports a claim. By working closely with subject matter experts, we curate a set of claims from real materials science papers to test whether coding agents can recover and execute the end-to-end workflow needed to support (or undermine) such claims. We then evaluate multiple representative coding agent settings across several foundation models. Our results show that current LLM-based agents obtain low overall success rates on AutoMat, with the best-performing setting achieving a success rate of only 54.1%. Error analysis further reveals that agents perform worst when workflows must be reconstructed from paper text alone and that they fail primarily due to incomplete procedures, methodological deviations, and execution fragility. Taken together, these findings position AutoMat as both a benchmark for computational scientific reproducibility and a tool for diagnosing the current limitations of agentic systems in AI-for-science settings.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Generating Statistical Charts with Validation-Driven LLM Workflows",
+      "url": "https://arxiv.org/abs/2605.00800v1",
+      "publishedAt": "2026-05-01T17:39:00.000Z",
+      "author": "Pavlin G. Poličar",
+      "summary": "Generating diverse, readable statistical charts from tabular data remains challenging for LLMs, as many failures become apparent after rendering and are not detectable from data or code alone. Existing chart datasets also rarely provide fully aligned artifacts, such as executable code, dataset context, and question-answer pairs. We present a structured LLM-based workflow that decomposes chart generation into dataset screening, plot proposal, code synthesis, rendering, validation-driven refinement, description generation, and question-answer generation. By incorporating rendered-output validation, the workflow addresses visualization-specific failure modes such as readability and semantic mismatch. It treats chart generation as an inspectable process rather than a one-shot prompt-to-code task, retaining each chart with its code, dataset context, description, and question-answer pairs. Applied to UCI datasets, the workflow produces 1,500 charts from 74 datasets, spanning 24 chart families and paired with 30,003 question-answer pairs. We evaluate 16 multimodal LLMs (MLLMs) on these chart-question pairs. The results show that chart-syntax questions are nearly saturated, while value extraction, comparison, and reasoning remain more challenging, illustrating the workflow's utility for diagnostic studies of chart-grounded multimodal reasoning.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "RunAgent: Interpreting Natural-Language Plans with Constraint-Guided Execution",
+      "url": "https://arxiv.org/abs/2605.00798v1",
+      "publishedAt": "2026-05-01T17:29:45.000Z",
+      "author": "Arunabh Srivastava",
+      "summary": "Humans solve problems by executing targeted plans, yet large language models (LLMs) remain unreliable for structured workflow execution. We propose RunAgent, a multi-agent plan execution platform that interprets natural-language plans while enforcing stepwise execution through constraints and rubrics. RunAgent bridges the expressiveness of natural language with the determinism of programming via an agentic language with explicit control constructs (e.g., \\texttt{IF}, \\texttt{GOTO}, \\texttt{FORALL}). Beyond verifying syntactic and semantic verification of the step output, which is performed based on the specific instruction of each step, RunAgent autonomously derives and validates constraints based on the description of the task and its instance at each step. RunAgent also dynamically selects among LLM-based reasoning, tool usage, and code generation and execution (e.g., in Python), and incorporates error correction mechanisms to ensure correctness. Finally, RunAgent filters the context history by retaining only relevant information during the execution of each step. Evaluations on Natural-plan and SciBench Datasets demonstrate that RunAgent outperforms baseline LLMs and state-of-the-art PlanGEN methods.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "When RAG Chatbots Expose Their Backend: An Anonymized Case Study of Privacy and Security Risks in Patient-Facing Medical AI",
+      "url": "https://arxiv.org/abs/2605.00796v1",
+      "publishedAt": "2026-05-01T17:29:09.000Z",
+      "author": "Alfredo Madrid-García",
+      "summary": "Background: Patient-facing medical chatbots based on retrieval-augmented generation (RAG) are increasingly promoted to deliver accessible, grounded health information. AI-assisted development lowers the barrier to building them, but they still demand rigorous security, privacy, and governance controls. Objective: To report an anonymized, non-destructive security assessment of a publicly accessible patient-facing medical RAG chatbot and identify governance lessons for safe deployment of generative AI in health. Methods: We used a two-stage strategy. First, Claude Opus 4.6 supported exploratory prompt-based testing and structured vulnerability hypotheses. Second, candidate findings were manually verified using Chrome Developer Tools, inspecting browser-visible network traffic, payloads, API schemas, configuration objects, and stored interaction data. Results: The LLM-assisted phase identified a critical vulnerability: sensitive system and RAG configuration appeared exposed through client-server communication rather than restricted server-side. Manual verification confirmed that ordinary browser inspection allowed collection of the system prompt, model and embedding configuration, retrieval parameters, backend endpoints, API schema, document and chunk metadata, knowledge-base content, and the 1,000 most recent patient-chatbot conversations. The deployment also contradicted its privacy assurances: full conversation records, including health-related queries, were retrievable without authentication. Conclusions: Serious privacy and security failures in patient-facing RAG chatbots can be identified with standard browser tools, without specialist skills or authentication; independent review should be a prerequisite for deployment. Commercial LLMs accelerated this assessment, including under a false developer persona; assistance available to auditors is equally available to adversaries.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Unsupervised Denoising of Real Clinical Low Dose Liver CT with Perceptual Attention Networks",
+      "url": "https://arxiv.org/abs/2605.00793v1",
+      "publishedAt": "2026-05-01T17:19:15.000Z",
+      "author": "Jingxi Pu",
+      "summary": "With the development of deep learning, medical image processing has been widely used to assist clinical research. This paper focuses on the denoising problem of low-dose computed tomography using deep learning. Although low-dose computed tomography reduces radiation exposure to patients, it also introduces more noise, which may interfere with visual interpretation by physicians and affect diagnostic results. To address this problem, inspired by Cycle-GAN for unsupervised learning, this paper proposes an end-to-end unsupervised low-dose computed tomography denoising framework. The proposed framework combines a U-Net structure for multi-scale feature extraction, an attention mechanism for feature fusion, and a residual network for feature transformation. It also introduces perceptual loss to improve the network for the characteristics of medical images. In addition, we construct a real low-dose computed tomography dataset and design a large number of comparative experiments to validate the proposed method, using both image-based evaluation metrics and medical evaluation criteria. Compared with classical methods, the main advantage of this paper is that it addresses the limitation that real clinical data cannot be directly used for supervised learning, while still achieving excellent performance. The experimental results are also professionally evaluated by imaging physicians and meet clinical needs.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Make Your LVLM KV Cache More Lightweight",
+      "url": "https://arxiv.org/abs/2605.00789v1",
+      "publishedAt": "2026-05-01T17:11:39.000Z",
+      "author": "Xihao Chen",
+      "summary": "Key-Value (KV) cache has become a de facto component of modern Large Vision-Language Models (LVLMs) for inference. While it enhances decoding efficiency in Large Language Models (LLMs), its direct adoption in LVLMs introduces substantial GPU memory overhead due to the large number of vision tokens processed during the prefill stage. To tackle this problem, we propose LightKV, a novel approach that reduces KV cache size by exploiting the redundancy among vision-token embeddings. Guided by text prompts, LightKV employs cross-modality message passing to aggregate informative messages across vision tokens and progressively compress them during prefill. This prompt-aware guidance distinguishes our method from prior vision-only compression strategies. We evaluate LightKV on eight open-source LVLMs across eight public benchmark datasets, e.g., MME and SeedBench. Experimental results demonstrate that with only 55% of the original vision tokens, LightKV (a) halves the vision-token KV cache size, (b) reduces computation by up to 40%, and (c) preserves general-purpose performance while significantly outperforming existing baselines.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "分享一个Lite 基础套餐，几乎没咋用",
+      "url": "https://linux.do/t/topic/2110874",
+      "publishedAt": "2026-05-04T17:34:41.000Z",
+      "author": "linux.do",
+      "summary": "分享一个腾讯云大模型API coding paln套餐，6号过期，支持km2.5、glm5、minimax2.5 sk-sp-CGoLDkny6121G2DgUQ9sUyDDB3v6sCUEy74avdu1MBkipiPV cloud.tencent.com 大模型服务平台 TokenHub CodeBuddy Code_ CodeBuddyCode是基于腾讯云AI技术的智能编程工具，深度集成腾讯云生态，提供从代码编写到项目部署的全链路AI辅助。本文介绍如何在CodeBuddyCo 1 个帖子 - 1 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "转自小红书，这 Deepseek 攻击也太强了吧，笑得我",
+      "url": "https://linux.do/t/topic/2110864",
+      "publishedAt": "2026-05-04T17:30:42.000Z",
+      "author": "linux.do",
+      "summary": "小红书 无敌。 - 小红书 3 亿人的生活经验，都在小红书 GPT 以前最后一句话可没这么说过啊 这从哪学的 2 个帖子 - 2 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "ChatGPT 订阅 GoPay支付出错的解决办法",
+      "url": "https://linux.do/t/topic/2110852",
+      "publishedAt": "2026-05-04T17:27:14.000Z",
+      "author": "linux.do",
+      "summary": "跟着佬友的喂饭教程操作 https://linux.do/t/topic/2089572/1 在 ChatGPT 订阅页面使用 GoPay 支付时，遇到提示“出错了，请重试”的问题。 除了换邮箱换节点，还有一个更简单的方法，就是跳转到Stripe长链接支付 用codex写了一个油猴脚本，可以在订阅界面点 GoPay支付 按钮自动跳转 // ==UserScript== // @name ChatGPT GoPay 跳转 // @namespace https://chatgpt.com/ // @author Miku-Y // @version 1.5.0 // @description 在 ChatGPT checkout 页面显示 GoPay 按钮，用户点击后生成 Stripe hosted checkout 长链接并跳转 // @match https://chatgpt.com/* // @run-at document-start // @grant none // ==/UserScript== (() => { \"use strict\"; const PATH = \"/checkout/openai_llc/\"; const BTN_ID = \"gopay-checkout-button\"; const TIP_ID = \"gopay-checkout-tip\"; const BTN_CSS = \"position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:2147483647;height:46px;min-width:136px;border:0;border-radius:8px;background:#10a37f;color:#fff;font:700 16px/1 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;box-shadow:0 10px 28px rgba(16,163,127,.34);cursor:pointer\"; const TIP_CSS = \"position:fixed;left:16px;top:calc(50% + 34px);z-index:2147483647;max-width:360px;padding:12px 14px;border-radius:8px;font:14px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.18);color:#fff\"; const PAYLOAD = { plan_name: \"chatgptplusplan\", billing_details: { country: \"ID\", currency: \"IDR\" }, cancel_url: \"https://chatgpt.com/#pricing\", promo_campaign: { promo_campaign_id: \"plus-1-month-free\", is_coupon_from_query_param: false }, checkout_ui_mode: \"hosted\", }; let timer = null; let busy = false; const $ = (id) => document.getElementById(id); const inCheckout = () => location.pathname.startsWith(PATH); const mount = (el) => (document.body || document.documentElement).appendChild(el); function tip(text, error = false) { let el = $(TIP_ID); if (!el) { el = document.createElement(\"div\"); el.id = TIP_ID; el.style.cssText = TIP_CSS; mount(el); } el.textContent = text; el.style.background = error ? \"#991b1b\" : \"#111827\"; } function setLoading(button, loading) { button.disabled = loading; button.textContent = loading ? \"跳转中，请等待...\" : \"GoPay支付\"; button.style.opacity = loading ? \".72\" : \"1\"; button.style.cursor = loading ? \"wait\" : \"pointer\"; } async function fetchJson(url, options) { const response = await fetch(url, options); const data = await response.json().catch(() => null); if (!response.ok) throw Object.assign(new Error(`HTTP ${response.status}`), { data }); return data; } async function pay(button) { if (busy) return; busy = true; setLoading(button, true); tip(\"正在生成 Stripe 付款链接...\"); try { const token = (await fetchJson(\"/api/auth/session\", { credentials: \"include\" }))?.accessToken; if (!token) throw new Error(\"获取登录 Token 失败，请确认 ChatGPT 已登录\"); const data = await fetchJson(\"https://chatgpt.com/backend-api/payments/checkout\", { method: \"POST\", credentials: \"include\", headers: { Authorization: `Bearer ${token}`, \"Content-Type\": \"application/json\", }, body: JSON.stringify(PAYLOAD), }); const hostedUrl = data?.url || data?.stripe_hosted_url || data?.checkout_url; if (!hostedUrl) throw new Error(\"未找到 Stripe 长链接，请看控制台原始响应\"); console.log(\"[plus-link] Stripe 长链接:\", hostedUrl, data); tip(\"Stripe 链接生成成功，正在跳转...\"); location.assign(hostedUrl); } catch (error) { console.error(\"[plus-link]\", error); busy = false; setLoading(button, false); tip(error.message || \"请求失败，请看控制台日志\", true); } } function showButton() { if (!inCheckout() || $(BTN_ID)) return; const button = document.createElement(\"button\"); button.id = BTN_ID; button.type = \"button\"; button.textContent = \"GoPay支付\"; button.style.cssText = BTN_CSS; button.addEventListener(\"click\", () => pay(button)); mount(button); } function sync() { if (!inCheckout()) { clearTimeout(timer); timer = null; $(BTN_ID)?.remove(); $(TIP_ID)?.remove(); return; } if (!$(BTN_ID) && !timer) { timer = setTimeout(() => { timer = null; showButton(); }, 3000); } } for (const method of [\"pushState\", \"replaceState\"]) { const raw = history[method]; history[method] = function (...args) { const result = raw.apply(this, args); setTimeout(sync, 50); return result; }; } window.addEventListener(\"popstate\", () => setTimeout(sync, 50)); window.addEventListener(\"DOMContentLoaded\", sync); sync(); setTimeout(sync, 1000); })(); 2 个帖子 - 2 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "Why SSMs struggle in parameter-constrained training: empirical findings at 25M parameters [R]",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1t3hxsy/why_ssms_struggle_in_parameterconstrained/",
+      "publishedAt": "2026-05-04T13:36:19.000Z",
+      "author": "MachineLearning",
+      "summary": "After ~3 weeks of experimentation in OpenAI's Parameter Golf competition, I wrote up why SSMs are structurally disadvantaged relative to transformers in a time- and size-constrained regime (10 min training, 16MB artifact, 25M parameters) on 8xH100s: https://mradassaad.github.io/posts/why-ssms-struggle-in-parameter-golf/ Main findings: SSM in_proj weights compress up to 3.26x worse than attention QKV under LZMA, directly taxing the compressed parameter budget Architectural wins validated at SP4096 flipped sign at SP8192 — two configs that looked like clean wins reversed direction at the target vocabulary Also includes three kernel-level experiments on the Mamba-3 Triton kernels: a backward fusion attempt that was numerically exact but 16% slower due to SMEM pressure, a torch.compile quantizer bug that cost 5.5 mBPB, and a mixed-precision dynamics protection that recovered 0.8 mBPB at negligible size cost. &#32; submitted by &#32; /u/mradassaad [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "Llama.cpp MTP support now in beta!",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1t3guzw/llamacpp_mtp_support_now_in_beta/",
+      "publishedAt": "2026-05-04T12:54:14.000Z",
+      "author": "LocalLLaMA",
+      "summary": "Happy to report that llama.cpp MTP support is now in beta, thanks to Aman (and all the others that have pushed the various issues in the meantime). This has the potential to actually get merged soon-ish. Currently contains support for Qwen3.5 MTP, but other models are likely to follow suit. Between this and the maturing tensor-parallel support, expect most performance gaps between llama.cpp and vLLM, at least when it comes to token generation speeds, to be erased. &#32; submitted by &#32; /u/ilintar [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "[D] Self-Promotion Thread",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1t1d2m0/d_selfpromotion_thread/",
+      "publishedAt": "2026-05-02T02:15:08.000Z",
+      "author": "MachineLearning",
+      "summary": "Please post your personal projects, startups, product placements, collaboration needs, blogs etc. Please mention the payment and pricing requirements for products and services. Please do not post link shorteners, link aggregator websites , or auto-subscribe links. -- Any abuse of trust will lead to bans. Encourage others who create new posts for questions to post here instead! Thread will stay alive until next one so keep posting after the date in the title. -- Meta: This is an experiment. If the community doesnt like this, we will cancel it. This is to encourage those in the community to promote their work by not spamming the main threads. &#32; submitted by &#32; /u/AutoModerator [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "[D] Monthly Who's Hiring and Who wants to be Hired?",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1t0gle1/d_monthly_whos_hiring_and_who_wants_to_be_hired/",
+      "publishedAt": "2026-05-01T02:30:08.000Z",
+      "author": "MachineLearning",
+      "summary": "For Job Postings please use this template Hiring: [Location], Salary:[], [Remote | Relocation], [Full Time | Contract | Part Time] and [Brief overview, what you're looking for] For Those looking for jobs please use this template Want to be Hired: [Location], Salary Expectation:[], [Remote | Relocation], [Full Time | Contract | Part Time] Resume: [Link to resume] and [Brief overview, what you're looking for] &#x200B; Please remember that this community is geared towards those with experience. &#32; submitted by &#32; /u/AutoModerator [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "AMA Announcement: Nous Research, The Opensource Lab Behind Hermes Agent (Wednesday, 8AM-11AM PST)",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1suw9on/ama_announcement_nous_research_the_opensource_lab/",
+      "publishedAt": "2026-04-24T23:52:19.000Z",
+      "author": "LocalLLaMA",
+      "summary": "Hi r/LocalLLaMA 👋 We're excited for Wednesday's guests, The Nous Research Team! Kicking things off Wednesday, April. 29th, 8 AM–11 AM PST ⚠️ Note: The AMA itself will be hosted in a separate thread, please don’t post questions here. &#32; submitted by &#32; /u/XMasterrrr [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "Best Local LLMs - Apr 2026",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1sknx6n/best_local_llms_apr_2026/",
+      "publishedAt": "2026-04-13T21:00:57.000Z",
+      "author": "LocalLLaMA",
+      "summary": "We're back with another Best Local LLMs Megathread! We have continued feasting in the months since the previous thread with the much anticipated release of the Qwen3.5 and Gemma4 series. If that wasn't enough, we are having some scarcely believable moments with GLM-5.1 boasting SOTA level performance, Minimax-M2.7 being the accessible Sonnet at home, PrismML Bonsai 1-bit models that actually work etc. Tell us what your favorites are right now! The standard spiel: Share what you are running right now and why. Given the nature of the beast in evaluating LLMs (untrustworthiness of benchmarks, immature tooling, intrinsic stochasticity), please be as detailed as possible in describing your setup, nature of your usage (how much, personal/professional use), tools/frameworks/prompts etc. Rules Only open weights models Please thread your responses in the top level comments for each Application below to enable readability Applications General : Includes practical guidance, how to, encyclopedic QnA, search engine replacement/augmentation Agentic/Agentic Coding/Tool Use/Coding Creative Writing/RP Speciality If a category is missing, please create a top level comment under the Speciality comment Notes Useful breakdown of how folk are using LLMs: https://preview.redd.it/i8td7u8vcewf1.png?width=1090&format=png&auto=webp&s=423fd3fe4cea2b9d78944e521ba8a39794f37c8d Bonus points if you breakdown/classify your recommendation by model memory footprint: (you can and should be using multiple models in each size range for different tasks) Unlimited: >128GB VRAM XL: 64 to 128GB VRAM L: 32 to 64GB VRAM M: 8 to 32GB VRAM S: &#32; submitted by &#32; /u/rm-rf-rm [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "Sora 2 megathread (part 3)",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1o8kmg9/sora_2_megathread_part_3/",
+      "publishedAt": "2025-10-16T22:41:55.000Z",
+      "author": "OpenAI",
+      "summary": "The last one hit the post limit of 100,000 comments. Do not try to buy codes. You will get scammed. Do not try to sell codes. You will get permanently banned. We have a bot set up to distribute invite codes in the Discord so join if you can't find codes in the comments here. Check the #sora-invite-codes channel. The Discord has dozens of invite codes available, with more being posted constantly! Update: Discord is down until Discord unlocks our server. The massive flood of joins caused the server to get locked because Discord thought we were botting lol. Also check the megathread on Chambers for invites. &#32; submitted by &#32; /u/WithoutReason1729 [link] &#32; [comments]",
+      "tags": [
+        "OpenAI"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "AMA on our DevDay Launches",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1o1j23g/ama_on_our_devday_launches/",
+      "publishedAt": "2025-10-08T18:39:36.000Z",
+      "author": "OpenAI",
+      "summary": "It’s the best time in history to be a builder. At DevDay [2025], we introduced the next generation of tools and models to help developers code faster, build agents more reliably, and scale their apps in ChatGPT. Ask us questions about our launches such as: AgentKit Apps SDK Sora 2 in the API GPT-5 Pro in the API Codex Missed out on our announcements? Watch the replays: https://youtube.com/playlist?list=PLOXw6I10VTv8-mTZk0v7oy1Bxfo3D2K5o&si=nSbLbLDZO7o-NMmo Join our team for an AMA to ask questions and learn more, Thursday 11am PT. Answering Q's now are: Dmitry Pimenov - u/dpim Alexander Embiricos - u/embirico Ruth Costigan - u/ruth_on_reddit Christina Huang - u/Brief-Detective-9368 Rohan Mehta - u/ Downtown_Finance4558 Olivia Morgan - u/Additional-Fig6133 Tara Seshan - u/tara-oai Sherwin Wu - u/sherwin-openai PROOF: https://x.com/OpenAI/status/1976057496168169810 EDIT: 12PM PT, That's a wrap on the main portion of our AMA, thank you for your questions. We're going back to build. The team will jump in and answer a few more questions throughout the day. &#32; submitted by &#32; /u/OpenAI [link] &#32; [comments]",
+      "tags": [
+        "OpenAI"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    }
+  ]
+}
