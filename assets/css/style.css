@@ -370,6 +370,11 @@ html.translated-rtl, body.translated-rtl{
   box-shadow:0 16px 40px rgba(0,0,0,.25);
   position:relative;
 }
+.chat-limit-hint{
+  margin:0 0 10px;
+  color:var(--muted);
+  font-size:13px;
+}
 .chat-panel.is-busy{
   pointer-events:none;
 }

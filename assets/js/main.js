@@ -642,6 +642,84 @@
     const messagesEl = byId("chat-messages");
     const inputWrapEl = document.querySelector("#chat-tester .chat-input-wrap");
     let loadingMessageEl = null;
+    const DAILY_CHAT_LIMIT = 5;
+    const CHAT_USAGE_KEY = "chat-usage-v1";
+    const CHAT_HISTORY_KEY = `chat-history-v1:${location.pathname}`;
+    const CHAT_HISTORY_MAX_ITEMS = 200;
+    const CHAT_HISTORY_MAX_CHARS = 60000;
+    const getLocalDateKey = () => {
+      const parts = new Intl.DateTimeFormat("en-CA", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date());
+      const year = parts.find((p) => p.type === "year")?.value || "1970";
+      const month = parts.find((p) => p.type === "month")?.value || "01";
+      const day = parts.find((p) => p.type === "day")?.value || "01";
+      return `${year}-${month}-${day}`;
+    };
+    const readChatUsage = () => {
+      try {
+        const raw = localStorage.getItem(CHAT_USAGE_KEY);
+        if (!raw) return { dateKey: getLocalDateKey(), count: 0 };
+        const parsed = JSON.parse(raw);
+        const dateKey = String(parsed?.dateKey || "").trim() || getLocalDateKey();
+        const count = Number(parsed?.count || 0);
+        return { dateKey, count: Number.isFinite(count) && count > 0 ? Math.floor(count) : 0 };
+      } catch {
+        return { dateKey: getLocalDateKey(), count: 0 };
+      }
+    };
+    const writeChatUsage = (usage) => {
+      try {
+        localStorage.setItem(CHAT_USAGE_KEY, JSON.stringify(usage));
+      } catch {
+        // Ignore quota/write failures.
+      }
+    };
+    const getTodayUsage = () => {
+      const today = getLocalDateKey();
+      const stored = readChatUsage();
+      if (stored.dateKey !== today) {
+        const reset = { dateKey: today, count: 0 };
+        writeChatUsage(reset);
+        return reset;
+      }
+      return stored;
+    };
+    const incrementTodayUsage = () => {
+      const usage = getTodayUsage();
+      const next = { ...usage, count: usage.count + 1 };
+      writeChatUsage(next);
+      return next;
+    };
+    const ensureLimitHint = () => {
+      let hint = chatTesterRoot.querySelector(".chat-limit-hint");
+      if (hint) return hint;
+      hint = document.createElement("div");
+      hint.className = "chat-limit-hint";
+      hint.setAttribute("aria-live", "polite");
+      hint.setAttribute("role", "status");
+      chatTesterRoot.prepend(hint);
+      return hint;
+    };
+    const updateLimitUi = () => {
+      const hint = ensureLimitHint();
+      const usage = getTodayUsage();
+      const remaining = Math.max(0, DAILY_CHAT_LIMIT - usage.count);
+      hint.textContent = `今日剩余 ${remaining}/${DAILY_CHAT_LIMIT} 次`;
+      if (sendBtn) {
+        const busy = chatTesterRoot.classList.contains("is-busy");
+        sendBtn.disabled = busy || remaining <= 0;
+        if (!busy) {
+          sendBtn.textContent = remaining <= 0 ? "今日次数用完" : "发送";
+        }
+      }
+      if (inputEl) {
+        inputEl.disabled = chatTesterRoot.classList.contains("is-busy") || remaining <= 0;
+      }
+      return { remaining };
+    };
     const ensureBusyIndicator = () => {
       let indicator = chatTesterRoot.querySelector(".chat-busy-indicator");
       if (indicator) return indicator;
@@ -652,16 +730,67 @@
       return indicator;
     };
     ensureBusyIndicator();
-    const addMessage = (role, text) => {
+    updateLimitUi();
+    const readHistory = () => {
+      try {
+        const raw = localStorage.getItem(CHAT_HISTORY_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    };
+    const writeHistory = (items) => {
+      try {
+        localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(items));
+      } catch {
+        // Ignore quota/write failures.
+      }
+    };
+    const trimHistory = (items) => {
+      const list = Array.isArray(items) ? items.filter(Boolean) : [];
+      const sliced = list.slice(-CHAT_HISTORY_MAX_ITEMS);
+      let totalChars = 0;
+      const kept = [];
+      for (let i = sliced.length - 1; i >= 0; i -= 1) {
+        const item = sliced[i];
+        const role = String(item?.role || "").trim();
+        const text = String(item?.text || "").trim();
+        if (!role || !text) continue;
+        totalChars += text.length;
+        if (totalChars > CHAT_HISTORY_MAX_CHARS) break;
+        kept.push({ role, text, ts: Number(item?.ts || Date.now()) });
+      }
+      kept.reverse();
+      return kept;
+    };
+    const addMessage = (role, text, options = {}) => {
       if (!messagesEl) return;
       const item = document.createElement("div");
       item.className = `chat-message ${role}`;
       item.textContent = text;
       messagesEl.appendChild(item);
       messagesEl.scrollTop = messagesEl.scrollHeight;
+      const shouldPersist = options.persist !== false && role !== "loading";
+      if (shouldPersist) {
+        const history = readHistory();
+        history.push({ role, text, ts: Date.now() });
+        writeHistory(trimHistory(history));
+      }
     };
+    const restoreHistory = () => {
+      if (!messagesEl) return;
+      const history = trimHistory(readHistory());
+      if (!history.length) return;
+      for (const item of history) {
+        addMessage(item.role, item.text, { persist: false });
+      }
+    };
+    restoreHistory();
     const setChatBusy = (isBusy) => {
       chatTesterRoot.classList.toggle("is-busy", isBusy);
+      updateLimitUi();
       if (sendBtn) {
         sendBtn.disabled = isBusy;
         sendBtn.textContent = isBusy ? "思考中..." : "发送";
@@ -689,6 +818,8 @@
       if (!inputEl) return false;
       const text = (inputEl.value || "").trim();
       if (!text) return false;
+      const { remaining } = updateLimitUi();
+      if (remaining <= 0) return false;
       return true;
     };
     const pickFirstText = (...values) => {
@@ -772,8 +903,14 @@
     if (sendBtn && inputEl) {
       sendBtn.addEventListener("click", async () => {
         if (!canSend()) {
+          const { remaining } = updateLimitUi();
+          if (remaining <= 0) {
+            addMessage("system", `今日已达到 ${DAILY_CHAT_LIMIT} 次上限，请明天再来。`);
+          }
           return;
         }
+        incrementTodayUsage();
+        updateLimitUi();
         const prompt = inputEl.value.trim();
         addMessage("user", prompt);
         setChatBusy(true);
