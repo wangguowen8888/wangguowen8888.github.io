@@ -1,0 +1,532 @@
+{
+  "dateKey": "2026-05-07",
+  "summary": "今天共整理 31 条 AI 动态，主要涵盖 工具8条、论文15条、资讯2条、产品3条、讨论3条。",
+  "items": [
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Show HN: Upskill – skill to find skills for your AI agents",
+      "url": "https://github.com/Autoloops/upskill",
+      "publishedAt": "2026-05-06T17:19:30.000Z",
+      "author": "kushalpatil07",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 3,
+      "contentType": "tool",
+      "rawMeta": {
+        "comments": 3
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：工具，Show HN: Upskill – skill to find skills for your AI agents"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Chrome downloads a 4GB AI file without user consent, researcher alleges",
+      "url": "https://www.engadget.com/2166113/chrome-downloads-a-4gb-ai-file-without-user-consent-researcher-alleges/",
+      "publishedAt": "2026-05-06T17:14:23.000Z",
+      "author": "netfortius",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 3,
+      "contentType": "paper",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：论文，Chrome downloads a 4GB AI file without user consent, researcher alleges"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Doctors' growing AI deepfakes problem",
+      "url": "https://www.axios.com/2026/05/06/doctors-ai-deepfakes-misinformation-problem",
+      "publishedAt": "2026-05-06T17:40:45.000Z",
+      "author": "1vuio0pswjnm7",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 2,
+      "contentType": "news",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：资讯，Doctors' growing AI deepfakes problem"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "The April every AI plan broke",
+      "url": "https://thefinancialengineer.substack.com/p/the-april-every-ai-plan-broke",
+      "publishedAt": "2026-05-06T17:20:40.000Z",
+      "author": "gemanor",
+      "summary": "",
+      "tags": [
+        "hn"
+      ],
+      "score": 2,
+      "contentType": "news",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：资讯，The April every AI plan broke"
+    },
+    {
+      "source": "Hacker News",
+      "sourceId": "hackernews",
+      "title": "Show HN: DoodleMate: Animate Your Child's Hand Drawings Without Generative AI",
+      "url": "https://doodlemate.com/",
+      "publishedAt": "2026-05-06T17:06:34.000Z",
+      "author": "hjessmith",
+      "summary": "Hi HN! I made an app that takes a photo of a paper drawing and, in a handful of seconds, creates a fully rigged character that can be used in an animation or little story. It doesn’t use any image-to-video generative AI models. Instead, I built it using the years of insights I’ve picked up studying children’s drawings and character animation. Today we’re releasing a community beta. I respect this community and would value any feedback you offer. It’s easy to try- you don’t need to create an account to check it out. We’ve got several free stories to drop your character into, and a Mother’s Day eCard. I’m also working on a tool, DoodleMate Studio, to easily allow people to author their own stories instead of using premade templates. But what form that takes is going to be highly dependent on the type of feedback we get from the community with this beta. How this came to be: I’ve worked in this space for a while. Here’s an old HN post related to a popular tech demo I did ( https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=30469321 ) and another one from when I open sourced the data and code ( https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=35561203 ). I also wrote a SIGGRAPH paper about the methodology ( https:&#x2F;&#x2F;dl.acm.org&#x2F;doi&#x2F;full&#x2F;10.1145&#x2F;3592788 ). I’d moved on to other things, but had always felt like there was such potential in this space. Last year I decided I was over big tech and, with a lot of encouragement from my family, finally decided to pursue this seriously. Since then, my wife and I have been building this together. We’re bootstrapping at the moment, trying to give ourselves time and space to make sure DoodleMate turns into something wonderful and wholesome. Thanks, Jesse",
+      "tags": [
+        "hn"
+      ],
+      "score": 2,
+      "contentType": "paper",
+      "rawMeta": {
+        "comments": 0
+      },
+      "weight": 10,
+      "aiSummary": "来源：Hacker News，类型：论文，Hi HN! I made an app that takes a photo of a paper drawing and, in a handful of seconds, creates a fully rigged characte"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "ruvnet/ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "publishedAt": "2026-05-06T17:43:26.751Z",
+      "author": "ruvnet",
+      "summary": "Star ruvnet / ruflo 🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star ruvnet / ruflo 🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coord"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "cheahjs/free-llm-api-resources",
+      "url": "https://github.com/cheahjs/free-llm-api-resources",
+      "publishedAt": "2026-05-06T17:43:26.751Z",
+      "author": "cheahjs",
+      "summary": "Star cheahjs / free-llm-api-resources A list of free LLM inference resources accessible via API.",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star cheahjs / free-llm-api-resources A list of free LLM inference resources accessible via API."
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "Hmbown/DeepSeek-TUI",
+      "url": "https://github.com/Hmbown/DeepSeek-TUI",
+      "publishedAt": "2026-05-06T17:43:26.750Z",
+      "author": "Hmbown",
+      "summary": "Star Hmbown / DeepSeek-TUI Coding agent for DeepSeek models that runs in your terminal",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star Hmbown / DeepSeek-TUI Coding agent for DeepSeek models that runs in your terminal"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "publishedAt": "2026-05-06T17:43:26.750Z",
+      "author": "addyosmani",
+      "summary": "Star addyosmani / agent-skills Production-grade engineering skills for AI coding agents.",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star addyosmani / agent-skills Production-grade engineering skills for AI coding agents."
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "PriorLabs/TabPFN",
+      "url": "https://github.com/PriorLabs/TabPFN",
+      "publishedAt": "2026-05-06T17:43:26.750Z",
+      "author": "PriorLabs",
+      "summary": "Star PriorLabs / TabPFN ⚡ TabPFN: Foundation Model for Tabular Data ⚡",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Star PriorLabs / TabPFN ⚡ TabPFN: Foundation Model for Tabular Data ⚡"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "LearningCircuit/local-deep-research",
+      "url": "https://github.com/LearningCircuit/local-deep-research",
+      "publishedAt": "2026-05-06T17:43:26.750Z",
+      "author": "LearningCircuit",
+      "summary": "Sponsor Star LearningCircuit / local-deep-research ~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encrypted.",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：论文，Sponsor Star LearningCircuit / local-deep-research ~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "InsForge/InsForge",
+      "url": "https://github.com/InsForge/InsForge",
+      "publishedAt": "2026-05-06T17:43:26.750Z",
+      "author": "InsForge",
+      "summary": "Sponsor Star InsForge / InsForge InsForge is a Postgres-based backend with auth, storage, compute, hosting, and AI gateway. Built for coding agents.",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 9,
+      "aiSummary": "来源：GitHub Trending，类型：工具，Sponsor Star InsForge / InsForge InsForge is a Postgres-based backend with auth, storage, compute, hosting, and AI gatew"
+    },
+    {
+      "source": "GitHub Trending",
+      "sourceId": "github-trending",
+      "title": "virattt/dexter",
+      "url": "https://github.com/virattt/dexter",
+      "publishedAt": "2026-05-06T17:43:26.750Z",
+      "author": "virattt",
+      "summary": "Star virattt / dexter An autonomous agent for deep financial research",
+      "tags": [
+        "github",
+        "trending"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "A Closed-Form Adaptive-Landmark Kernel for Certified Point-Cloud and Graph Classification",
+      "url": "https://arxiv.org/abs/2605.04046v1",
+      "publishedAt": "2026-05-05T17:59:18.000Z",
+      "author": "Sushovan Majhi",
+      "summary": "We introduce PALACE (Persistence Adaptive-Landmark Analytic Classification Engine), the data-adaptive companion to PLACE, paying a small cross-validation tier on three knobs (budget, radii, bandwidth; $\\leq 5$ choices each). A cover-theoretic core (Lebesgue-number criterion on the landmark cover) yields four closed-form guarantees. (i) A structural lower distortion bound $λ(τ;ν)$ on $\\mathcal{D}_n$ under cross-diagram non-interference, with a $(D/L)^2$ budget reduction over the uniform grid when diagrams concentrate. (ii) Equal weights $w_k = K^{-1/2}$ maximizing $λ$, and farthest-point-sampling positions $2$-approximating the optimal $k$-center covering radius; both derived from training labels alone, no gradient training. (iii) A kernel-RKHS classification rate $O((k-1)\\sqrt{K}/(γ\\sqrt{m_{\\min}}))$ with binary necessity threshold $m = Ω(\\sqrt K/γ)$ from a matching Le Cam lower bound, and a closed-form filtration-selection rule. The kernel-Mahalanobis margin $\\hatρ_{\\mathrm{Mah}}$ is the strongest closed-form ranker across the chemical-graph pool (mean Spearman $ρ\\approx +0.60$); the isotropic surrogate $\\hatγ/\\sqrt{K}$ admits a selection-consistency rate, and $\\widehatλ$ from (i) provides an independent data-level signal (positive on COX2 and PTC). (iv) A per-prediction certificate, in non-asymptotic Pinelis and asymptotic Gaussian forms, with no calibration split. Empirically, PALACE is the strongest closed-form diagram-based method on Orbit5k ($91.3 \\pm 1.0\\%$, matching Persformer), leads every diagram-based competitor on COX2 and MUTAG, and is competitive on DHFR (within 1 pp of ECP). At $8\\times$ domain inflation, adaptive placement maintains $94\\%$ while the uniform grid collapses to chance ($25\\%$ on 4-class data).",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Safety and accuracy follow different scaling laws in clinical large language models",
+      "url": "https://arxiv.org/abs/2605.04039v1",
+      "publishedAt": "2026-05-05T17:57:19.000Z",
+      "author": "Sebastian Wind",
+      "summary": "Clinical LLMs are often scaled by increasing model size, context length, retrieval complexity, or inference-time compute, with the implicit expectation that higher accuracy implies safer behavior. This assumption is incomplete in medicine, where a few confident, high-risk, or evidence-contradicting errors can matter more than average benchmark performance. We introduce SaFE-Scale, a framework for measuring how clinical LLM safety changes across model scale, evidence quality, retrieval strategy, context exposure, and inference-time compute. To instantiate this framework, we introduce RadSaFE-200, a Radiology Safety-Focused Evaluation benchmark of 200 multiple-choice questions with clinician-defined clean evidence, conflict evidence, and option-level labels for high-risk error, unsafe answer, and evidence contradiction. We evaluated 34 locally deployed LLMs across six deployment conditions: closed-book prompting (zero-shot), clean evidence, conflict evidence, standard RAG, agentic RAG, and max-context prompting. Clean evidence produced the strongest improvement, increasing mean accuracy from 73.5% to 94.1%, while reducing high-risk error from 12.0% to 2.6%, contradiction from 12.7% to 2.3%, and dangerous overconfidence from 8.0% to 1.6%. Standard RAG and agentic RAG did not reproduce this safety profile: agentic RAG improved accuracy over standard RAG and reduced contradiction, but high-risk error and dangerous overconfidence remained elevated. Max-context prompting increased latency without closing the safety gap, and additional inference-time compute produced only limited gains. Worst-case analysis showed that clinically consequential errors concentrated in a small subset of questions. Clinical LLM safety is therefore not a passive consequence of scaling, but a deployment property shaped by evidence quality, retrieval design, context construction, and collective failure behavior.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "OpenSeeker-v2: Pushing the Limits of Search Agents with Informative and High-Difficulty Trajectories",
+      "url": "https://arxiv.org/abs/2605.04036v1",
+      "publishedAt": "2026-05-05T17:55:25.000Z",
+      "author": "Yuwen Du",
+      "summary": "Deep search capabilities have become an indispensable competency for frontier Large Language Model (LLM) agents, yet their development remains dominated by industrial giants. The typical industry recipe involves a highly resource-intensive pipeline spanning pre-training, continual pre-training (CPT), supervised fine-tuning (SFT), and reinforcement learning (RL). In this report, we show that when fueled with informative and high-difficulty trajectories, a simple SFT approach could be surprisingly powerful for training frontier search agents. By introducing three simple data synthesis modifications: scaling knowledge graph size for richer exploration, expanding the tool set size for broader functionality, and strict low-step filtering, we establish a stronger baseline. Trained on merely 10.6k data points, our OpenSeeker-v2 achieves state-of-the-art performance across 4 benchmarks (30B-sized agents with ReAct paradigm): 46.0% on BrowseComp, 58.1% on BrowseComp-ZH, 34.6% on Humanity's Last Exam, and 78.0% on xbench, surpassing even Tongyi DeepResearch trained with heavy CPT+SFT+RL pipeline, which achieves 43.4%, 46.7%, 32.9%, and 75.0%, respectively. Notably, OpenSeeker-v2 represents the first state-of-the-art search agent within its model scale and paradigm to be developed by a purely academic team using only SFT. We are excited to open-source the OpenSeeker-v2 model weights and share our simple yet effective findings to make frontier search agent research more accessible to the community.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Large-Scale High-Quality 3D Gaussian Head Reconstruction from Multi-View Captures",
+      "url": "https://arxiv.org/abs/2605.04035v1",
+      "publishedAt": "2026-05-05T17:55:01.000Z",
+      "author": "Evangelos Ntavelis",
+      "summary": "We propose HeadsUp, a scalable feed-forward method for reconstructing high-quality 3D Gaussian heads from large-scale multi-camera setups. Our method employs an efficient encoder-decoder architecture that compresses input views into a compact latent representation. This latent representation is then decoded into a set of UV-parameterized 3D Gaussians anchored to a neutral head template. This UV representation decouples the number of 3D Gaussians from the number and resolution of input images, enabling training with many high-resolution input views. We train and evaluate our model on an internal dataset with more than 10,000 subjects, which is an order of magnitude larger than existing multi-view human head datasets. HeadsUp achieves state-of-the-art reconstruction quality and generalizes to novel identities without test-time optimization. We extensively analyze the scaling behavior of our model across identities, views, and model capacity, revealing practical insights for quality-compute trade-offs. Finally, we highlight the strength of our latent space by showcasing two downstream applications: generating novel 3D identities and animating the 3D heads with expression blendshapes.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Redefining AI Red Teaming in the Agentic Era: From Weeks to Hours",
+      "url": "https://arxiv.org/abs/2605.04019v1",
+      "publishedAt": "2026-05-05T17:43:52.000Z",
+      "author": "Raja Sekhar Rao Dheekonda",
+      "summary": "AI systems are entering critical domains like healthcare, finance, and defense, yet remain vulnerable to adversarial attacks. While AI red teaming is a primary defense, current approaches force operators into manual, library-specific workflows. Operators spend weeks hand-crafting workflows - assembling attacks, transforms, and scorers. When results fall short, workflows must be rebuilt. As a result, operators spend more time constructing workflows than probing targets for security and safety vulnerabilities. We introduce an AI red teaming agent built on the open-source Dreadnode SDK. The agent creates workflows grounded in 45+ adversarial attacks, 450+ transforms, and 130+ scorers. Operators can probe multi-agent systems, multilingual, and multimodal targets, focusing on what to probe rather than how to implement it. We make three contributions: 1. Agentic interface. Operators describe goals in natural language via the Dreadnode TUI (Terminal User Interface). The agent handles attack selection, transform composition, execution, and reporting, letting operators focus on red teaming. Weeks compress to hours. 2. Unified framework. A single framework for probing traditional ML models (adversarial examples) and generative AI systems (jailbreaks), removing the need for separate libraries. 3. Llama Scout case study. We red team Meta Llama Scout and achieve an 85% attack success rate with severity up to 1.0, using zero human-developed code",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Conditional Diffusion Sampling",
+      "url": "https://arxiv.org/abs/2605.04013v1",
+      "publishedAt": "2026-05-05T17:36:29.000Z",
+      "author": "Francisco M. Castro-Macías",
+      "summary": "Sampling from unnormalized multimodal distributions with limited density evaluations remains a fundamental challenge in machine learning and natural sciences. Successful approaches construct a bridge between a tractable reference and the target distribution. Parallel Tempering (PT) serves as the gold standard, while recent diffusion-based approaches offer a continuous alternative at the cost of neural training. In this work, we introduce Conditional Diffusion Sampling (CDS), a framework that combines these two paradigms. To this end, we derive Conditional Interpolants, a class of stochastic processes whose transport dynamics are governed by an exact, closed-form stochastic differential equation (SDE), requiring no neural approximation. Although these dynamics require sampling from a non-trivial initialization distribution, we show both theoretically and empirically that the cost of this initialization diminishes for sufficiently short diffusion times. CDS leverages this by a two-stage procedure: (1) PT is used to efficiently sample the initial distribution, and then (2) samples are transported via the transport SDE. This combination couples the robust global exploration of PT with efficient local transport. Experiments suggest that CDS has the potential to achieve a superior trade-off between sample quality and density evaluation cost compared to state-of-the-art samplers.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "SymptomAI: Towards a Conversational AI Agent for Everyday Symptom Assessment",
+      "url": "https://arxiv.org/abs/2605.04012v1",
+      "publishedAt": "2026-05-05T17:36:12.000Z",
+      "author": "Joseph Breda",
+      "summary": "Language models excel at diagnostic assessments on currated medical case-studies and vignettes, performing on par with, or better than, clinical professionals. However, existing studies focus on complex scenarios with rich context making it difficult to draw conclusions about how these systems perform for patients reporting symptoms in everyday life. We deployed SymptomAI, a set of conversational AI agents for end-to-end patient interviewing and differential diagnosis (DDx), via the Fitbit app in a study that randomized participants (N=13,917) to interact with five AI agents. This corpus captures diverse communication and a realistic distribution of illnesses from a real world population. A subset of 1,228 participants reported a clinician-provided diagnosis, and 517 of these were further evaluated by a panel of clinicians during over 250 hours of annotation. SymptomAI DDx were significantly more accurate (OR = 2.47, p 7 for influenza). While limited by self-reported ground truth, these results demonstrate the benefits of a dedicated and complete symptom interview compared to a user-guided symptom discussion, which is the default of most consumer LLMs.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "arXiv",
+      "sourceId": "arxiv",
+      "title": "Enhanced 3D Brain Tumor Segmentation Using Assorted Precision Training",
+      "url": "https://arxiv.org/abs/2605.04008v1",
+      "publishedAt": "2026-05-05T17:30:17.000Z",
+      "author": "Adwaitt Pandya",
+      "summary": "A brain tumor is a medical disorder faced by individuals of all demographics. Medically, it is described as the spread of non-essential cells close to or throughout the brain. Symptoms of this ailment include headaches, seizures, and sensory changes. This research explores two main categories of brain tumors: benign and malignant. Benign spreads steadily, and malignant expresses growth, making it dangerous. Early identification of brain tumors is a crucial factor for the survival of patients. This research provides a state-of-the-art approach to the early identification of tumors within the brain. We implemented the SegResNet architecture, a widely adopted architecture for three-dimensional segmentation, and trained it using the automatic multi-precision method. We incorporated the dice loss function and dice metric for evaluating the model. We got a dice score of 0.84. For the tumor core, we got a dice score of 0.84; for the whole tumor, 0.90; and for the enhanced tumor, we got a score of 0.79.",
+      "tags": [
+        "arxiv"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 9
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "AI写小说真的不行吗？是认知上的问题还是技术上的问题？",
+      "url": "https://linux.do/t/topic/2123502",
+      "publishedAt": "2026-05-06T17:34:52.000Z",
+      "author": "linux.do",
+      "summary": "我从小就喜欢看小说，这么多年来通过各种渠道也读了不少。最近发现很多平台都可以发布作品，就尝试用“AI集合协作”的方式写了一本小说：先让DeepSeek出初稿，然后交给豆包阅读并给出书评，再用GPT-5进行二次评审，最后我自己从头到尾审读打磨。这样陆陆续续写了近十万字，满心期待地投稿，却还是被平台拒了，心里真的很苦恼。求助各位佬，AI写小说真的可行吗 8 个帖子 - 5 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Linux.do",
+      "sourceId": "linuxdo",
+      "title": "抽10个机场订阅",
+      "url": "https://linux.do/t/topic/2123484",
+      "publishedAt": "2026-05-06T17:27:46.000Z",
+      "author": "linux.do",
+      "summary": "手里机器比较多 就自己搞了个小鸡场 抽10个500G流量套餐 可用所有节点 包括专线节点 没中奖的可自行去注册 www hongx sbs 优惠码hongx666 可购买Mini杯 可用中转节点 最低0.5倍率 所有套餐所有节点均可解锁AI和全球主流流媒体平台 部分节点截图展示 奖品详情:大杯500G流量套餐月付×10 活动时间:5月7日23:30截止 参与方式： 回复本帖任意内容即可 每位用户仅允许参与一次。 将使用 LINUX DO 抽奖工具 在所有回复中随机抽取中奖者。 注意事项: 本活动将在活动截止时间后关闭回帖，以确保公正性。 中奖者将在活动结束后在本帖公布，并通过论坛站内信由发起人通知领奖方式。 所有规则及抽奖结果由 @asen 及论坛 管理团队 最终解释。 3 个帖子 - 2 位参与者 阅读完整话题 ]]>",
+      "tags": [
+        "linux.do"
+      ],
+      "score": 0,
+      "contentType": "tool",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "Stop letting LLMs edit your .bib [D]",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1t5anla/stop_letting_llms_edit_your_bib_d/",
+      "publishedAt": "2026-05-06T11:54:57.000Z",
+      "author": "MachineLearning",
+      "summary": "It’s shocking how frequently I notice hallucinated citations. For citations of my own papers, I’ve seen 5 in the past couple of months, where the the title is correct but the author list is wrong. When I email the author to let them know, they always blame an LLM for hallucinating. Is it really that hard to populate the .bib yourself? If you have any respect for research, is it not a basic requirement to make sure you correctly cite the prior literature? I feel there should be harsher penalties for these hallucinated citations. Are others experiencing the same? &#32; submitted by &#32; /u/Pure-Ad9079 [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "2.5x faster inference with Qwen 3.6 27B using MTP - Finally a viable option for local agentic coding - 262k context on 48GB - Fixed chat template - Drop-in OpenAI and Anthropic API endpoints",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1t57xuu/25x_faster_inference_with_qwen_36_27b_using_mtp/",
+      "publishedAt": "2026-05-06T09:35:42.000Z",
+      "author": "LocalLLaMA",
+      "summary": "In my initial post, I mentioned using turboquants. However, I forgot to include instructions for building llama.cpp with the corresponding PR. The PR is currently too unstable and there are animated discussions around it. I replaced my recommendations with the standard q4_0 KV cache compression, which has some minor loss. WARNING: wait before download from HF: I just realised my upload of the new versions with the additional fix in the chat template has not completed yet. I will remove this warning once done The recent PR to llama.cpp bring MTP support to Qwen 3.6 27B. This uses the built-in tensor layers for speculative decoding. None of the existing GGUF have it, as they need to be converted with this PR. I have tested it locally on my mac M2 Max 96GB, and the results are amazing: 2.5x speed increase, bringing it to 28 tok/s! I have converted the most useful quants and uploaded them to HF. Even if you are using apple silicon, you should use those instead of MLX. You can download them here: https://huggingface.co/froggeric/Qwen3.6-27B-MTP-GGUF This also includes 7 fixes I made to the original jinja chat template, due to vLLM specificity which broke in other tools: https://huggingface.co/froggeric/Qwen-Fixed-Chat-Templates For now, you will need to compile your own version of llama.cpp to use them. It is fairly simple to do: ```bash git clone --depth 1 https://github.com/ggml-org/llama.cpp.git cd llama.cpp git fetch origin pull/22673/head:mtp-pr && git checkout mtp-pr cmake -B build -DGGML_METAL=ON -DCMAKE_BUILD_TYPE=Release cmake --build build --target llama-cli llama-server ``` Then to start serving with the API endpoint, use a command similar to: bash llama-server -m Qwen3.6-27B-Q5_K_M-mtp.gguf \\ --spec-type mtp --spec-draft-n-max 5 \\ --cache-type-k q4_0 --cache-type-v q4_0 \\ -c 262144 --temp 0.7 --top-k 20 -ngl 99 --port 8081 Vision currently crashes llama.cpp when used alongside MTP. Reported 2026-05-06 in the current PR. That's it. Three optimizations in one command: Flag What it does Impact --spec-type mtp --spec-draft-n-max 5 Multi-Token Prediction (built into the model) 2.5x faster generation --cache-type-k q4_0 --cache-type-v q4_0 4-bit KV cache (instead of 16-bit) Quarter the KV memory -c 262144 262K context window Full native context on 48 GB Mac with q4_0 KV Adjust -m , -c , and --cache-type-k/v for your hardware, according to the tables below. Here are my recommendations based on your hardware: Apple Silicon RAM Quant KV cache Max context Total used Vision 16 GB IQ2_M q4_0 32K 11.1 GB ✗ 24 GB IQ3_M q4_0 128K 16.0 GB ✓ 24 GB IQ3_M q4_0 180K 15.9 GB ✗ 32 GB Q5_K_M q4_0 262K 23.5 GB ✗ 32 GB Q4_K_M q4_0 262K 21.8 GB ✓ 32 GB Q5_K_M q8_0 128K 23.4 GB ✗ 48 GB Q6_K q8_0 262K 31.2 GB ✓ 48 GB Q8_0 q8_0 262K 37.3 GB ✓ NVIDIA GPU Same model memory as Apple Silicon, plus ~1 GB CUDA overhead. VRAM Quant KV cache Max context Total VRAM used Vision 16 GB IQ2_M q4_0 200K 15.7 GB ✓ 24 GB Q4_K_M q4_0 262K 22.8 GB ✓ 24 GB Q5_K_M q4_0 180K 24.0 GB ✓ 48 GB Q6_K q8_0 262K 32.2 GB ✓ 48 GB Q8_0 q8_0 262K 38.3 GB ✓ 24 GB Mac: IQ3_M /q4_0 — 128K with vision, 180K text-only. 32 GB Mac: Q5_K_M /q4_0 — 262K text-only. For vision at 262K, use Q4_K_M . Q5_K_M /q8_0 for higher KV quality at 128K text-only. 48 GB+ Mac: Q6_K /q8_0 — best quality at 262K with vision (31.2 GB). Q8_0 /q8_0 for perfection (37.3 GB). 16 GB GPU: IQ2_M /q4_0 — 200K with vision. 24 GB GPU: Q4_K_M /q4_0 reaches 262K with vision. Q5_K_M /q4_0 for higher quality at 180K with vision. 48 GB+ GPU: Q6_K /q8_0 — 262K at high quality with vision (32.2 GB). Q8_0 /q8_0 for perfection (38.3 GB). For coding and reasoning, prioritize higher quants with q8_0 KV. For general chat and RAG, lower quants with q4_0 KV and larger context are often sufficient. Vision adds ~0.9 GB for mmproj. macOS needs ≥ 8 GB for itself (16 GB Macs excepted — use ~4 GB). You can increase available memory by raising the wired memory limit, e.g. for a 96 GB Mac: sudo sysctl iogpu.wired_limit_mb=90112 (88 GB). NVIDIA reserves ~1 GB for CUDA. &#32; submitted by &#32; /u/ex-arman68 [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "[D] Self-Promotion Thread",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1t1d2m0/d_selfpromotion_thread/",
+      "publishedAt": "2026-05-02T02:15:08.000Z",
+      "author": "MachineLearning",
+      "summary": "Please post your personal projects, startups, product placements, collaboration needs, blogs etc. Please mention the payment and pricing requirements for products and services. Please do not post link shorteners, link aggregator websites , or auto-subscribe links. -- Any abuse of trust will lead to bans. Encourage others who create new posts for questions to post here instead! Thread will stay alive until next one so keep posting after the date in the title. -- Meta: This is an experiment. If the community doesnt like this, we will cancel it. This is to encourage those in the community to promote their work by not spamming the main threads. &#32; submitted by &#32; /u/AutoModerator [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "[D] Monthly Who's Hiring and Who wants to be Hired?",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1t0gle1/d_monthly_whos_hiring_and_who_wants_to_be_hired/",
+      "publishedAt": "2026-05-01T02:30:08.000Z",
+      "author": "MachineLearning",
+      "summary": "For Job Postings please use this template Hiring: [Location], Salary:[], [Remote | Relocation], [Full Time | Contract | Part Time] and [Brief overview, what you're looking for] For Those looking for jobs please use this template Want to be Hired: [Location], Salary Expectation:[], [Remote | Relocation], [Full Time | Contract | Part Time] Resume: [Link to resume] and [Brief overview, what you're looking for] &#x200B; Please remember that this community is geared towards those with experience. &#32; submitted by &#32; /u/AutoModerator [link] &#32; [comments]",
+      "tags": [
+        "MachineLearning"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "AMA Announcement: Nous Research, The Opensource Lab Behind Hermes Agent (Wednesday, 8AM-11AM PST)",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1suw9on/ama_announcement_nous_research_the_opensource_lab/",
+      "publishedAt": "2026-04-24T23:52:19.000Z",
+      "author": "LocalLLaMA",
+      "summary": "Hi r/LocalLLaMA 👋 We're excited for Wednesday's guests, The Nous Research Team! Kicking things off Wednesday, April. 29th, 8 AM–11 AM PST ⚠️ Note: The AMA itself will be hosted in a separate thread, please don’t post questions here. &#32; submitted by &#32; /u/XMasterrrr [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "Best Local LLMs - Apr 2026",
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1sknx6n/best_local_llms_apr_2026/",
+      "publishedAt": "2026-04-13T21:00:57.000Z",
+      "author": "LocalLLaMA",
+      "summary": "We're back with another Best Local LLMs Megathread! We have continued feasting in the months since the previous thread with the much anticipated release of the Qwen3.5 and Gemma4 series. If that wasn't enough, we are having some scarcely believable moments with GLM-5.1 boasting SOTA level performance, Minimax-M2.7 being the accessible Sonnet at home, PrismML Bonsai 1-bit models that actually work etc. Tell us what your favorites are right now! The standard spiel: Share what you are running right now and why. Given the nature of the beast in evaluating LLMs (untrustworthiness of benchmarks, immature tooling, intrinsic stochasticity), please be as detailed as possible in describing your setup, nature of your usage (how much, personal/professional use), tools/frameworks/prompts etc. Rules Only open weights models Please thread your responses in the top level comments for each Application below to enable readability Applications General : Includes practical guidance, how to, encyclopedic QnA, search engine replacement/augmentation Agentic/Agentic Coding/Tool Use/Coding Creative Writing/RP Speciality If a category is missing, please create a top level comment under the Speciality comment Notes Useful breakdown of how folk are using LLMs: https://preview.redd.it/i8td7u8vcewf1.png?width=1090&format=png&auto=webp&s=423fd3fe4cea2b9d78944e521ba8a39794f37c8d Bonus points if you breakdown/classify your recommendation by model memory footprint: (you can and should be using multiple models in each size range for different tasks) Unlimited: >128GB VRAM XL: 64 to 128GB VRAM L: 32 to 64GB VRAM M: 8 to 32GB VRAM S: &#32; submitted by &#32; /u/rm-rf-rm [link] &#32; [comments]",
+      "tags": [
+        "LocalLLaMA"
+      ],
+      "score": 0,
+      "contentType": "paper",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "Sora 2 megathread (part 3)",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1o8kmg9/sora_2_megathread_part_3/",
+      "publishedAt": "2025-10-16T22:41:55.000Z",
+      "author": "OpenAI",
+      "summary": "The last one hit the post limit of 100,000 comments. Do not try to buy codes. You will get scammed. Do not try to sell codes. You will get permanently banned. We have a bot set up to distribute invite codes in the Discord so join if you can't find codes in the comments here. Check the #sora-invite-codes channel. The Discord has dozens of invite codes available, with more being posted constantly! Update: Discord is down until Discord unlocks our server. The massive flood of joins caused the server to get locked because Discord thought we were botting lol. Also check the megathread on Chambers for invites. &#32; submitted by &#32; /u/WithoutReason1729 [link] &#32; [comments]",
+      "tags": [
+        "OpenAI"
+      ],
+      "score": 0,
+      "contentType": "discussion",
+      "rawMeta": {},
+      "weight": 8
+    },
+    {
+      "source": "Reddit",
+      "sourceId": "reddit",
+      "title": "AMA on our DevDay Launches",
+      "url": "https://www.reddit.com/r/OpenAI/comments/1o1j23g/ama_on_our_devday_launches/",
+      "publishedAt": "2025-10-08T18:39:36.000Z",
+      "author": "OpenAI",
+      "summary": "It’s the best time in history to be a builder. At DevDay [2025], we introduced the next generation of tools and models to help developers code faster, build agents more reliably, and scale their apps in ChatGPT. Ask us questions about our launches such as: AgentKit Apps SDK Sora 2 in the API GPT-5 Pro in the API Codex Missed out on our announcements? Watch the replays: https://youtube.com/playlist?list=PLOXw6I10VTv8-mTZk0v7oy1Bxfo3D2K5o&si=nSbLbLDZO7o-NMmo Join our team for an AMA to ask questions and learn more, Thursday 11am PT. Answering Q's now are: Dmitry Pimenov - u/dpim Alexander Embiricos - u/embirico Ruth Costigan - u/ruth_on_reddit Christina Huang - u/Brief-Detective-9368 Rohan Mehta - u/ Downtown_Finance4558 Olivia Morgan - u/Additional-Fig6133 Tara Seshan - u/tara-oai Sherwin Wu - u/sherwin-openai PROOF: https://x.com/OpenAI/status/1976057496168169810 EDIT: 12PM PT, That's a wrap on the main portion of our AMA, thank you for your questions. We're going back to build. The team will jump in and answer a few more questions throughout the day. &#32; submitted by &#32; /u/OpenAI [link] &#32; [comments]",
+      "tags": [
+        "OpenAI"
+      ],
+      "score": 0,
+      "contentType": "product",
+      "rawMeta": {},
+      "weight": 8
+    }
+  ]
+}
