@@ -23,6 +23,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 
 const FIXED_MODEL = "gpt-5.2";
+const ALLOWED_MODEL_FALLBACK_ORDER = ["gpt-5.2", "gpt-5.3-codex", "gpt-5.4", "gpt-5.5"];
 const UPSTREAM_BASE_URL = "https://code.newcli.com/codex/v1";
 const UPSTREAM_RESPONSES_URL = `${UPSTREAM_BASE_URL}/responses`;
 
@@ -63,14 +64,25 @@ function textFromContentPart(part) {
   return pickNonEmptyString(
     part.text,
     part?.text?.value,
+    part?.text?.content,
     part.value,
     part?.content?.text,
     part?.content?.value,
+    part?.content?.content,
   );
 }
 
 function textFromMessageContent(content) {
   if (typeof content === "string") return content.trim();
+  if (content && typeof content === "object" && !Array.isArray(content)) {
+    return pickNonEmptyString(
+      content.text,
+      content?.text?.value,
+      content.value,
+      content?.content?.text,
+      content?.content?.value,
+    );
+  }
   if (!Array.isArray(content)) return "";
   for (const part of content) {
     const text = textFromContentPart(part);
@@ -97,6 +109,10 @@ function extractOutputText(upstream) {
     const nested = extractOutputText(upstream.response);
     if (nested) return nested;
   }
+  if (upstream.data && typeof upstream.data === "object") {
+    const nested = extractOutputText(upstream.data);
+    if (nested) return nested;
+  }
 
   const output = upstream.output;
   if (Array.isArray(output)) {
@@ -116,14 +132,111 @@ function extractOutputText(upstream) {
     for (const choice of choices) {
       const text = pickNonEmptyString(
         choice?.message?.content,
+        choice?.message?.content?.text,
+        choice?.message?.content?.value,
+        textFromContentPart(choice?.message?.content),
         textFromMessageContent(choice?.message?.content),
+        choice?.delta?.content,
+        choice?.delta?.content?.text,
+        choice?.delta?.content?.value,
+        textFromContentPart(choice?.delta?.content),
+        textFromMessageContent(choice?.delta?.content),
         choice?.text,
       );
       if (text) return text;
     }
   }
 
+  // Some wrappers return generated content under generic keys.
+  const wrapped = pickNonEmptyString(
+    upstream?.result?.output_text,
+    upstream?.result?.text,
+    upstream?.data?.output_text,
+    upstream?.data?.text,
+    upstream?.message,
+    upstream?.content,
+  );
+  if (wrapped) return wrapped;
+
+  // Deep fallback: walk nested payload and prioritize assistant/text-like fields.
+  const deepText = extractTextDeep(upstream);
+  if (deepText) return deepText;
+
   return "";
+}
+
+function extractTextDeep(root) {
+  const visited = new WeakSet();
+  const candidates = [];
+  const queue = [{ node: root, path: "root", depth: 0 }];
+  const maxDepth = 8;
+  const maxNodes = 1200;
+  let scanned = 0;
+
+  const isLikelyNoiseText = (text) => {
+    const value = String(text || "").trim().toLowerCase();
+    if (!value) return true;
+    if (value.length <= 4 && /^(auto|none|null|true|false|n\/a|ok)$/i.test(value)) return true;
+    return false;
+  };
+
+  const scorePath = (path) => {
+    let score = 0;
+    if (/tool_choice|finish_reason|mode|format|status|type$/i.test(path)) score -= 10;
+    if (/assistant/i.test(path)) score += 8;
+    if (/message/i.test(path)) score += 6;
+    if (/choice/i.test(path)) score += 5;
+    if (/output/i.test(path)) score += 5;
+    if (/content/i.test(path)) score += 4;
+    if (/text/i.test(path)) score += 4;
+    if (/delta/i.test(path)) score += 2;
+    return score;
+  };
+
+  while (queue.length && scanned < maxNodes) {
+    const item = queue.shift();
+    scanned += 1;
+    const { node, path, depth } = item;
+    if (node == null) continue;
+
+    if (typeof node === "string") {
+      const text = node.trim();
+      if (
+        text &&
+        !/^(assistant|user|system|tool|chat\.completion|response)$/i.test(text) &&
+        !isLikelyNoiseText(text)
+      ) {
+        const baseScore = scorePath(path);
+        const lengthBonus = Math.min(Math.floor(text.length / 24), 6);
+        candidates.push({ text, score: baseScore + lengthBonus, path });
+      }
+      continue;
+    }
+
+    if (depth >= maxDepth) continue;
+    if (typeof node !== "object") continue;
+    if (visited.has(node)) continue;
+    visited.add(node);
+
+    if (Array.isArray(node)) {
+      for (let i = 0; i < node.length; i += 1) {
+        queue.push({ node: node[i], path: `${path}[${i}]`, depth: depth + 1 });
+      }
+      continue;
+    }
+
+    for (const [key, value] of Object.entries(node)) {
+      queue.push({ node: value, path: `${path}.${key}`, depth: depth + 1 });
+    }
+  }
+
+  if (!candidates.length) return "";
+  candidates.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return b.text.length - a.text.length;
+  });
+  const best = candidates[0]?.text || "";
+  return isLikelyNoiseText(best) ? "" : best;
 }
 
 function tryParseSseResponsesText(text) {
@@ -166,15 +279,24 @@ function tryParseSseResponsesText(text) {
   return lastResponse;
 }
 
-async function callUpstreamWithBody(apiKey, requestBody) {
-  const upstreamResp = await fetch(UPSTREAM_RESPONSES_URL, {
+async function callUpstreamWithBody(apiKey, requestBody, endpoint = UPSTREAM_RESPONSES_URL) {
+  const controller = new AbortController();
+  const timeoutMs = 12000;
+  const timer = setTimeout(() => controller.abort("upstream-timeout"), timeoutMs);
+  let upstreamResp;
+  try {
+    upstreamResp = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify(requestBody),
-  });
+    signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timer);
+  }
   const upstreamText = await upstreamResp.text().catch(() => "");
   let upstreamJson = {};
   try {
@@ -209,11 +331,14 @@ function buildAttemptsForModel(prompt, model) {
   return [
     {
       tag: `${model}:responses_message_input_text`,
+      endpoint: UPSTREAM_RESPONSES_URL,
       body: {
         model,
+        max_output_tokens: 512,
         text: { format: { type: "text" } },
         input: [
           {
+            type: "message",
             role: "user",
             content: [{ type: "input_text", text: prompt }],
           },
@@ -222,27 +347,39 @@ function buildAttemptsForModel(prompt, model) {
     },
     {
       tag: `${model}:responses_message_plain_content`,
+      endpoint: UPSTREAM_RESPONSES_URL,
       body: {
         model,
+        max_output_tokens: 512,
         text: { format: { type: "text" } },
-        input: [{ role: "user", content: prompt }],
+        input: [{ type: "message", role: "user", content: prompt }],
       },
     },
     {
       tag: `${model}:responses_plain_input`,
-      body: { model, input: prompt, text: { format: { type: "text" } } },
+      endpoint: UPSTREAM_RESPONSES_URL,
+      body: { model, input: prompt, max_output_tokens: 512, text: { format: { type: "text" } } },
     },
   ];
 }
 
 async function callUpstreamAcrossModels(prompt, apiKey, preferredModel) {
-  const modelOrder = [preferredModel || FIXED_MODEL];
+  const firstModel = preferredModel || FIXED_MODEL;
+  const modelOrder = [
+    firstModel,
+    ...ALLOWED_MODEL_FALLBACK_ORDER.filter((m) => m !== firstModel),
+  ];
   const attempts = [];
+  let lastResult = null;
 
   for (const model of modelOrder) {
     const modelAttempts = buildAttemptsForModel(prompt, model);
     for (const attempt of modelAttempts) {
-      const result = withAttemptTag(await callUpstreamWithBody(apiKey, attempt.body), attempt.tag);
+      const result = withAttemptTag(
+        await callUpstreamWithBody(apiKey, attempt.body, attempt.endpoint),
+        attempt.tag,
+      );
+      lastResult = result;
       const hasText = Boolean(extractOutputText(result?.body || {}));
       attempts.push({
         tag: attempt.tag,
@@ -255,7 +392,7 @@ async function callUpstreamAcrossModels(prompt, apiKey, preferredModel) {
       }
     }
   }
-  return { result: null, attempts };
+  return { result: lastResult, attempts };
 }
 
 const app = new Hono();
@@ -342,16 +479,6 @@ app.post("/api/chat", async (c) => {
     attempts = run.attempts;
   } catch (e) {
     return c.json({ error: e?.message || "Internal error" }, 500);
-  }
-
-  if (!upstream) {
-    return c.json(
-      {
-        error: "Upstream returned empty output.",
-        upstream_attempts: attempts,
-      },
-      502,
-    );
   }
 
   const reply = extractOutputText(upstream?.body || {});

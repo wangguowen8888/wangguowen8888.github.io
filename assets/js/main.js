@@ -689,22 +689,95 @@
       if (!text) return false;
       return true;
     };
+    const pickFirstText = (...values) => {
+      for (const value of values) {
+        if (typeof value === "string" && value.trim()) return value.trim();
+      }
+      return "";
+    };
+    const extractReplyFromPayload = (payload) => {
+      if (!payload || typeof payload !== "object") return "";
+      const direct = pickFirstText(
+        payload.reply,
+        payload.output_text,
+        payload.text,
+        payload?.message,
+        payload?.content
+      );
+      if (direct) return direct;
+      const nested = pickFirstText(
+        payload?.reply?.text,
+        payload?.reply?.value,
+        payload?.text?.value,
+        payload?.data?.reply,
+        payload?.data?.output_text,
+        payload?.response?.reply,
+        payload?.response?.output_text
+      );
+      if (nested) return nested;
+      const choices = payload?.choices;
+      if (Array.isArray(choices)) {
+        for (const choice of choices) {
+          const choiceText = pickFirstText(
+            choice?.message?.content,
+            choice?.message?.content?.text,
+            choice?.message?.content?.value,
+            choice?.delta?.content,
+            choice?.delta?.content?.text,
+            choice?.delta?.content?.value,
+            choice?.text
+          );
+          if (choiceText) return choiceText;
+        }
+      }
+      return "";
+    };
     const callBackendApi = async (prompt) => {
       const endpoint = String(window.siteConfig?.chatApiEndpoint || "").trim();
       if (!endpoint) {
         return "当前未配置 chatApiEndpoint，请在 site-config.js 配置后端接口。";
       }
+      const debugEnabled = true;
       try {
         const response = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt }),
+          body: JSON.stringify({ prompt, debug: debugEnabled ? "1" : "0" }),
         });
-        const data = await response.json().catch(() => null);
-        if (typeof data?.reply === "string" && data.reply.trim()) return data.reply.trim();
-        if (typeof data?.error === "string" && data.error.trim()) return `后端错误：${data.error.trim()}`;
+        const rawText = await response.text().catch(() => "");
+        const data = rawText ? JSON.parse(rawText) : null;
+        const reply = extractReplyFromPayload(data);
+        if (reply) return reply;
+        if (typeof data?.error === "string" && data.error.trim()) {
+          let debugText = "";
+          if (Array.isArray(data?.upstream_attempts) && data.upstream_attempts.length) {
+            const detail = data.upstream_attempts
+              .map((attempt) => {
+                const tag = String(attempt?.tag || "unknown");
+                const status = String(attempt?.status || "-");
+                const hasText = attempt?.has_text ? "yes" : "no";
+                return `${tag} [status=${status}, has_text=${hasText}]`;
+              })
+              .join(" | ");
+            debugText = `\n\n[debug] upstream_attempts: ${detail}`;
+          }
+          if (typeof data?.upstream_attempt === "string" && data.upstream_attempt.trim()) {
+            debugText += `\n[debug] upstream_attempt: ${data.upstream_attempt.trim()}`;
+          }
+          if (typeof data?.upstream_content_type === "string" && data.upstream_content_type.trim()) {
+            debugText += `\n[debug] upstream_content_type: ${data.upstream_content_type.trim()}`;
+          }
+          if (typeof data?.upstream_status !== "undefined") {
+            debugText += `\n[debug] upstream_status: ${data.upstream_status}`;
+          }
+          return `后端错误：${data.error.trim()}${debugText}`;
+        }
         if (!response.ok) return `后端接口调用失败（HTTP ${response.status}）。`;
-        return "后端未返回可展示的 reply 字段，请检查 Worker 协议适配。";
+        const compactRaw = rawText.trim().slice(0, 260);
+        if (compactRaw) {
+          return `后端已返回，但未匹配到可展示文本。原始响应片段：${compactRaw}`;
+        }
+        return "后端返回为空，请检查 Worker 输出。";
       } catch {
         return "后端接口调用失败，请检查网络、接口地址或服务状态。";
       }
