@@ -1,7 +1,6 @@
 (() => {
   const config = window.siteConfig || {};
   const byId = (id) => document.getElementById(id);
-  const debugLog = (...args) => console.log("[locale-debug]", ...args);
   const LOCALE_KEY = "site-locale";
   const GT_COOKIE = "googtrans";
   const GT_CONTAINER_ID = "google_translate_element_hidden";
@@ -24,13 +23,11 @@
     const encoded = encodeURIComponent(value);
     const maxAge = 60 * 60 * 24 * 365;
     document.cookie = `${GT_COOKIE}=${encoded}; path=/; max-age=${maxAge}; samesite=lax`;
-    debugLog("set cookie", { key: GT_COOKIE, value, cookie: document.cookie });
   };
   const clearGtCookie = () => {
     // Clear broadly to avoid stale cookie scope/path variants.
     document.cookie = `${GT_COOKIE}=; path=/; max-age=0; samesite=lax`;
     document.cookie = `${GT_COOKIE}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; samesite=lax`;
-    debugLog("clear cookie", { key: GT_COOKIE, cookie: document.cookie });
   };
   const ensureGoogleTranslateContainer = () => {
     let container = byId(GT_CONTAINER_ID);
@@ -104,6 +101,11 @@
     const options = Array.from(combo.options || []);
     const hasOption = options.some((option) => option.value === normalizeTarget);
     if (!hasOption) {
+      if (normalizeTarget === "zh-CN") {
+        // For Chinese source pages, Google Translate may not expose zh-CN in combo.
+        // Treat this as no-op instead of failing locale initialization.
+        return;
+      }
       throw new Error(`translate combo missing ${normalizeTarget} option`);
     }
     combo.value = normalizeTarget;
@@ -119,9 +121,8 @@
     setTimeout(async () => {
       try {
         await triggerTranslateLocale(target);
-        debugLog("retrigger translation finished");
       } catch (error) {
-        debugLog("retrigger translation failed", error);
+        // Ignore retrigger failures; initial load already attempted.
       }
     }, 1200);
   };
@@ -153,36 +154,6 @@
     document.body.classList.toggle("is-global-loading", visible);
     overlay.setAttribute("aria-hidden", visible ? "false" : "true");
   };
-  const normalizeTranslateOverlay = () => {
-    const selectors = [
-      ".goog-te-banner-frame.skiptranslate",
-      "iframe.goog-te-banner-frame",
-      "body > .skiptranslate",
-      "body > .skiptranslate > iframe.skiptranslate",
-      ".VIpgJd-ZVi9od-ORHb-OEVmcd"
-    ];
-    for (const selector of selectors) {
-      for (const node of document.querySelectorAll(selector)) {
-        node.style.setProperty("display", "none", "important");
-        node.style.setProperty("visibility", "hidden", "important");
-        node.setAttribute("aria-hidden", "true");
-      }
-    }
-    document.body.style.setProperty("top", "0px", "important");
-    document.body.style.setProperty("position", "static", "important");
-    document.documentElement.style.setProperty("top", "0px", "important");
-  };
-  const setupTranslateOverlayGuard = () => {
-    normalizeTranslateOverlay();
-    const observer = new MutationObserver(() => normalizeTranslateOverlay());
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["style", "class"]
-    });
-    setInterval(normalizeTranslateOverlay, 800);
-  };
   const setLocaleButtonState = (locale) => {
     for (const button of document.querySelectorAll("[data-locale-choice]")) {
       const selected = (button.dataset.localeChoice || "zh") === normalizeLocale(locale);
@@ -193,7 +164,6 @@
   };
   const applyPageLocale = async (locale) => {
     const target = normalizeLocale(locale);
-    debugLog("applyPageLocale start", { target, savedLocale: getSavedLocale(), cookieLang: getGtLang() });
     setLocaleButtonState(target);
     saveLocale(target);
     setLocaleLoadingState(true);
@@ -211,13 +181,11 @@
       setTimeout(() => setLocaleLoadingState(false), 650);
       setTimeout(() => setGlobalLoadingState(false, "locale-switch"), 650);
     } catch (error) {
-      debugLog("translation runtime failed; fallback to reload", error);
       if (target === "en") {
         setGtCookie("en");
       } else {
         clearGtCookie();
       }
-      debugLog("reload page for deterministic full-language switch", { target });
       location.reload();
     }
   };
@@ -381,9 +349,7 @@
     left.append(year, ` ${footer.text || ""}`);
 
     const linksWrap = document.createElement("div");
-    linksWrap.style.display = "flex";
-    linksWrap.style.gap = "12px";
-    linksWrap.style.flexWrap = "wrap";
+    linksWrap.className = "footer-links";
     for (const link of footer.links || []) {
       linksWrap.appendChild(createLink(joinHref(root, link.href), link.label));
     }
@@ -406,11 +372,6 @@
       button.addEventListener("click", async (event) => {
         event.preventDefault();
         const nextLocale = button.dataset.localeChoice === "en" ? "en" : "zh";
-        debugLog("locale button clicked", {
-          nextLocale,
-          currentSaved: getSavedLocale(),
-          currentCookie: getGtLang()
-        });
         if (nextLocale === getSavedLocale()) return;
         await applyPageLocale(nextLocale);
       });
@@ -419,7 +380,6 @@
 
   // Init after topbar is rendered.
   setupLocaleToggle();
-  setupTranslateOverlayGuard();
   const initSavedLocale = async () => {
     setLocaleLoadingState(true);
     setGlobalLoadingState(true, "locale-init");
@@ -445,7 +405,7 @@
         retriggerTranslation("zh-CN");
       }
     } catch (error) {
-      debugLog("init locale failed", error);
+      // Ignore init failures; locale buttons still work.
     } finally {
       setTimeout(() => setLocaleLoadingState(false), 650);
       setTimeout(() => setGlobalLoadingState(false, "locale-init"), 650);
@@ -507,6 +467,21 @@
       return input;
     }
   };
+  const mapWithConcurrency = async (items, limit, mapper) => {
+    const list = Array.from(items || []);
+    if (!list.length) return [];
+    const results = new Array(list.length);
+    let nextIndex = 0;
+    const workers = new Array(Math.max(1, Math.min(limit || 1, list.length))).fill(0).map(async () => {
+      while (nextIndex < list.length) {
+        const current = nextIndex;
+        nextIndex += 1;
+        results[current] = await mapper(list[current], current);
+      }
+    });
+    await Promise.all(workers);
+    return results;
+  };
   const translateDailyContentForZh = async () => {
     if (currentLocale !== "zh") return;
     if (!location.pathname.includes("/daily/")) return;
@@ -514,37 +489,45 @@
     const cache = readDailyTranslationCache();
     try {
       const titleLinks = Array.from(document.querySelectorAll(".post .card h3 a"));
-      for (const link of titleLinks) {
-        const original = (link.dataset.originalText || link.textContent || "").trim();
-        if (!original) continue;
-        if (!link.dataset.originalText) link.dataset.originalText = original;
-        const translated = await translateToZh(original, cache);
-        if (translated && translated !== original) {
-          link.textContent = translated;
-        }
-      }
+      const titleTasks = titleLinks
+        .map((link) => {
+          const original = (link.dataset.originalText || link.textContent || "").trim();
+          if (!original) return null;
+          if (!link.dataset.originalText) link.dataset.originalText = original;
+          return { node: link, original };
+        })
+        .filter(Boolean);
+      await mapWithConcurrency(titleTasks, 4, async (task) => {
+        const translated = await translateToZh(task.original, cache);
+        if (translated && translated !== task.original) task.node.textContent = translated;
+      });
+
       const summaryNodes = Array.from(document.querySelectorAll(".post .card p:not(.meta)"));
-      for (const node of summaryNodes) {
-        const original = (node.dataset.originalText || node.textContent || "").trim();
-        if (!original) continue;
-        if (!node.dataset.originalText) node.dataset.originalText = original;
-        if (hasChinese(original)) {
-          const match = original.match(/^(来源：.+?，类型：.+?，)([\s\S]+)$/);
-          if (!match) continue;
-          const prefix = match[1];
-          const body = (match[2] || "").trim();
-          if (!body || !hasEnglish(body)) continue;
-          const translatedBody = await translateToZh(body, cache);
-          if (translatedBody && translatedBody !== body) {
-            node.textContent = `${prefix}${translatedBody}`;
+      const summaryTasks = summaryNodes
+        .map((node) => {
+          const original = (node.dataset.originalText || node.textContent || "").trim();
+          if (!original) return null;
+          if (!node.dataset.originalText) node.dataset.originalText = original;
+          if (hasChinese(original)) {
+            const match = original.match(/^(来源：.+?，类型：.+?，)([\s\S]+)$/);
+            if (!match) return null;
+            const prefix = match[1];
+            const body = (match[2] || "").trim();
+            if (!body || !hasEnglish(body)) return null;
+            return { node, original, prefix, body, mode: "prefix" };
           }
-          continue;
+          return { node, original, mode: "full" };
+        })
+        .filter(Boolean);
+      await mapWithConcurrency(summaryTasks, 4, async (task) => {
+        if (task.mode === "prefix") {
+          const translatedBody = await translateToZh(task.body, cache);
+          if (translatedBody && translatedBody !== task.body) task.node.textContent = `${task.prefix}${translatedBody}`;
+          return;
         }
-        const translated = await translateToZh(original, cache);
-        if (translated && translated !== original) {
-          node.textContent = translated;
-        }
-      }
+        const translated = await translateToZh(task.original, cache);
+        if (translated && translated !== task.original) task.node.textContent = translated;
+      });
       writeDailyTranslationCache(cache);
     } finally {
       setGlobalLoadingState(false, "daily-translate");
@@ -591,19 +574,28 @@
   if (q) {
     const targets = Array.from(document.querySelectorAll("[data-search-item]"));
     const getText = (el) => (el.getAttribute("data-search-text") || el.textContent || "").toLowerCase();
+    const empty = byId("search-empty");
+    const targetText = targets.map((el) => getText(el));
     const run = () => {
       const term = (q.value || "").trim().toLowerCase();
-      for (const el of targets) {
-        const hit = term === "" || getText(el).includes(term);
+      for (let i = 0; i < targets.length; i += 1) {
+        const el = targets[i];
+        const hit = term === "" || targetText[i].includes(term);
         el.style.display = hit ? "" : "none";
       }
-      const empty = byId("search-empty");
       if (empty) {
         const visible = targets.some((el) => el.style.display !== "none");
         empty.style.display = visible ? "none" : "";
       }
     };
-    q.addEventListener("input", run);
+    let raf = 0;
+    q.addEventListener("input", () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        run();
+      });
+    });
     run();
   }
 
@@ -650,13 +642,16 @@
     const messagesEl = byId("chat-messages");
     const inputWrapEl = document.querySelector("#chat-tester .chat-input-wrap");
     let loadingMessageEl = null;
-    const CHAT_DEBUG_FLAG = "chat-debug";
-    const isChatDebugEnabled = () => {
-      const fromStorage = String(localStorage.getItem(CHAT_DEBUG_FLAG) || "").trim().toLowerCase();
-      const fromQuery = new URLSearchParams(location.search).get("chat_debug");
-      return fromStorage === "1" || fromStorage === "true" || fromQuery === "1" || fromQuery === "true";
+    const ensureBusyIndicator = () => {
+      let indicator = chatTesterRoot.querySelector(".chat-busy-indicator");
+      if (indicator) return indicator;
+      indicator = document.createElement("div");
+      indicator.className = "chat-busy-indicator";
+      indicator.setAttribute("aria-hidden", "true");
+      chatTesterRoot.appendChild(indicator);
+      return indicator;
     };
-    const chatDebugEnabled = isChatDebugEnabled();
+    ensureBusyIndicator();
     const addMessage = (role, text) => {
       if (!messagesEl) return;
       const item = document.createElement("div");
@@ -664,20 +659,6 @@
       item.textContent = text;
       messagesEl.appendChild(item);
       messagesEl.scrollTop = messagesEl.scrollHeight;
-    };
-    const formatDebugValue = (value) => {
-      if (typeof value === "string") return value;
-      try {
-        return JSON.stringify(value, null, 2);
-      } catch {
-        return String(value);
-      }
-    };
-    const addDebugMessage = (label, value) => {
-      if (!chatDebugEnabled) return;
-      const body = formatDebugValue(value);
-      addMessage("system", `[debug] ${label}\n${body}`);
-      console.log(`[chat-debug] ${label}`, value);
     };
     const setChatBusy = (isBusy) => {
       chatTesterRoot.classList.toggle("is-busy", isBusy);
@@ -718,8 +699,8 @@
     };
     const extractReplyFromPayload = (payload) => {
       if (!payload || typeof payload !== "object") return "";
+      if (typeof payload.reply === "string") return payload.reply;
       const direct = pickFirstText(
-        payload.reply,
         payload.output_text,
         payload.text,
         payload?.message,
@@ -758,47 +739,25 @@
       if (!endpoint) {
         return "当前未配置 chatApiEndpoint，请在 site-config.js 配置后端接口。";
       }
-      const debugEnabled = true;
-      addDebugMessage("endpoint", endpoint);
-      addDebugMessage("prompt", prompt);
       try {
         const response = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt, debug: debugEnabled ? "1" : "0" }),
+          body: JSON.stringify({ prompt })
         });
-        addDebugMessage("http_status", response.status);
-        addDebugMessage("content_type", response.headers.get("content-type") || "");
         const rawText = await response.text().catch(() => "");
-        addDebugMessage("raw_response", rawText.slice(0, 1600));
-        const data = rawText ? JSON.parse(rawText) : null;
-        addDebugMessage("json_response", data);
+        let data = null;
+        if (rawText) {
+          try {
+            data = JSON.parse(rawText);
+          } catch {
+            data = null;
+          }
+        }
         const reply = extractReplyFromPayload(data);
-        addDebugMessage("parsed_reply", reply || "(empty)");
         if (reply) return reply;
         if (typeof data?.error === "string" && data.error.trim()) {
-          let debugText = "";
-          if (Array.isArray(data?.upstream_attempts) && data.upstream_attempts.length) {
-            const detail = data.upstream_attempts
-              .map((attempt) => {
-                const tag = String(attempt?.tag || "unknown");
-                const status = String(attempt?.status || "-");
-                const hasText = attempt?.has_text ? "yes" : "no";
-                return `${tag} [status=${status}, has_text=${hasText}]`;
-              })
-              .join(" | ");
-            debugText = `\n\n[debug] upstream_attempts: ${detail}`;
-          }
-          if (typeof data?.upstream_attempt === "string" && data.upstream_attempt.trim()) {
-            debugText += `\n[debug] upstream_attempt: ${data.upstream_attempt.trim()}`;
-          }
-          if (typeof data?.upstream_content_type === "string" && data.upstream_content_type.trim()) {
-            debugText += `\n[debug] upstream_content_type: ${data.upstream_content_type.trim()}`;
-          }
-          if (typeof data?.upstream_status !== "undefined") {
-            debugText += `\n[debug] upstream_status: ${data.upstream_status}`;
-          }
-          return `后端错误：${data.error.trim()}${debugText}`;
+          return `后端错误：${data.error.trim()}`;
         }
         if (!response.ok) return `后端接口调用失败（HTTP ${response.status}）。`;
         const compactRaw = rawText.trim().slice(0, 260);

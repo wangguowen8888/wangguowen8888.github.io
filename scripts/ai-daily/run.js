@@ -48,7 +48,7 @@ async function resetIfNewWeek({ dataDir, dailyRootDir, now }) {
     previousWeekKey = null;
   }
   if (previousWeekKey && previousWeekKey !== weekKey) {
-    console.log(`[ai-daily] new week detected (${previousWeekKey} -> ${weekKey}), clearing all daily history`);
+    console.warn(`[ai-daily] new week detected (${previousWeekKey} -> ${weekKey}), clearing all daily history`);
     await clearDailyHistory({ dataDir, dailyRootDir });
   }
   await fs.mkdir(dataDir, { recursive: true });

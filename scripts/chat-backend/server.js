@@ -17,6 +17,7 @@ const { URL } = require("url");
 const PORT = Number(process.env.PORT || 3001);
 const FIXED_MODEL = "gpt-5.2";
 const PROJECT_ROOT = path.resolve(__dirname, "../..");
+const VERBOSE = String(process.env.CHAT_BACKEND_VERBOSE || "").trim() === "1";
 
 let active = false;
 let codexInvocation = null;
@@ -60,12 +61,14 @@ function resolveCodexInvocation() {
 }
 
 codexInvocation = resolveCodexInvocation();
-// Debug info to ensure we invoke codex correctly on Windows.
-// (We only print paths/types; no secrets.)
-// eslint-disable-next-line no-console
-console.log("[chat-backend] codexInvocation:", codexInvocation);
-// eslint-disable-next-line no-console
-console.log("[chat-backend] POWERSHELL_EXE:", POWERSHELL_EXE);
+if (VERBOSE) {
+  // Debug info to ensure we invoke codex correctly on Windows.
+  // (We only print paths/types; no secrets.)
+  // eslint-disable-next-line no-console
+  console.log("[chat-backend] codexInvocation:", codexInvocation);
+  // eslint-disable-next-line no-console
+  console.log("[chat-backend] POWERSHELL_EXE:", POWERSHELL_EXE);
+}
 
 function json(res, status, body) {
   const payload = JSON.stringify(body);
@@ -223,6 +226,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, "127.0.0.1", () => {
+  if (!VERBOSE) return;
   // eslint-disable-next-line no-console
   console.log(`[chat-backend] listening at http://127.0.0.1:${PORT}/api/chat`);
   // eslint-disable-next-line no-console

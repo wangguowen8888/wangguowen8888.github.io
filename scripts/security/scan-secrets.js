@@ -46,5 +46,3 @@ if (offenders.length) {
   console.error("\nRemove secret values and use environment variables or GitHub Secrets.\n");
   process.exit(1);
 }
-
-console.log("[secret-scan] OK");

@@ -25,5 +25,3 @@ try {
 } catch (_) {
   // Windows may ignore chmod.
 }
-
-console.log("[hook-install] pre-commit hook installed.");
