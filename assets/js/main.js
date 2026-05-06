@@ -650,6 +650,13 @@
     const messagesEl = byId("chat-messages");
     const inputWrapEl = document.querySelector("#chat-tester .chat-input-wrap");
     let loadingMessageEl = null;
+    const CHAT_DEBUG_FLAG = "chat-debug";
+    const isChatDebugEnabled = () => {
+      const fromStorage = String(localStorage.getItem(CHAT_DEBUG_FLAG) || "").trim().toLowerCase();
+      const fromQuery = new URLSearchParams(location.search).get("chat_debug");
+      return fromStorage === "1" || fromStorage === "true" || fromQuery === "1" || fromQuery === "true";
+    };
+    const chatDebugEnabled = isChatDebugEnabled();
     const addMessage = (role, text) => {
       if (!messagesEl) return;
       const item = document.createElement("div");
@@ -657,6 +664,20 @@
       item.textContent = text;
       messagesEl.appendChild(item);
       messagesEl.scrollTop = messagesEl.scrollHeight;
+    };
+    const formatDebugValue = (value) => {
+      if (typeof value === "string") return value;
+      try {
+        return JSON.stringify(value, null, 2);
+      } catch {
+        return String(value);
+      }
+    };
+    const addDebugMessage = (label, value) => {
+      if (!chatDebugEnabled) return;
+      const body = formatDebugValue(value);
+      addMessage("system", `[debug] ${label}\n${body}`);
+      console.log(`[chat-debug] ${label}`, value);
     };
     const setChatBusy = (isBusy) => {
       chatTesterRoot.classList.toggle("is-busy", isBusy);
@@ -738,15 +759,22 @@
         return "当前未配置 chatApiEndpoint，请在 site-config.js 配置后端接口。";
       }
       const debugEnabled = true;
+      addDebugMessage("endpoint", endpoint);
+      addDebugMessage("prompt", prompt);
       try {
         const response = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt, debug: debugEnabled ? "1" : "0" }),
         });
+        addDebugMessage("http_status", response.status);
+        addDebugMessage("content_type", response.headers.get("content-type") || "");
         const rawText = await response.text().catch(() => "");
+        addDebugMessage("raw_response", rawText.slice(0, 1600));
         const data = rawText ? JSON.parse(rawText) : null;
+        addDebugMessage("json_response", data);
         const reply = extractReplyFromPayload(data);
+        addDebugMessage("parsed_reply", reply || "(empty)");
         if (reply) return reply;
         if (typeof data?.error === "string" && data.error.trim()) {
           let debugText = "";
