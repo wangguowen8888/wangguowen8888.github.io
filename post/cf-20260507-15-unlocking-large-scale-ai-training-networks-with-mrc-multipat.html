@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unlocking large scale AI training networks with MRC (Multipath Reliable Connection)</title>
+    <meta name="description" content="OpenAI introduces MRC (Multipath Reliable Connection), a new supercomputer networking protocol released via OCP to impro" />
+    <link rel="canonical" href="https://wangguowen8888.github.io/post/cf-20260507-15-unlocking-large-scale-ai-training-networks-with-mrc-multipat.html" />
+    <meta property="og:title" content="Unlocking large scale AI training networks with MRC (Multipath Reliable Connection)" />
+    <meta property="og:description" content="OpenAI introduces MRC (Multipath Reliable Connection), a new supercomputer networking protocol released via OCP to improve resilience and performance in large-scale AI training clusters." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wangguowen8888.github.io/post/cf-20260507-15-unlocking-large-scale-ai-training-networks-with-mrc-multipat.html" />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <script defer src="../assets/js/site-config.js"></script>
+    <script defer src="../assets/js/main.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1025508631552415"
+     crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Unlocking large scale AI training networks with MRC (Multipath Reliable Connection)",
+        "datePublished": "2026-05-05",
+        "dateModified": "2026-05-05",
+        "author": { "@type": "Person", "name": "站长" },
+        "publisher": { "@type": "Organization", "name": "AI 工具导航" },
+        "mainEntityOfPage": "https://wangguowen8888.github.io/post/cf-20260507-15-unlocking-large-scale-ai-training-networks-with-mrc-multipat.html"
+      }
+    </script>
+  </head>
+  <body data-root=".." data-page-kind="post" data-footer-kind="default" data-breadcrumb-parent-label="AI 聊天" data-breadcrumb-parent-href="ai-chat/" data-breadcrumb-current="Unlocking large scale AI training networks with MRC (Multipath Reliable Connection)">
+    <div data-site-topbar></div>
+    <main class="post">
+      <div class="container">
+        <header>
+          <div data-site-breadcrumb></div>
+          <h1>Unlocking large scale AI training networks with MRC (Multipath Reliable Connection)</h1>
+          <p class="subtitle">OpenAI introduces MRC (Multipath Reliable Connection), a new supercomputer networking protocol released via OCP to impro</p>
+          <div class="byline">
+            <span>分类：<a href="../ai-chat/">AI 聊天</a></span>
+            <span>·</span>
+            <span>更新：2026-05-05</span>
+            <span>·</span>
+            <a href="https://openai.com/index/mrc-supercomputer-networking" target="_blank" rel="noopener noreferrer">原文来源：OpenAI Blog</a>
+          </div>
+        </header>
+        <article class="prose">
+          <p><img src="https://images.ctfassets.net/kftzwdyauwt9/NSCNpuBUrt6RGqH5vxTT5/424808cad42085d2f79adcb86566ae04/SEO.png?w=1600&amp;h=900&amp;fit=fill" alt="Unlocking large scale AI training networks with MRC (Multipath Reliable Connection)" style="width:100%;border-radius:14px;border:1px solid var(--border);object-fit:cover" /></p><div class="callout"><p style="margin:0"><strong>先看结论：</strong>OpenAI introduces MRC (Multipath Reliable Connection), a new supercomputer networking protocol released via OCP to improve resilience and pe</p></div><p>Supercomputer networking to accelerate large scale AI training Frontier model training depends on reliable supercomputer networks that can quickly move data between GPUs.</p><h2>核心内容</h2><p>To make this faster and more efficient, OpenAI has partnered with AMD, Broadcom, Intel, Microsoft, and NVIDIA to develop MRC (Multipath Reliable Connection): a novel protocol that improves GPU networking performance and resilience in large training clusters.</p><p>We released MRC today(opens in a new window) through the Open Compute Project (OCP) to enable the broader industry to use it.</p><p>With more than 900M people using ChatGPT every week, our systems are becoming core infrastructure for AI, helping people and businesses around the world build with increasingly capable models.</p><p>Prior to the inception of Stargate, we co-developed, brought up, and maintained our first three generations of supercomputers with great care and close collaboration with our partners over the span of a few years.</p><p>This invaluable experience informed our strong belief that, to efficiently use compute at the scale of Stargate and succeed in our mission, we need to rethink and drastically reduce complexity in every layer of the stack – including network design.</p><p>Publishing the MRC specification is part of OpenAI’s overall compute strategy: shared standards in key infrastructure layers can help scale AI systems more efficiently, reliably, and across a broader partner ecosystem.</p><p>In this post, we’ll cover the design of MRC, including: i) how it enables us to build multi-plane high-speed networks to create redundancy to ride out network failures, while using fewer components and less power ii) how MRC’s adaptive packet spraying virtually eliminates core congestion and iii) how our deployments use static source routing to bypass failures and eliminate whole classes of routing failure.</p><p>In concert, these benefits allow us to deliver better models to everyone faster.</p><p>When training large AI models, a single step can involve many millions of data transfers.</p><p>One transfer arriving late can ripple through the entire job, potentially causing GPUs to sit idle.</p><p>Network congestion, link, and device failures are the most common sources of delay and jitter in transfers.</p><p>These problems get more frequent, and harder to solve, as the size of the cluster increases.</p><p>This makes networking technology a key part of the design of Stargate.</p><p>To enable the current scale of Stargate supercomputers, we faced two key networking challenges.</p><p>First, whenever possible, we should minimize the possibility of network congestion.</p><div class="callout"><p style="margin:0"><strong>延伸阅读：</strong>如果你想继续找可转化的工具入口，可以去工具合集和赚钱专题继续看。</p><p style="margin:10px 0 0"><a class="btn primary" href="../tools/">进入 AI 工具导航页</a> <a class="btn" href="../ai-chat/">查看更多 AI 聊天</a></p></div>
+        </article>
+      </div>
+    </main>
+    <div data-site-footer></div>
+  </body>
+</html>

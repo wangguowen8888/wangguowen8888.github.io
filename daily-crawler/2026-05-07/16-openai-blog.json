@@ -1,0 +1,22 @@
+{
+  "dateKey": "2026-05-07",
+  "rank": 16,
+  "sourceId": "openai-blog",
+  "sourceName": "OpenAI Blog",
+  "title": "GPT-5.5 Instant System Card",
+  "url": "https://openai.com/index/gpt-5-5-instant-system-card",
+  "publishedAt": "2026-05-05T10:00:00+00:00",
+  "summary": "GPT‑5.5 Instant is our latest Instant model, and explained in our blog. The comprehensive safety mitigation approach for this model is similar to previous models in this series, but this is the first Instant model that we are treating as High capability in our Cybersecurity and Biological & Chemica...",
+  "content": "GPT‑5.5 Instant is our latest Instant model, and explained in our blog. The comprehensive safety mitigation approach for this model is similar to previous models in this series, but this is the first Instant model that we are treating as High capability in our Cybersecurity and Biological & Chemical Preparedness categories, and implementing appropriate safeguards. In this card we also refer to GPT‑5.5 Instant as gpt-5.5-instant. Note that there is not a model named GPT‑5.4 Instant, and the main model to baseline against is GPT‑5.3 Instant. Additionally, we refer to GPT‑5.5(opens in a new window) as GPT‑5.5 Thinking to avoid confusion with the instant model.",
+  "langMode": "translate",
+  "translationTarget": "zh-CN",
+  "translatedContent": "",
+  "images": [
+    "https://images.ctfassets.net/kftzwdyauwt9/Aj1UBJC1Kpt5IYhqrwOn4/0b039f2804579e9bbe42a67f8316a5c0/System_Card_16x9.jpg?w=1600&h=900&fit=fill",
+    "https://images.ctfassets.net/kftzwdyauwt9/1UA2Ru5dt5rwdQfwl6B6m3/13c19cd49b106f8a39d5a2a132343b77/Goblins-1_1_Art_Card.jpg?w=3840&q=90&fm=webp",
+    "https://images.ctfassets.net/kftzwdyauwt9/4PQEkUjwzZCUh88wyOXoc9/d06376c2bc7249d357cbad6019ecccde/Frame.png?w=3840&q=90&fm=webp",
+    "https://images.ctfassets.net/kftzwdyauwt9/7qMrOFCWWMweIDBUpYFr79/7741661650df6eb935acb5bda179b091/System_Card_Card_SEO_1x1.jpg?w=3840&q=90&fm=webp"
+  ],
+  "language": "en-US",
+  "score": 103.67358440060185
+}

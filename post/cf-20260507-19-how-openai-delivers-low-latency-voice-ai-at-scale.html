@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How OpenAI delivers low-latency voice AI at scale</title>
+    <meta name="description" content="How OpenAI rebuilt its WebRTC stack to power real-time Voice AI with low latency, global scale, and seamless conversatio" />
+    <link rel="canonical" href="https://wangguowen8888.github.io/post/cf-20260507-19-how-openai-delivers-low-latency-voice-ai-at-scale.html" />
+    <meta property="og:title" content="How OpenAI delivers low-latency voice AI at scale" />
+    <meta property="og:description" content="How OpenAI rebuilt its WebRTC stack to power real-time Voice AI with low latency, global scale, and seamless conversational turn-taking." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wangguowen8888.github.io/post/cf-20260507-19-how-openai-delivers-low-latency-voice-ai-at-scale.html" />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <script defer src="../assets/js/site-config.js"></script>
+    <script defer src="../assets/js/main.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1025508631552415"
+     crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How OpenAI delivers low-latency voice AI at scale",
+        "datePublished": "2026-05-04",
+        "dateModified": "2026-05-04",
+        "author": { "@type": "Person", "name": "站长" },
+        "publisher": { "@type": "Organization", "name": "AI 工具导航" },
+        "mainEntityOfPage": "https://wangguowen8888.github.io/post/cf-20260507-19-how-openai-delivers-low-latency-voice-ai-at-scale.html"
+      }
+    </script>
+  </head>
+  <body data-root=".." data-page-kind="post" data-footer-kind="default" data-breadcrumb-parent-label="AI 聊天" data-breadcrumb-parent-href="ai-chat/" data-breadcrumb-current="How OpenAI delivers low-latency voice AI at scale">
+    <div data-site-topbar></div>
+    <main class="post">
+      <div class="container">
+        <header>
+          <div data-site-breadcrumb></div>
+          <h1>How OpenAI delivers low-latency voice AI at scale</h1>
+          <p class="subtitle">How OpenAI rebuilt its WebRTC stack to power real-time Voice AI with low latency, global scale, and seamless conversatio</p>
+          <div class="byline">
+            <span>分类：<a href="../ai-chat/">AI 聊天</a></span>
+            <span>·</span>
+            <span>更新：2026-05-04</span>
+            <span>·</span>
+            <a href="https://openai.com/index/delivering-low-latency-voice-ai-at-scale" target="_blank" rel="noopener noreferrer">原文来源：OpenAI Blog</a>
+          </div>
+        </header>
+        <article class="prose">
+          <p><img src="https://images.ctfassets.net/kftzwdyauwt9/5LQivcsFcndtRl4EsbtnOC/c548a54b9bbe11c0b4d9de714f800b30/Voice_AI___SEO_card.png?w=1600&amp;h=900&amp;fit=fill" alt="How OpenAI delivers low-latency voice AI at scale" style="width:100%;border-radius:14px;border:1px solid var(--border);object-fit:cover" /></p><div class="callout"><p style="margin:0"><strong>先看结论：</strong>How OpenAI rebuilt its WebRTC stack to power real-time Voice AI with low latency, global scale, and seamless conversational turn-taking.</p></div><p>How OpenAI delivers low-latency voice AI at scale By Yi Zhang and William McDonald, Members of Technical Staff Voice AI only feels natural if conversation moves at the speed of speech.</p><h2>核心内容</h2><p>When the network gets in the way, people hear it immediately as awkward pauses, clipped interruptions, or delayed barge-in.</p><p>That matters for ChatGPT voice, for developers building with the Realtime API, for agents working in interactive workflows, and for models that need to process audio while a user is still talking.</p><p>At OpenAI’s scale, that translates into three concrete requirements: - Global reach for more than 900 million weekly active users - Fast connection setup so a user can start speaking as soon as a session begins - Low and stable media round-trip time, with low jitter and packet loss, so turn-taking feels crisp The team at OpenAI responsible for real-time AI interactions recently rearchitected our WebRTC stack to address three constraints that started to collide at scale: one-port-per-session media termination does not fit OpenAI infrastructure well, stateful ICE (Interactive Connectivity Establishment) and DTLS (Datagram Transport Layer Security) sessions need stable ownership, and global routing has to keep first-hop latency low.</p><p>In this post, we walk through the split relay plus transceiver architecture we built to preserve standard WebRTC behavior for clients while changing how packets are routed inside OpenAI’s infrastructure.</p><p>WebRTC is an open standard for sending low-latency audio, video, and data between browsers, mobile apps, and servers.</p><p>It’s often associated with peer-to-peer calling, but it’s also a practical foundation for client-to-server real-time systems because it standardizes the hard parts of interactive media: ICE for connectivity establishment and NAT (Network Address Translation) traversal, DTLS and SRTP (Secure Real-time Transport Protocol) for encrypted transport, codec negotiation for compressing and decoding audio, RTCP (Real-time Transport Control Protocol) for quality control, and client-side features such as echo cancellation and jitter buffering.</p><p>That standardization matters for AI products.</p><p>Without WebRTC, every client would need a different answer for how to establish connectivity across NATs, encrypt media, negotiate codecs (the coder-decoders selected for transmission and decompression) and adapt to changing network conditions.</p><p>With WebRTC, we can build on a protocol stack that’s already implemented across browsers and mobile platforms, focusing our own work on the infrastructure that connects real-time media to models.</p><p>We also build on the WebRTC ecosystem itself, including mature open-source implementations and the standard work that keeps browsers, mobile apps, and servers interoperable.</p><p>Foundational work by Justin Uberti (one of WebRTC’s original architects) and Sean DuBois (creator and maintainer of Pion) made it possible for teams like ours to build on battle-tested media infrastructure rather than reinvent low-level transport, encryption, and congestion-control behavior.</p><p>We’re fortunate that both Justin and Sean are now colleagues here at OpenAI, helping guide how we bring WebRTC and real-time AI closer together.</p><p>For AI, the most important property is that audio arrives as a continuous stream.</p><p>A spoken agent can begin transcribing, reasoning, calling tools, or generating speech while the user is still talking, instead of waiting for a full upload.</p><p>That’s the difference between a system that feels conversational and one that feels like push-to-talk.</p><div class="callout"><p style="margin:0"><strong>延伸阅读：</strong>如果你想继续找可转化的工具入口，可以去工具合集和赚钱专题继续看。</p><p style="margin:10px 0 0"><a class="btn primary" href="../tools/">进入 AI 工具导航页</a> <a class="btn" href="../ai-chat/">查看更多 AI 聊天</a></p></div>
+        </article>
+      </div>
+    </main>
+    <div data-site-footer></div>
+  </body>
+</html>

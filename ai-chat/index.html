@@ -8,22 +8,127 @@
     <link rel="canonical" href="https://wangguowen8888.github.io/ai-chat/" />
     <meta name="theme-color" content="#0b1020" />
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <script defer src="../assets/js/site-config.js?v=20260506-2"></script>
-    <script defer src="../assets/js/main.js?v=20260506-2"></script>
+    <script defer src="../assets/js/site-config.js"></script>
+    <script defer src="../assets/js/main.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1025508631552415"
      crossorigin="anonymous"></script>
   </head>
   <body data-root=".." data-page-kind="category" data-footer-kind="default" data-breadcrumb-current="AI 聊天工具推荐">
     <div data-site-topbar></div>
-    <main class="post chat-page">
+    <main class="post">
       <div class="container">
-        <div data-site-breadcrumb></div>
-        <section class="prose chat-panel chat-panel--minimal" id="chat-tester" aria-label="AI 聊天">
+        <header>
+          <div data-site-breadcrumb></div>
+          <h1>AI 聊天工具推荐（2026）</h1>
+          <p class="subtitle">覆盖聊天模型、推理工具、对比评测和高点击入口。</p>
+          <div class="byline">
+            <span>自动更新内容页</span>
+            <span>·</span>
+            <a href="../tools/">工具合集</a>
+          </div>
+        </header>
+        <section class="prose">
+          <h2>精选文章</h2>
+          <div class="list">
+            <a href="../post/cf-20260507-02-show-hn-hallucinopedia.html">
+              <div>
+                <div class="title">Show HN: Hallucinopedia</div>
+                <div class="desc">Hallucinopedia</div>
+              </div>
+              <time datetime="2026-05-06">2026-05-06</time>
+            </a>
+            <a href="../post/cf-20260507-04-show-hn-i-built-an-open-source-email-builder-alternative-to.html">
+              <div>
+                <div class="title">Show HN: I built an open-source email builder, alternative to Beefree/Unlayer</div>
+                <div class="desc">Templatical Playground</div>
+              </div>
+              <time datetime="2026-05-06">2026-05-06</time>
+            </a>
+            <a href="../post/cf-20260507-06-higher-usage-limits-for-claude-and-a-compute-deal-with-space.html">
+              <div>
+                <div class="title">Higher usage limits for Claude and a compute deal with SpaceX</div>
+                <div class="desc">Higher usage limits for Claude and a compute deal with SpaceX We’ve agreed to a partnership with SpaceX that will substa</div>
+              </div>
+              <time datetime="2026-05-06">2026-05-06</time>
+            </a>
+            <a href="../post/cf-20260507-08-valve-releases-steam-controller-cad-files-under-creative-com.html">
+              <div>
+                <div class="title">Valve releases Steam Controller CAD files under Creative Commons license</div>
+                <div class="desc">With the rather excellent Steam Controller now on its way to the lucky few that managed to order one, Valve has released</div>
+              </div>
+              <time datetime="2026-05-06">2026-05-06</time>
+            </a>
+            <a href="../post/cf-20260507-09-our-continuation-of-mkdocs.html">
+              <div>
+                <div class="title">Our Continuation of MkDocs</div>
+                <div class="desc">Our continuation of MkDocs and a warning regarding &quot;MkDocs 2.0&quot; #33 oprypin announced in Announcements - Beta Was this t</div>
+              </div>
+              <time datetime="2026-05-06">2026-05-06</time>
+            </a>
+            <a href="../post/cf-20260507-11-cnn-founder-ted-turner-a-pioneer-of-cable-tv-news-dies-at-87.html">
+              <div>
+                <div class="title">CNN founder Ted Turner, a pioneer of cable TV news, dies at 87</div>
+                <div class="desc">Ted Turner, the media maverick and philanthropist who founded CNN, a pioneering 24-hour network that revolutionized tele</div>
+              </div>
+              <time datetime="2026-05-06">2026-05-06</time>
+            </a>
+            <a href="../post/cf-20260507-12-introducing-chatgpt-futures-class-of-2026.html">
+              <div>
+                <div class="title">Introducing ChatGPT Futures: Class of 2026</div>
+                <div class="desc">Meet the ChatGPT Futures Class of 2026—26 student innovators using AI to build, research, and drive real-world impact. D</div>
+              </div>
+              <time datetime="2026-05-06">2026-05-06</time>
+            </a>
+            <a href="../post/cf-20260507-14-gpt-55-instant-smarter-clearer-and-more-personalized.html">
+              <div>
+                <div class="title">GPT-5.5 Instant: smarter, clearer, and more personalized</div>
+                <div class="desc">GPT-5.5 Instant updates ChatGPT’s default model with smarter, more accurate answers, reduced hallucinations, and improve</div>
+              </div>
+              <time datetime="2026-05-05">2026-05-05</time>
+            </a>
+          </div>
+        </section>
+        
+        <section class="prose" id="chat-tester">
+          <h2>AI 聊天测试（限流版）</h2>
+          <p>用于测试用户体验和成本控制。支持两种限制方式：每日 5 次 或 单次字数上限。</p>
+          <div class="callout">
+            <p style="margin:0"><strong>连接方式：</strong>可直接在页面填写 API Key 连模型（仅保存在本机浏览器），或配置 <code>chatApiEndpoint</code> 走你自己的接口。</p>
+          </div>
+          <div class="chat-conn-grid">
+            <div>
+              <label>连接模式</label>
+              <select id="chat-conn-mode">
+                <option value="direct">直连模型（浏览器）</option>
+                <option value="backend">后端接口（chatApiEndpoint）</option>
+              </select>
+            </div>
+            <div>
+              <label>模型</label>
+              <input id="chat-model" type="text" value="gpt-4.1-mini" />
+            </div>
+          </div>
+          <div class="chat-conn-grid">
+            <div style="grid-column: span 2;">
+              <label>API Key（仅本地）</label>
+              <input id="chat-api-key" type="password" placeholder="sk-..." autocomplete="off" />
+              <p class="meta">不会写入仓库，仅保存在你当前浏览器 localStorage。</p>
+            </div>
+          </div>
+          <div class="chat-limiter">
+            <label>限制模式</label>
+            <select id="chat-limit-mode">
+              <option value="daily">每日 5 次</option>
+              <option value="chars">单次最多 500 字</option>
+            </select>
+            <p id="chat-limit-hint" class="meta">今日剩余 5/5 次</p>
+          </div>
           <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
           <div class="chat-input-wrap">
-            <div class="chat-input-row">
-              <textarea id="chat-input" rows="3" placeholder="输入你要问 AI 的问题..."></textarea>
-              <button id="chat-send" class="btn primary" type="button">发送</button>
+            <textarea id="chat-input" rows="4" placeholder="输入你要测试的问题..."></textarea>
+            <div class="chat-actions">
+              <small id="chat-char-count">0 / 500</small>
+              <button id="chat-send" class="btn primary" type="button">发送测试</button>
             </div>
           </div>
         </section>
