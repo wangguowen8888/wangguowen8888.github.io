@@ -27,6 +27,11 @@ const UPSTREAM_BASE_URL = "https://code.newcli.com/codex/v1";
 const UPSTREAM_RESPONSES_URL = `${UPSTREAM_BASE_URL}/responses`;
 
 const toIsoNow = () => new Date().toISOString();
+const isDebugEnabled = (env, body) => {
+  const envFlag = String(env?.CHAT_DEBUG ?? "").trim().toLowerCase();
+  const bodyFlag = String(body?.debug ?? "").trim().toLowerCase();
+  return envFlag === "1" || envFlag === "true" || bodyFlag === "1" || bodyFlag === "true";
+};
 
 function getClientIp(req) {
   return (
@@ -45,21 +50,79 @@ async function sha256Hex(input) {
     .join("");
 }
 
+function pickNonEmptyString(...values) {
+  for (const value of values) {
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+  return "";
+}
+
+function textFromContentPart(part) {
+  if (!part || typeof part !== "object") return "";
+  // Responses variants may use: text, text.value, content, content[...].text, value.
+  return pickNonEmptyString(
+    part.text,
+    part?.text?.value,
+    part.value,
+    part?.content?.text,
+    part?.content?.value,
+  );
+}
+
+function textFromMessageContent(content) {
+  if (typeof content === "string") return content.trim();
+  if (!Array.isArray(content)) return "";
+  for (const part of content) {
+    const text = textFromContentPart(part);
+    if (text) return text;
+  }
+  return "";
+}
+
 function extractOutputText(upstream) {
-  // Best-effort extraction for OpenAI Responses API.
-  if (typeof upstream?.output_text === "string" && upstream.output_text.trim()) return upstream.output_text.trim();
+  // Best-effort extraction for OpenAI Responses API and compatible wrappers.
+  if (!upstream || typeof upstream !== "object") return "";
 
-  const output = upstream?.output;
-  if (!Array.isArray(output)) return "";
+  const direct = pickNonEmptyString(
+    upstream.output_text,
+    upstream.text,
+    upstream?.text?.value,
+    upstream.reply,
+    upstream.completion,
+  );
+  if (direct) return direct;
 
-  for (const item of output) {
-    const content = item?.content;
-    if (!Array.isArray(content)) continue;
-    for (const c of content) {
-      if (c?.type === "output_text" && typeof c?.text === "string" && c.text.trim()) return c.text.trim();
-      if (typeof c?.text === "string" && c.text.trim()) return c.text.trim();
+  // Some upstreams nest the canonical response under `response`.
+  if (upstream.response && typeof upstream.response === "object") {
+    const nested = extractOutputText(upstream.response);
+    if (nested) return nested;
+  }
+
+  const output = upstream.output;
+  if (Array.isArray(output)) {
+    for (const item of output) {
+      const content = item?.content;
+      if (!Array.isArray(content)) continue;
+      for (const part of content) {
+        const text = textFromContentPart(part);
+        if (text) return text;
+      }
     }
   }
+
+  // Some providers expose chat-completions-like response shape.
+  const choices = upstream.choices;
+  if (Array.isArray(choices)) {
+    for (const choice of choices) {
+      const text = pickNonEmptyString(
+        choice?.message?.content,
+        textFromMessageContent(choice?.message?.content),
+        choice?.text,
+      );
+      if (text) return text;
+    }
+  }
+
   return "";
 }
 
@@ -227,6 +290,7 @@ app.post("/api/chat", async (c) => {
   const body = await c.req.json().catch(() => ({}));
   const promptRaw = String(body?.prompt ?? "").trim();
   const model = String(body?.model ?? "").trim();
+  const debug = isDebugEnabled(c.env, body);
 
   if (!promptRaw) return c.json({ error: "Missing 'prompt'." }, 400);
   if (model && model !== FIXED_MODEL) {
@@ -292,16 +356,23 @@ app.post("/api/chat", async (c) => {
 
   const reply = extractOutputText(upstream?.body || {});
   if (!reply) {
+    const upstreamObject = String(upstream?.body?.object || "").trim().toLowerCase();
+    const protocolHint = upstreamObject === "chat.completion"
+      ? "Upstream protocol mismatch: expected responses payload but received chat.completion."
+      : "Upstream returned empty output.";
+    const baseError = {
+      error: protocolHint,
+      upstream_status: upstream?.status,
+      upstream_content_type: upstream?.content_type,
+      upstream_attempt: upstream?.attempt,
+      upstream_attempts: attempts,
+    };
+    if (debug) {
+      baseError.upstream = upstream?.body || {};
+      baseError.upstream_raw_preview = String(upstream?.raw_text || "").slice(0, 1200);
+    }
     return c.json(
-      {
-        error: "Upstream returned empty output.",
-        upstream_status: upstream?.status,
-        upstream_content_type: upstream?.content_type,
-        upstream_attempt: upstream?.attempt,
-        upstream_attempts: attempts,
-        upstream: upstream?.body || {},
-        upstream_raw_preview: String(upstream?.raw_text || "").slice(0, 1200),
-      },
+      baseError,
       upstream?.status || 502,
     );
   }
@@ -336,21 +407,22 @@ app.post("/api/chat", async (c) => {
     }
   }
 
-  // Keep response small/stable for frontend: reply + model, plus upstream metadata for debugging.
-  return c.json(
-    {
-      reply: reply.slice(0, maxReplyChars),
-      model: FIXED_MODEL,
-      model_used: FIXED_MODEL,
-      protocol: "responses",
-      upstream_id: upstream?.body?.id,
-      upstream_object: upstream?.body?.object,
-      usage: upstream?.body?.usage,
-      upstream_attempt: upstream?.attempt,
-      upstream_attempts: attempts,
-    },
-    upstream?.status || 200,
-  );
+  // Keep response stable for frontend: always return reply+model.
+  const payload = {
+    reply: reply.slice(0, maxReplyChars),
+    model: FIXED_MODEL,
+    protocol: "responses",
+  };
+  // Optional debug metadata to inspect upstream behavior without affecting UI contract.
+  if (debug) {
+    payload.model_used = FIXED_MODEL;
+    payload.upstream_id = upstream?.body?.id;
+    payload.upstream_object = upstream?.body?.object;
+    payload.usage = upstream?.body?.usage;
+    payload.upstream_attempt = upstream?.attempt;
+    payload.upstream_attempts = attempts;
+  }
+  return c.json(payload, upstream?.status || 200);
 });
 
 export default app;

@@ -701,12 +701,10 @@
           body: JSON.stringify({ prompt }),
         });
         const data = await response.json().catch(() => null);
-        if (data?.reply) return String(data.reply);
-        if (data?.error) return `后端错误：${data.error}`;
-        if (data && !response.ok) return `后端接口调用失败（HTTP ${response.status}）。`;
-        if (data) return "后端返回了非标准格式响应，请检查 Worker 日志。";
+        if (typeof data?.reply === "string" && data.reply.trim()) return data.reply.trim();
+        if (typeof data?.error === "string" && data.error.trim()) return `后端错误：${data.error.trim()}`;
         if (!response.ok) return `后端接口调用失败（HTTP ${response.status}）。`;
-        return "{}";
+        return "后端未返回可展示的 reply 字段，请检查 Worker 协议适配。";
       } catch {
         return "后端接口调用失败，请检查网络、接口地址或服务状态。";
       }

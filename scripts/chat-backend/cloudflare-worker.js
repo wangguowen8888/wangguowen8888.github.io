@@ -28,23 +28,76 @@ function jsonResponse(status, body) {
   });
 }
 
+function pickNonEmptyString(...values) {
+  for (const value of values) {
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+  return "";
+}
+
+function textFromContentPart(part) {
+  if (!part || typeof part !== "object") return "";
+  return pickNonEmptyString(
+    part.text,
+    part?.text?.value,
+    part.value,
+    part?.content?.text,
+    part?.content?.value,
+  );
+}
+
+function textFromMessageContent(content) {
+  if (typeof content === "string") return content.trim();
+  if (!Array.isArray(content)) return "";
+  for (const part of content) {
+    const text = textFromContentPart(part);
+    if (text) return text;
+  }
+  return "";
+}
+
 function extractOutputText(upstream) {
-  // Best-effort extraction: prefer `output_text`, else scan `output[]`.
-  if (typeof upstream?.output_text === "string" && upstream.output_text.trim()) return upstream.output_text.trim();
+  // Best-effort extraction for Responses and chat-completions-like wrappers.
+  if (!upstream || typeof upstream !== "object") return "";
+
+  const direct = pickNonEmptyString(
+    upstream.output_text,
+    upstream.text,
+    upstream?.text?.value,
+    upstream.reply,
+    upstream.completion,
+  );
+  if (direct) return direct;
+
+  if (upstream.response && typeof upstream.response === "object") {
+    const nested = extractOutputText(upstream.response);
+    if (nested) return nested;
+  }
 
   const output = upstream?.output;
-  if (!Array.isArray(output)) return "";
-
-  for (const item of output) {
-    const content = item?.content;
-    if (!Array.isArray(content)) continue;
-
-    for (const c of content) {
-      // OpenAI Responses API usually has: { type: "output_text", text: "..." }
-      if (c?.type === "output_text" && typeof c?.text === "string" && c.text.trim()) return c.text.trim();
-      if (typeof c?.text === "string" && c.text.trim()) return c.text.trim();
+  if (Array.isArray(output)) {
+    for (const item of output) {
+      const content = item?.content;
+      if (!Array.isArray(content)) continue;
+      for (const part of content) {
+        const text = textFromContentPart(part);
+        if (text) return text;
+      }
     }
   }
+
+  const choices = upstream?.choices;
+  if (Array.isArray(choices)) {
+    for (const choice of choices) {
+      const text = pickNonEmptyString(
+        choice?.message?.content,
+        textFromMessageContent(choice?.message?.content),
+        choice?.text,
+      );
+      if (text) return text;
+    }
+  }
+
   return "";
 }
 
