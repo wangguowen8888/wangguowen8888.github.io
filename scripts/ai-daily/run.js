@@ -21,9 +21,16 @@ const sourceModules = {
 const DAILY_RETENTION_DAYS = 7;
 const WEEK_MARKER_FILE = ".week-marker.json";
 
-function getWeekKey(date) {
-  const utc = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-  const day = utc.getUTCDay() || 7;
+function getIsoWeekKeyFromDateKey(dateKey) {
+  // dateKey is already computed in the configured timezone (YYYY-MM-DD).
+  // Compute ISO week (Mon-Sun) purely from the calendar date to avoid host TZ drift.
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(dateKey || "").trim());
+  if (!match) return "1970-W01";
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const dayOfMonth = Number(match[3]);
+  const utc = new Date(Date.UTC(year, month - 1, dayOfMonth));
+  const day = utc.getUTCDay() || 7; // Mon=1..Sun=7
   utc.setUTCDate(utc.getUTCDate() + 4 - day);
   const yearStart = new Date(Date.UTC(utc.getUTCFullYear(), 0, 1));
   const weekNo = Math.ceil((((utc - yearStart) / 86400000) + 1) / 7);
@@ -37,9 +44,8 @@ async function clearDailyHistory({ dataDir, dailyRootDir }) {
   await fs.mkdir(dailyRootDir, { recursive: true });
 }
 
-async function resetIfNewWeek({ dataDir, dailyRootDir, now }) {
+async function resetIfNewWeek({ dataDir, dailyRootDir, weekKey }) {
   const markerPath = path.join(dataDir, WEEK_MARKER_FILE);
-  const weekKey = getWeekKey(now);
   let previousWeekKey = null;
   try {
     const raw = await fs.readFile(markerPath, "utf8");
@@ -90,10 +96,12 @@ async function collectSource(source) {
 
 async function main() {
   const now = new Date();
-  const { dateKey } = formatDateParts(now, config.generation?.timezone || "UTC");
+  const timeZone = config.generation?.timezone || "UTC";
+  const { dateKey } = formatDateParts(now, timeZone);
+  const weekKey = getIsoWeekKeyFromDateKey(dateKey);
   const dataDir = path.join(process.cwd(), "data", "daily");
   const dailyRootDir = path.join(process.cwd(), "daily");
-  await resetIfNewWeek({ dataDir, dailyRootDir, now });
+  await resetIfNewWeek({ dataDir, dailyRootDir, weekKey });
   const collected = (await Promise.all(config.sources.map(collectSource))).flat();
   if (collected.length === 0) {
     throw new Error("No sources produced any items.");
