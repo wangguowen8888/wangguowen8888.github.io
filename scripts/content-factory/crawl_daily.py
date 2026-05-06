@@ -246,7 +246,7 @@ def write_index(output_root: Path, date_key: str, articles: List[Article]) -> No
     index_path.write_text("\n".join(lines), encoding="utf-8")
 
 
-def write_index_html(output_root: Path, date_key: str, articles: List[Article]) -> None:
+def write_index_html(output_root: Path, date_key: str, articles: List[Article], html_lang: str) -> None:
     index_html = output_root / "index.html"
     item_lines: List[str] = []
     for idx, article in enumerate(articles, start=1):
@@ -268,8 +268,14 @@ def write_index_html(output_root: Path, date_key: str, articles: List[Article]) 
             "            <div><div class=\"title\">No articles generated today</div></div>"
         )
 
+    html_lang = safe_text(html_lang) or "zh-CN"
+    if html_lang.lower().startswith("zh"):
+        html_lang = "zh-CN"
+    elif html_lang.lower().startswith("en"):
+        html_lang = "en"
+
     html_text = f"""<!doctype html>
-<html lang="zh-CN">
+<html lang="{html_lang}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -308,6 +314,8 @@ def run(
     max_per_day: int,
     per_source_limit: int,
     retention_days: int,
+    lang_mode: str,
+    target_lang: str,
 ) -> None:
     load_dotenv(base_dir)
     date_key = datetime.now(ZoneInfo(LOCAL_TIMEZONE)).strftime("%Y-%m-%d")
@@ -370,6 +378,10 @@ def run(
             "publishedAt": article.published_at.isoformat(),
             "summary": article.summary,
             "content": article.content,
+            # publish_generated.py expects these keys when translation is enabled.
+            "langMode": lang_mode,
+            "translationTarget": target_lang,
+            "translatedContent": "",
             "images": article.images,
             "language": article.language,
             "score": article.score,
@@ -396,7 +408,7 @@ def run(
     )
 
     write_index(dirs["output_root"], date_key, articles)
-    write_index_html(dirs["output_root"], date_key, articles)
+    write_index_html(dirs["output_root"], date_key, articles, html_lang=target_lang or "zh-CN")
     prune_old(dirs["data_root"], dirs["output_root"], keep_days=retention_days)
     print(f"[content-factory] done: {len(articles)} articles @ {date_key}")
 
@@ -406,6 +418,18 @@ def main() -> None:
     parser.add_argument("--max-per-day", type=int, default=MAX_PER_DAY_DEFAULT)
     parser.add_argument("--per-source-limit", type=int, default=12)
     parser.add_argument("--retention-days", type=int, default=RETENTION_DAYS_DEFAULT)
+    # Kept for workflow/README compatibility. Translation is performed downstream (or disabled).
+    parser.add_argument(
+        "--lang-mode",
+        default="none",
+        choices=["none", "translate"],
+        help="Translation mode. 'translate' records translationTarget for the publisher.",
+    )
+    parser.add_argument(
+        "--target-lang",
+        default="",
+        help="Target language for translation, e.g. zh-CN/en. Recorded into generated JSON.",
+    )
     args = parser.parse_args()
 
     base_dir = Path.cwd()
@@ -414,6 +438,8 @@ def main() -> None:
         max_per_day=args.max_per_day,
         per_source_limit=args.per_source_limit,
         retention_days=args.retention_days,
+        lang_mode=str(args.lang_mode or "none"),
+        target_lang=str(args.target_lang or ""),
     )
 
 
